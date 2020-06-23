@@ -6,13 +6,14 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:11:59 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/21 15:28:05 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/23 19:52:38 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONFIG_H
 # define CONFIG_H
 
+# include <stdbool.h>
 # include "get_next_line/get_next_line.h"
 # include "utils/utils.h"
 # include <fcntl.h>
@@ -62,5 +63,16 @@ typedef struct			s_config
 	int					set[C_LAST];
 	double				fov;
 }						t_config;
+
+/*
+ * function
+*/
+
+int						FINT(double x);
+int						CHECK_BOT(t_pos p, t_config c);
+int						CHECK_TOP(t_pos p);
+int						IN_MAP(t_pos p, t_config c);
+int						*MAP(t_pos *p, t_config *c)
+int						*MAP_XY(double x, double y, t_config c);
 
 #endif
