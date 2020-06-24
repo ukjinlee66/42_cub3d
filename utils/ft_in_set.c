@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast.c                                          :+:      :+:    :+:   */
+/*   ft_in_set.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/23 21:43:45 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/24 18:51:55 by youlee           ###   ########.fr       */
+/*   Created: 2020/06/24 17:31:04 by youlee            #+#    #+#             */
+/*   Updated: 2020/06/24 17:31:47 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "engine.h"
+#include "utils.h"
 
-void			ray_cast(t_game *game, t_raysult *ray, int col)
+int			ft_in_set(char c, char const *set)
 {
-	
+	int			i;
+
+	i = 0;
+	while (set[i])
+	{
+		if (c == set[i])
+			return (c);
+		i++;
+	}
+	return (0);
 }

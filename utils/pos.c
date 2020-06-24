@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast.c                                          :+:      :+:    :+:   */
+/*   pos.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/23 21:43:45 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/24 18:51:55 by youlee           ###   ########.fr       */
+/*   Created: 2020/06/24 17:26:40 by youlee            #+#    #+#             */
+/*   Updated: 2020/06/24 17:27:37 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "engine.h"
+#include "utils.h"
 
-void			ray_cast(t_game *game, t_raysult *ray, int col)
+void			set_pos(t_pos *pos, double x, double y)
 {
-	
+	pos->x = x;
+	pos->y = y;
+}
+
+void			copy_pos(t_pos *pos, t_pos *pos2)
+{
+	pos->x = pos2->x;
+	pos->y = pos2->y;
 }

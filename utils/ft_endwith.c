@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast.c                                          :+:      :+:    :+:   */
+/*   ft_endwith.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/23 21:43:45 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/24 18:51:55 by youlee           ###   ########.fr       */
+/*   Created: 2020/06/24 17:32:10 by youlee            #+#    #+#             */
+/*   Updated: 2020/06/24 17:33:25 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "engine.h"
+#include "utils.h"
 
-void			ray_cast(t_game *game, t_raysult *ray, int col)
+int				ft_endwith(char const *str, char const *end)
 {
-	
+	int			len;
+	int			end_len;
+
+	len = ft_strlen(str);
+	end_len = ft_strlen(end);
+	if (end_len > len)
+		return (0);
+	return (!ft_strcmp(str + len - end_len, end));
 }
