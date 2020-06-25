@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 16:34:38 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/24 18:51:41 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/25 20:51:22 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define ENGINE_H
 
 # include <math.h>
-# include "mlx/mlx.h"
-# include "config/config.h"
-# include "cub3d.h"
+# include "mlx.h"
+# include "../config/config.h"
+# include "../cub3d.h"
 
 # define X_EVENT_KEY_PRESS				2
 # define X_EVENT_KEY_RELEASE			3
@@ -30,6 +30,87 @@
 /*
  ** function
 */
+
+typedef struct				s_pos
+{
+	double					x;
+	double					y;
+}							t_pos;
+
+typedef struct				s_raysult
+{
+	int						col;
+	int						row;
+	double					dist;
+	int						dir;
+	int						side;
+	int						height;
+	t_pos					ray_pos;
+	t_pos					ray_dir;
+	t_pos					map_pos;
+	t_pos					side_dist;
+	t_pos					delta_dist;
+	t_pos					step;
+	double					wall_x;
+	t_pos					floor_wall;
+	t_pos					c_floor;
+}							t_raysult;
+
+typedef	struct				s_image
+{
+	void					*img;
+	void					*ptr;
+	int						bpp;
+	int						endian;
+	int						size_l;
+}							t_image;
+
+typedef struct				s_tex
+{
+	char					*path;
+	void					*tex;
+	void					*ptr;
+	t_pos					start;
+	t_pos					end;
+	int						width;
+	int						height;
+	int						bpp;
+	int						size_l;
+	int						endian;
+}							t_tex;
+
+typedef struct				s_sprite_draw
+{
+	int						sprite_screen;
+	t_pos					pos;
+	t_pos					transform;
+	t_pos					spr_s;
+	t_pos					draw_x;
+	t_pos					draw_y;
+	t_pos					tex_pos;
+	int						fact;
+	int						draw_y_org;
+}							t_sprite_draw;
+
+typedef struct				s_sprite
+{
+
+}							t_sprite;
+
+typedef struct				s_window
+{
+
+}							t_window;
+
+typedef struct				s_camera
+{
+
+}							t_camera;
+
+typedef struct				s_game
+{
+
+}							t_game;
 
 void					update_window(t_game *game);
 
@@ -55,5 +136,24 @@ void					find_start_angle(t_config *config, t_camera *camera);
 int						move_camera(t_game *game, int dir);
 
 int						move_perp_camera(t_game *game, int dir);
+
+int						wall_dir(t_raysult *ray);
+
+double					ray_dir(t_game *game, t_raysult *ray);
+
+void					init_ray(t_raysult *ray, t_camera *c, int col, \
+		double camera_x);
+
+void					ray_cast(t_game *game, t_raysult *ray, int col);
+
+void					update_screen(t_game *game);
+
+void					draw_wall(t_game *game, t_raysult *ray);
+
+int						shade_color(int color, double divide);
+
+int						dist_shade(int options, int color, double dist);
+
+int						get_tex_color(t_tex *tex, t_pos *pos);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 10:32:48 by youlee            #+#    #+#             */
-/*   Updated: 2020/04/22 17:06:53 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/25 20:45:04 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_strncpy(char *dest, char *src, unsigned int n)
 	return (dest);
 }
 
-int		ft_strlen(char *str, char ***buf2, int cc, int row)
+int		ft_strlen2(char *str, char ***buf2, int cc, int row)
 {
 	int size;
 
@@ -54,7 +54,7 @@ int		ft_strlen(char *str, char ***buf2, int cc, int row)
 	return (0);
 }
 
-char	*ft_strdup(char *str, int ch, char **str2, char *temp)
+char	*ft_strdup2(char *str, int ch, char **str2, char *temp)
 {
 	char	*res;
 	int		size;
@@ -63,7 +63,7 @@ char	*ft_strdup(char *str, int ch, char **str2, char *temp)
 	if (ch == 1)
 	{
 		idx = 0;
-		size = ft_strlen(str, NULL, 0, 0);
+		size = ft_strlen2(str, NULL, 0, 0);
 		if (!(res = malloc(sizeof(char) * (size + 1))))
 			return (NULL);
 		while (str[idx] != '\0')
@@ -89,7 +89,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	size_t	idx2;
 	size_t	size;
 
-	size = ft_strlen(s1, NULL, 0, 0) + ft_strlen(s2, NULL, 0, 0) + 1;
+	size = ft_strlen2(s1, NULL, 0, 0) + ft_strlen2(s2, NULL, 0, 0) + 1;
 	idx = 0;
 	idx2 = 0;
 	if (!(ans = malloc(sizeof(char) * size)))
@@ -127,7 +127,7 @@ int		ft_strchr(char *str, char c, char **buf2, int fd)
 	else
 	{
 		while (idx < fd + 1)
-			buf2[idx++] = ft_strdup("\0", 1, 0, 0);
+			buf2[idx++] = ft_strdup2("\0", 1, 0, 0);
 		return (0);
 	}
 }
