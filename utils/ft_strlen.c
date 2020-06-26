@@ -6,9 +6,11 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 16:46:22 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/21 16:47:17 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/26 15:49:53 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "utils.h"
 
 int				ft_strlen(char const *str)
 {

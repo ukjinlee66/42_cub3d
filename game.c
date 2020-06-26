@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:07:10 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/25 17:14:31 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/26 15:47:43 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int			init_game(t_game *game, int save)
 {
 	if (init_window(&game->window, &game->config))
 	{
-		return (exit_error(game,
+		return (error_check(game,
 					"Error:\nmlx failed to create window or img.\n"));
 	}
 	find_start_pos(&game->config, &game->camera);

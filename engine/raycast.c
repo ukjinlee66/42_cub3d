@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 21:43:45 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/25 20:38:04 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/26 16:01:47 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int				wall_dir(t_raysult *ray)
 {
 	if (ray->side)
-		return ((ray->ray_dir.y < 0) ? (TEX_NORTH) : (TEX_SOUTH);
+		return ((ray->ray_dir.y < 0) ? (TEX_NORTH) : (TEX_SOUTH));
 	return ((ray->ray_dir.x < 0) ? (TEX_WEST) : (TEX_EAST));
 }
 
@@ -43,7 +43,7 @@ void			init_ray(t_raysult *ray, t_camera *c, int col, \
 	if (ray->ray_dir.x < 0.)
 	{
 		set_pos(&ray->step, -1., (ray->ray_dir.y < 0.) ? -1. : 1.);
-		ray->side_dist.x = (ray->ray_pos.x - ray->map_pos.x) * ray->dleta_dist.x;
+		ray->side_dist.x = (ray->ray_pos.x - ray->map_pos.x) * ray->delta_dist.x;
 	}
 	else
 	{
@@ -55,7 +55,7 @@ void			init_ray(t_raysult *ray, t_camera *c, int col, \
 		ray->side_dist.y = (ray->ray_pos.y - ray->map_pos.y) * \
 						   ray->delta_dist.x;
 	else
-		ray->side_disy.y = (ray->ray_pos.y + 1. - ray->ray_pos.y) * \
+		ray->side_dist.y = (ray->ray_pos.y + 1. - ray->ray_pos.y) * \
 						   ray->delta_dist.y;
 }
 

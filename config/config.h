@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:11:59 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/25 20:42:33 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/26 16:30:04 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define CONFIG_H
 
 # include <stdbool.h>
-# include "../get_next_line/get_next_line.h"
-# include "../utils/utils.h"
+# include "get_next_line/get_next_line.h"
+# include "utils/utils.h"
 # include <fcntl.h>
 
 /*
@@ -72,7 +72,7 @@ int						FINT(double x);
 int						CHECK_BOT(t_pos p, t_config c);
 int						CHECK_TOP(t_pos p);
 int						IN_MAP(t_pos p, t_config c);
-int						*MAP(t_pos *p, t_config *c);
+int						*MAP(t_pos p, t_config c);
 int						*MAP_XY(double x, double y, t_config c);
 
 #endif

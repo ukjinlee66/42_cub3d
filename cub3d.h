@@ -6,19 +6,17 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:04:47 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/25 20:48:54 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/26 15:35:44 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <stdlib.h>
-# include <math.h>
-# include <unistd.h>
 # include "engine/engine.h"
 # include "config/config.h"
 # include "utils/utils.h"
+# include "mlx.h"
 
 # define LEFT_CLICK			1
 # define RIGHT_CLICK		2
@@ -64,5 +62,11 @@ int		error_check(t_game *game, char const *str);
 int		exit_game(t_game *game, int code);
 
 int		init_game(t_game *game, int save);
+
+int		exit_hook(t_game *game);
+
+int		key_press(int keycode, t_game *game);
+
+int		key_release(int keycode, t_game *game);
 
 #endif

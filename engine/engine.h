@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 16:34:38 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/25 20:51:22 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/26 16:27:52 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <math.h>
 # include "mlx.h"
-# include "../config/config.h"
-# include "../cub3d.h"
+# include "config/config.h"
+# include "cub3d.h"
 
 # define X_EVENT_KEY_PRESS				2
 # define X_EVENT_KEY_RELEASE			3
@@ -25,17 +25,22 @@
 # define X_EVENT_MONUS_MOVE				6
 # define X_EVENT_EXIT					17
 
+# define FLAG_UI						0x00000010
+# define FLAG_SHADOWS					0x00000100
+# define FLAG_CROSSHAIR					0x00001000
+# define FLAG_SAVE						0x00000001
+
 # define BEST_RATIO						1.7777777778
 
 /*
  ** function
 */
 
-typedef struct				s_pos
-{
-	double					x;
-	double					y;
-}							t_pos;
+/*typedef struct				s_pos
+*{
+*	double					x;
+*	double					y;
+}							t_pos;*/
 
 typedef struct				s_raysult
 {
@@ -94,22 +99,48 @@ typedef struct				s_sprite_draw
 
 typedef struct				s_sprite
 {
-
+	t_pos					pos;
+	double					dist;
+	t_tex					*tex;
+	struct					s_sprite *next;
+	struct					s_sprite *sorted;
 }							t_sprite;
 
 typedef struct				s_window
 {
-
+	void					*ptr;
+	void					*win;
+	double					ratio;
+	t_image					screen;
+	t_pos					size;
+	t_pos					half;
 }							t_window;
 
 typedef struct				s_camera
 {
-
+	t_pos					pos;
+	t_pos					dir;
+	t_pos					x_dir;
+	t_pos					plane;
 }							t_camera;
 
 typedef struct				s_game
 {
-
+	t_config				config;
+	t_window				window;
+	t_camera				camera;
+	t_sprite				*sprites;
+	t_tex					tex[TEXTURES];
+	t_pos					move;
+	t_pos					x_move;
+	t_pos					rotate;
+	int						options;
+	int						kill;
+	int						to_kill;
+	double					camera_x[1920];
+	double					depth[1080];
+	double					cos[2];
+	double					sin[2];
 }							t_game;
 
 void					update_window(t_game *game);
