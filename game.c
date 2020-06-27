@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:07:10 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/26 15:47:43 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/27 22:33:10 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int			exit_game(t_game *game, int code)
 {
-	clear_config(&game->config);
+	//clear_config(&game->config);
 	clear_window(&game->window);
-	clear_textures(game);
-	clear_sprites(&game->sprites);
+	//clear_textures(game);
+	//clear_sprites(&game->sprites);
 	exit(code);
 	return (code);
 }

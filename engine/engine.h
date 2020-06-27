@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 16:34:38 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/26 16:27:52 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/27 22:34:47 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <math.h>
 # include "mlx.h"
 # include "config/config.h"
-# include "cub3d.h"
 
 # define X_EVENT_KEY_PRESS				2
 # define X_EVENT_KEY_RELEASE			3

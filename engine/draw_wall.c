@@ -6,9 +6,11 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 20:09:49 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/25 20:14:06 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/27 22:42:10 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "engine.h"
 
 static void			init_draw_wall(t_tex *tex, t_raysult *ray, t_pos *p_tex)
 {

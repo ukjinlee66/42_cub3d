@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 19:29:55 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/23 19:30:21 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/27 22:46:07 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int				FINT(double x)
 {
-	return ((int)floor(x));
+	return ((int)(floor(x)));
 }

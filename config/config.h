@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:11:59 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/26 16:30:04 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/27 22:43:36 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int						FINT(double x);
 int						CHECK_BOT(t_pos p, t_config c);
 int						CHECK_TOP(t_pos p);
 int						IN_MAP(t_pos p, t_config c);
-int						*MAP(t_pos p, t_config c);
-int						*MAP_XY(double x, double y, t_config c);
+int						MAP(t_pos p, t_config c);
+int						MAP_XY(double x, double y, t_config c);
 
 #endif
