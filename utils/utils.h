@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 16:44:18 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/26 15:30:25 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/28 19:06:54 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct		s_str
 
 int					ft_strlen(char const *str);
 
-int					ft_strcmp(char *str1, char *str2);
+int					ft_strcmp(const char *str1, const char *str2);
 
 int					ft_endwith(char const *str, char const *end);
 

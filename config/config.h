@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:11:59 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/27 22:43:36 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/28 20:18:04 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@
 # include "get_next_line/get_next_line.h"
 # include "utils/utils.h"
 # include <fcntl.h>
+# include <math.h>
 
 /*
 ** direction
 */
 
+# define DIRECTIONS "NSEW"
 # define C_R			0
 # define C_NO			1
 # define C_SO			2
@@ -41,7 +43,7 @@
 # define TEX_NORTH		0
 # define TEX_SOUTH		1
 # define TEX_WEST		2
-# define EAST			3
+# define TEX_EAST		3
 # define TEX_SKY		4
 # define TEX_FLOOR		5
 # define TEX_SPRITE		6
@@ -72,7 +74,10 @@ int						FINT(double x);
 int						CHECK_BOT(t_pos p, t_config c);
 int						CHECK_TOP(t_pos p);
 int						IN_MAP(t_pos p, t_config c);
-int						MAP(t_pos p, t_config c);
-int						MAP_XY(double x, double y, t_config c);
+char					MAP(t_pos p, t_config c);
+char					MAP_XY(double x, double y, t_config c);
+int						MAX(int a,int b);
+int						clear_config(t_config *config);
+void					init_config(t_config *config);
 
 #endif

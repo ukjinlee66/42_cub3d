@@ -6,13 +6,13 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 19:35:17 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/27 22:43:26 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/28 18:26:06 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "config.h"
 
-int			MAP_XY(double x, double y, t_config c)
+char			MAP_XY(double x, double y, t_config c)
 {
 	return ((c).map[(FINT(y) * (c).col) + FINT(x)]);
 }

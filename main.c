@@ -6,13 +6,14 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:04:32 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/26 15:42:33 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/28 20:46:15 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
 
 int			error_check(t_game *game, char const *str)
 {
@@ -31,6 +32,10 @@ int			main(int argc, char **argv)
 	//if (argc < (2 + save))
 	//	return (error_check(&game, "Error:\nno map.\n"));
 	init_game(&game, save);
+	init_config(&(game.config));
+	//for(int i=0;i<300;i++)
+	//	for(int j=0;j<300;j++)
+	//		game.config.map[(i * 300) + j] = 0;
 	//if (!parse_config(&game.config, argv[1 + save]))
 	//	return (error_check(&game, "Error:\ninvalid map.\n"));
 	//if (!finish_init(&game))

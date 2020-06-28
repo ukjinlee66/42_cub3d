@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 18:16:37 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/24 18:47:53 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/28 19:00:11 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void		update_window(t_game *game)
 	t_window			*w;
 
 	w = &game->window;
-	mlx_pit_image_to_window(w->ptr, w->win, w->screen.img, 0, 0);
-	if (game->options & FLAG_UI)
-		write_ui_text(game);
+	mlx_put_image_to_window(w->ptr, w->win, w->screen.img, 0, 0);
+	//if (game->options & FLAG_UI)
+	//	write_ui_text(game);
 }

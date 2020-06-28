@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 19:53:06 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/24 18:15:27 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/28 19:10:29 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void		find_start_pos(t_config *config, t_camera *camera)
 		camera->pos.x = 0;
 		while (!stop && camera->pos.x < config->col)
 		{
-			if (ft_ins_set(MAP(camera->pos, *config), DIRECTIONS))
+			if (ft_in_set(MAP(camera->pos, *config), DIRECTIONS))
 			{
 				stop = 1;
 				break ;
@@ -60,7 +60,9 @@ void		find_start_angle(t_config *config, t_camera *camera)
 		set_pos(&camera->plane, 0., -config->fov);
 	}
 	set_pos(&camera->x_dir, camera->dir.y, -camera->dir.x);
-	MAP(camera->pos, *config) = '0';
+	//MAP(camera->pos, *config) = '0';
+	config->map[(FINT(camera->pos.y) * config->col) +
+		FINT(camera->pos.x)] = '0';
 }
 
 int			move_camera(t_game *game, int dir)

@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 18:27:13 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/24 18:48:39 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/28 18:29:38 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void				draw_pixel(t_window *w, t_pos *pos, int color)
 {
 	if (pos->x >= 0 && pos->x < w->size.x
-			&& pos->y >= 0 && pos.y < w->size.y)
+			&& pos->y >= 0 && pos->y < w->size.y)
 		*(int*)(w->screen.ptr
 				+ (4 * (int)w->size.x * (int)pos->y)
 				+ ((int)pos->x * 4)) = color;

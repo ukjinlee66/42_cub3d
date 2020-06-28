@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 21:43:45 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/26 16:01:47 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/28 19:28:16 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,6 @@ void			ray_cast(t_game *game, t_raysult *ray, int col)
 		else if (MAP(ray->map_pos, game->config) == '1')
 			hit = 1;
 	}
-	ray->dist = ray_dist(game, ray);
+	ray->dist = ray_dir(game, ray);
 	ray->dir = wall_dir(ray);
 }

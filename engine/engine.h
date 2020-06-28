@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 16:34:38 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/27 22:34:47 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/28 18:40:08 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ typedef struct				s_game
 	int						to_kill;
 	double					camera_x[1920];
 	double					depth[1080];
+	double					sf_dist[1080];
 	double					cos[2];
 	double					sin[2];
 }							t_game;
@@ -185,5 +186,7 @@ int						shade_color(int color, double divide);
 int						dist_shade(int options, int color, double dist);
 
 int						get_tex_color(t_tex *tex, t_pos *pos);
+
+void					make_tables(t_game *game);
 
 #endif
