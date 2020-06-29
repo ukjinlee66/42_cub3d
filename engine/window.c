@@ -6,11 +6,12 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 18:16:37 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/28 19:00:11 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/29 15:07:29 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
+#include <stdio.h>
 
 int			clear_window(t_window *window)
 {

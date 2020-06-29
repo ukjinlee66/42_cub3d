@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:04:47 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/26 15:35:44 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/29 15:01:07 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,14 @@ int		error_check(t_game *game, char const *str);
 
 int		exit_game(t_game *game, int code);
 
-int		init_game(t_game *game, int save);
+void	init_game(t_game *game, int point);
 
 int		exit_hook(t_game *game);
 
 int		key_press(int keycode, t_game *game);
 
 int		key_release(int keycode, t_game *game);
+
+int		finish_init(t_game *game);
 
 #endif

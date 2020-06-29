@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 20:09:49 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/28 18:39:07 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/29 17:37:12 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void				draw_wall(t_game *game, t_raysult *ray)
 	{
 		p_tex.y = (int)((pixel.y * 2 - game->window.size.y + ray->height));
 		draw_pixel(&game->window, &pixel, dist_shade(game->options,
-					get_tex_color(tex, &p_tex), ray->dist));
+					0xF90800, ray->dist));
 		num[0]++;
 	}
 }

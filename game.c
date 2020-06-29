@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:07:10 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/27 22:33:10 by youlee           ###   ########.fr       */
+/*   Updated: 2020/06/29 15:08:28 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,27 @@ int			exit_game(t_game *game, int code)
 	return (code);
 }
 
-int			init_game(t_game *game, int save)
+void		init_game(t_game *game, int point)
 {
-	if (init_window(&game->window, &game->config))
+	int				i;
+
+	point = 0;
+	init_config(&game->config);
+	set_pos(&game->move, 0, 0);
+	set_pos(&game->x_move, 0, 0);
+	set_pos(&game->rotate, 0, 0);
+	game->options = 0;
+	game->kill = 0;
+	game->to_kill = 0;
+	game->sprites = NULL;
+	i = 0;
+	while (i < TEXTURES)
+		game->tex[i++].tex = NULL;
+}
+
+int			finish_init(t_game *game)
+{
+	if (!init_window(&game->window, &game->config))
 	{
 		return (error_check(game,
 					"Error:\nmlx failed to create window or img.\n"));
@@ -34,4 +52,3 @@ int			init_game(t_game *game, int save)
 	make_tables(game);
 	return (1);
 }
-
