@@ -6,12 +6,13 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 18:17:49 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/28 19:28:35 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/02 02:43:17 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
-
+#include <stdio.h>
+#include <stdlib.h>
 void		update_screen(t_game *game)
 {
 	t_window		*w;
@@ -29,8 +30,8 @@ void		update_screen(t_game *game)
 		game->depth[i] = ray.dist;
 		ray.height = fabs(w->size.y / ray.dist);
 		draw_wall(game, &ray);
-		//if (ray.height < game->window.size.y)
-		//	draw_sky_floor(game, &ray);
+		if (ray.height < game->window.size.y)
+			draw_sky_floor(game, &ray);
 		i++;
 	}
 }

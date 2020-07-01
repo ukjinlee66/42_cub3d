@@ -6,12 +6,12 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 19:53:06 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/28 19:10:29 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/02 04:03:12 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
-
+#include <stdio.h>
 void		find_start_pos(t_config *config, t_camera *camera)
 {
 	int				stop;
@@ -61,8 +61,7 @@ void		find_start_angle(t_config *config, t_camera *camera)
 	}
 	set_pos(&camera->x_dir, camera->dir.y, -camera->dir.x);
 	//MAP(camera->pos, *config) = '0';
-	config->map[(FINT(camera->pos.y) * config->col) +
-		FINT(camera->pos.x)] = '0';
+	config->map[(int)floor(camera->pos.y * config->col) + (int)floor(camera->pos.x)] = '0';
 }
 
 int			move_camera(t_game *game, int dir)
@@ -76,7 +75,7 @@ int			move_camera(t_game *game, int dir)
 	if (IN_MAP(n_pos, game->config)
 			&& MAP(n_pos, game->config) != '1'
 			&& MAP(n_pos, game->config) != '2')
-		copy_pos(&n_pos, &c->pos);
+		copy_pos(&c->pos, &n_pos);
 	copy_pos(&n_pos, &c->pos);
 	n_pos.y += (((dir) ? -1 : 1) * (c->dir.y * .11));
 	if (IN_MAP(n_pos, game->config)
@@ -118,7 +117,7 @@ int			rotate_camera(t_game *game, int dir)
 	c->dir.y = (old.x * game->sin[dir]) + (c->dir.y * game->cos[dir]);
 	copy_pos(&old, &c->plane);
 	c->plane.x = (c->plane.x * game->cos[dir]) - (c->plane.y * game->sin[dir]);
-	c->plane.y = (old.x * game->cos[dir]) - (c->plane.y * game->cos[dir]);
+	c->plane.y = (old.x * game->sin[dir]) + (c->plane.y * game->cos[dir]);
 	copy_pos(&old, &c->x_dir);
 	c->x_dir.x = (c->x_dir.x * game->cos[dir]) - (c->x_dir.y * game->sin[dir]);
 	c->x_dir.y = (old.x * game->sin[dir]) + (c->x_dir.y * game->cos[dir]);

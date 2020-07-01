@@ -6,12 +6,12 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/23 21:43:45 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/28 19:28:16 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/02 04:11:55 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
-
+#include <stdio.h>
 int				wall_dir(t_raysult *ray)
 {
 	if (ray->side)
@@ -48,14 +48,14 @@ void			init_ray(t_raysult *ray, t_camera *c, int col, \
 	else
 	{
 		set_pos(&ray->step, 1., (ray->ray_dir.y < 0.) ? -1. : 1.);
-		ray->side_dist.x = (ray->ray_pos.x + 1. - ray->ray_pos.x) *
+		ray->side_dist.x = (ray->map_pos.x + 1. - ray->ray_pos.x) *
 			ray->delta_dist.x;
 	}
 	if (ray->ray_dir.y < 0.)
 		ray->side_dist.y = (ray->ray_pos.y - ray->map_pos.y) * \
-						   ray->delta_dist.x;
+						   ray->delta_dist.y;
 	else
-		ray->side_dist.y = (ray->ray_pos.y + 1. - ray->ray_pos.y) * \
+		ray->side_dist.y = (ray->map_pos.y + 1. - ray->ray_pos.y) * \
 						   ray->delta_dist.y;
 }
 

@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 16:34:38 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/28 18:40:08 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/01 22:19:44 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,6 @@
 /*
  ** function
 */
-
-/*typedef struct				s_pos
-*{
-*	double					x;
-*	double					y;
-}							t_pos;*/
 
 typedef struct				s_raysult
 {
@@ -188,5 +182,13 @@ int						dist_shade(int options, int color, double dist);
 int						get_tex_color(t_tex *tex, t_pos *pos);
 
 void					make_tables(t_game *game);
+
+int						load_textures(t_game *game);
+
+int						load_tex(t_tex *tex, t_window *win, char *path);
+
+void					clear_tex(t_game *game);
+
+void					draw_sky_floor(t_game *game, t_raysult *ray);
 
 #endif

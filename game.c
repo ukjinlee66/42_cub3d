@@ -6,17 +6,17 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:07:10 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/29 15:08:28 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/02 04:40:57 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
+#include <stdio.h>
 int			exit_game(t_game *game, int code)
 {
-	//clear_config(&game->config);
+	clear_config(&game->config);
 	clear_window(&game->window);
-	//clear_textures(game);
+	clear_tex(game);
 	//clear_sprites(&game->sprites);
 	exit(code);
 	return (code);
@@ -31,7 +31,7 @@ void		init_game(t_game *game, int point)
 	set_pos(&game->move, 0, 0);
 	set_pos(&game->x_move, 0, 0);
 	set_pos(&game->rotate, 0, 0);
-	game->options = 0;
+	game->options = 0x11111110;
 	game->kill = 0;
 	game->to_kill = 0;
 	game->sprites = NULL;
@@ -49,6 +49,7 @@ int			finish_init(t_game *game)
 	}
 	find_start_pos(&game->config, &game->camera);
 	find_start_angle(&game->config, &game->camera);
+	load_textures(game);
 	make_tables(game);
 	return (1);
 }

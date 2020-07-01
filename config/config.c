@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/28 20:12:00 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/28 20:17:11 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/02 03:10:36 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void			init_config(t_config *config)
 	config->row = 0;
 	config->col = 0;
 	config->save_arg = 0;
-	config->rotate_speed = .11;
+	config->rotate_speed = .05;
 	config->fov = .66;
 	i = 0;
 	while (i < C_LAST)
