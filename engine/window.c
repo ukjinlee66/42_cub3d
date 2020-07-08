@@ -5,64 +5,61 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/24 18:16:37 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/02 02:41:15 by youlee           ###   ########.fr       */
+/*   Created: 2020/07/04 14:25:30 by youlee            #+#    #+#             */
+/*   Updated: 2020/07/08 17:08:42 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "engine.h"
-#include <stdio.h>
+#include "cub3d.h"
 
-int			clear_window(t_window *window)
+void			coord(t_window *win, t_pos *pos, int color)
 {
-	if (window->screen.img)
-		mlx_destroy_image(window->ptr, window->screen.img);
-	if (window->ptr && window->win)
-		mlx_destroy_window(window->ptr, window->win);
-	return (0);
+	if (pos->x >= 0 && pos->x < win->size.x &&
+			pos->y >= 0 && pos->y < win->size.y)
+	*(int*)(win->screen.ptr + (4 * (int)win->size.x * (int)pos->y) +
+			((int)pos->x * 4)) = color;
 }
 
-int			init_image(t_window *window, t_image *img)
+void			put_screen(t_cub *cub)
 {
-	if (!(img->img =
-				mlx_new_image(window->ptr, window->size.x, window->size.y)))
-		return (0);
-	img->ptr = mlx_get_data_addr(
-			img->img, &img->bpp, &img->size_l, &img->endian);
-	return (1);
+	t_window			*win;
+	int					i;
+	t_object			obj;
+	t_pos				start;
+
+	win = &cub->window;
+	set_position(&start, 0, 0);
+	i = 0;
+	while (i < win->size.x)
+	{
+		ray_cast(cub, &obj, i);
+		cub->depth[i] = obj.dist;
+		obj.height = fabs(win->size.y / obj.dist);
+		draw_wall(cub, &obj);
+		if (obj.height < cub->window.size.y)
+		{
+			draw_sky_floor(cub, &obj);
+		}
+		i++;
+	}
 }
 
-int			init_window(t_window *window, t_config *config)
+void			init_window(t_window *window)
 {
-	set_pos(&window->size, config->req_width, config->req_height);
-	window->size.x = window->size.x > 1920 ? 1920 : window->size.x;
-	window->size.y = window->size.y > 1080 ? 1080 : window->size.y;
-	window->size.x = window->size.x < 848 ? 848 : window->size.x;
-	window->size.y = window->size.y < 480 ? 480 : window->size.y;
-	window->ptr = NULL;
-	window->win = NULL;
-	window->ratio = window->size.x / window->size.y;
+	window->size.x = MH;
+	window->size.y = MH;
+	set_position(&window->half, window->size.x / 2., window->size.y / 2.);
+	window->ptr = mlx_init();
+	window->win = mlx_new_window(window->ptr, window->size.x,
+			window->size.y, "cub3d");
 	window->screen.img = NULL;
-	if (window->ratio < BEST_RATIO)
-		config->fov = config->fov / ((BEST_RATIO / config->fov) / 2.5);
-	else if (window->ratio > BEST_RATIO)
-		config->fov = config->fov * ((config->fov / BEST_RATIO) * 2.5);
-	if (!(window->ptr = mlx_init())
-			|| !(window->win = mlx_new_window(
-					window->ptr, window->size.x, window->size.y, "cub3d")))
-		return (0);
-	set_pos(&window->half, window->size.x / 2, window->size.y / 2);
-	if (!init_image(window, &window->screen))
-		return (0);
-	return (1);
+	init_img(window, &window->screen);
 }
 
-void		update_window(t_game *game)
+void			put_img(t_cub *cub)
 {
-	t_window			*w;
+	t_window			*win;
 
-	w = &game->window;
-	mlx_put_image_to_window(w->ptr, w->win, w->screen.img, 0, 0);
-	//if (game->options & FLAG_UI)
-	//	write_ui_text(game);
+	win = &cub->window;
+	mlx_put_image_to_window(win->ptr, win->win, win->screen.img, 0, 0);
 }

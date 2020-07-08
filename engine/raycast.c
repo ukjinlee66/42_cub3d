@@ -5,85 +5,90 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/23 21:43:45 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/02 04:11:55 by youlee           ###   ########.fr       */
+/*   Created: 2020/07/04 15:02:33 by youlee            #+#    #+#             */
+/*   Updated: 2020/07/06 20:02:53 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "engine.h"
-#include <stdio.h>
-int				wall_dir(t_raysult *ray)
+#include "cub3d.h"
+
+static int		cal_dir(t_object *obj)
 {
-	if (ray->side)
-		return ((ray->ray_dir.y < 0) ? (TEX_NORTH) : (TEX_SOUTH));
-	return ((ray->ray_dir.x < 0) ? (TEX_WEST) : (TEX_EAST));
+	if (obj->side_)
+		return ((obj->dir.y < 0) ? TEX_NORTH : TEX_SOUTH);
+	return ((obj->dir.x < 0) ? TEX_WEST : TEX_EAST);
 }
 
-double			ray_dir(t_game *game, t_raysult *ray)
+static double		cal_perp(t_cub *cub, t_object *obj)
 {
-	double		pos;
+	double perp_dist;
 
-	if (ray->side)
+	if (obj->side_)
 	{
-		pos = (ray->map_pos.y - game->camera.pos.y + (1. - ray->step.y) / 2.);
-		return (fabs(pos / ray->ray_dir.y));
+		perp_dist = (obj->map_pos.y - cub->camera.pos.y +
+				(1. - obj->step.y) / 2.);
+		return (fabs(perp_dist / obj->dir.y));
 	}
-	pos = (ray->map_pos.x - game->camera.pos.x + (1. - ray->step.x) / 2.);
-	return (fabs(pos / ray->ray_dir.x));
+	perp_dist = (obj->map_pos.x - cub->camera.pos.x +
+			(1. - obj->step.x) / 2.);
+	return (fabs(perp_dist / obj->dir.x));
 }
 
-void			init_ray(t_raysult *ray, t_camera *c, int col, \
-	double camera_x)
+static void		cal_xaxis(t_object *obj, t_camera *camera, int col, \
+		double camera_x)
 {
-	ray->col = col;
-	set_pos(&ray->map_pos, (int)c->pos.x, (int)c->pos.y);
-	set_pos(&ray->ray_dir, c->dir.x + c->plane.x * camera_x,
-			c->dir.y + c->plane.y * camera_x);
-	set_pos(&ray->delta_dist, fabs(1. / ray->ray_dir.x), fabs(1. / ray->ray_dir.y));
-	if (ray->ray_dir.x < 0.)
+	obj->col = col;
+	set_position(&obj->map_pos, (int)camera->pos.x, (int)camera->pos.y);
+	set_position(&obj->dir, camera->dir.x + camera->plane.x * camera_x,
+			camera->dir.y + camera->plane.y * camera_x);
+	set_position(&obj->delta, fabs(1. / obj->dir.x), fabs(1. / obj->dir.y));
+	if (obj->dir.x < 0.)
 	{
-		set_pos(&ray->step, -1., (ray->ray_dir.y < 0.) ? -1. : 1.);
-		ray->side_dist.x = (ray->ray_pos.x - ray->map_pos.x) * ray->delta_dist.x;
+		set_position(&obj->step, -1., (obj->dir.y < 0.) ? -1. : 1.);
+		obj->side.x = (obj->pos.x - obj->map_pos.x) * obj->delta.x;
 	}
 	else
 	{
-		set_pos(&ray->step, 1., (ray->ray_dir.y < 0.) ? -1. : 1.);
-		ray->side_dist.x = (ray->map_pos.x + 1. - ray->ray_pos.x) *
-			ray->delta_dist.x;
+		set_position(&obj->step, 1., (obj->dir.y < 0.) ? -1. : 1.);
+		obj->side.x = (obj->map_pos.x + 1. - obj->pos.x) * obj->delta.x;
 	}
-	if (ray->ray_dir.y < 0.)
-		ray->side_dist.y = (ray->ray_pos.y - ray->map_pos.y) * \
-						   ray->delta_dist.y;
+	if (obj->dir.y < 0.)
+		obj->side.y = (obj->pos.y - obj->map_pos.y) * obj->delta.y;
 	else
-		ray->side_dist.y = (ray->map_pos.y + 1. - ray->ray_pos.y) * \
-						   ray->delta_dist.y;
+		obj->side.y = (obj->map_pos.y + 1. - obj->pos.y) * obj->delta.y;
 }
 
-void			ray_cast(t_game *game, t_raysult *ray, int col)
+int				ray_cast(t_cub *cub, t_object *obj, int col)
 {
 	int			hit;
-	int			next;
 
-	copy_pos(&ray->ray_pos, &game->camera.pos);
-	init_ray(ray, &game->camera, col, game->camera_x[col]);
+	copy_position(&obj->pos, &cub->camera.pos);
+	cal_xaxis(obj, &cub->camera, col, cub->cam_width[col]);
 	hit = 0;
 	while (!hit)
 	{
-		next = (ray->side_dist.x < ray->side_dist.y);
-		ray->side_dist.x += ((next) ? ray->delta_dist.x : 0.);
-		ray->map_pos.x += ((next) ? ray->step.x : 0.);
-		ray->side_dist.y += ((!next) ? ray->delta_dist.y : 0.);
-		ray->map_pos.y += ((!next) ? ray->step.y : 0.);
-		ray->side = !next;
-		if (!IN_MAP(ray->map_pos, game->config))
+		if (obj->side.x < obj->side.y)
 		{
-			ray->map_pos.x -= ((!ray->side) ? ray->step.x : 0.);
-			ray->map_pos.y -= ((ray->side) ? ray->step.y : 0.);
+			obj->side.x += obj->delta.x;
+			obj->map_pos.x += obj->step.x;
+			obj->side_ = 0;
+		}
+		else
+		{
+			obj->side.y += obj->delta.y;
+			obj->map_pos.y += obj->step.y;
+			obj->side_ = 1;
+		}
+		if ((int)obj->map_pos.x >= 30 || (int)obj->map_pos.y >= 30)
+		{
+			obj->map_pos.x -= ((!obj->side_) ? obj->step.x : 0.);
+			obj->map_pos.y -= ((obj->side_) ? obj->step.y : 0.);
 			hit = 1;
 		}
-		else if (MAP(ray->map_pos, game->config) == '1')
+		else if (cub->map[(int)obj->map_pos.x][(int)obj->map_pos.y] == 1)
 			hit = 1;
 	}
-	ray->dist = ray_dir(game, ray);
-	ray->dir = wall_dir(ray);
+	obj->dist = cal_perp(cub, obj);
+	obj->direction = cal_dir(obj);
+	return (0);
 }

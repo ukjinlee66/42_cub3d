@@ -3,107 +3,78 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youlee <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/01 18:14:00 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/02 05:25:15 by youlee           ###   ########.fr       */
+/*   Created: 2020/07/08 17:13:53 by youlee            #+#    #+#             */
+/*   Updated: 2020/07/08 21:23:08 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "engine.h"
-#include <stdio.h>
-int					load_tex(t_tex *tex, t_window *win, char *path)
+#include "cub3d.h"
+
+static int		row_check(t_texture *tex, int row)
 {
-	if (path)
+	int				i;
+	t_pos			tex_pos;
+
+	i = 0;
+	tex_pos.y = row;
+	while (i < tex->width)
 	{
-		tex->path = path;
-		if ((tex->tex = mlx_xpm_file_to_image(win->ptr, path,
-						&tex->width, &tex->height)))
-		{
-			tex->ptr = mlx_get_data_addr(tex->tex, &tex->bpp,
-					&tex->size_l, &tex->endian);
-		}
-		else
+		tex_pos.x = i;
+		if (cal_color2(tex, &tex_pos) != 0x0)
 			return (0);
+		i++;
 	}
 	return (1);
 }
 
-void				clear_tex(t_game *game)
+static int		col_check(t_texture *tex, int col)
 {
-	int			i;
+	int				i;
+	t_pos			tex_pos;
 
 	i = 0;
-	while (i < TEXTURES)
-	{
-		if (game->tex[i].tex)
-			mlx_destroy_image(game->window.ptr, game->tex[i].tex);
-		game->tex[i].tex = NULL;
-		game->tex[i].ptr = NULL;
-		i++;
-	}
-}
-
-static int			col_check(t_tex *tex, int col)
-{
-	int			i;
-	t_pos		pos;
-
-	pos.x = col;
-	i = 0;
+	tex_pos.x = col;
 	while (i < tex->height)
 	{
-		pos.y = i;
-		if (get_tex_color(tex, &pos) != 0x0)
+		tex_pos.y = i;
+		if (cal_color2(tex, &tex_pos) != 0x0)
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-static int			row_check(t_tex *tex, int row)
+void			load_texture(t_cub *cub)
 {
-	int			j;
-	t_pos		pos;
-
-	pos.y = row;
-	j = 0;
-	while (j < tex->width)
-	{
-		pos.x = j;
-		if (get_tex_color(tex, &pos) != 0x0)
-			return (0);
-		j++;
-	}
-	return (1);
-}
-
-int					load_textures(t_game *game)
-{
-	int			i;
-	int			j;
+	int				i;
+	int				j;
+	char			*path;
 
 	i = 0;
-	while (i < TEXTURES)
+	while (i < 6)
 	{
-		if (!load_tex(&game->tex[i], &game->window, game->config.tex_path[i]))
-			return (0);
+		path = cub->texture[i].path;
+		cub->texture[i].tex = mlx_xpm_file_to_image(cub->window.ptr, path,
+				&cub->texture[i].width, &cub->texture[i].height);
+		cub->texture[i].ptr = (int*)mlx_get_data_addr(cub->texture[i].tex,
+				&cub->texture[i].bpp, &cub->texture[i].size_l,
+				&cub->texture[i].endian);
 		j = 0;
-		while (j < game->tex[i].height && col_check(game->tex, j))
+		while (j < cub->texture[i].height && col_check(&cub->texture[i], j))
 			j++;
-		game->tex[i].start.x = j;
-		printf("game->tex[i].start.x",
-		while (j < game->tex[i].height && !col_check(game->tex, j))
+		cub->texture[i].start.x = j;
+		while (j < cub->texture[i].height && !col_check(&cub->texture[i], j))
 			j++;
-		game->tex[i].end.x = j;
+		cub->texture[i].end.x = j;
 		j = 0;
-		while (j < game->tex[i].width && row_check(game->tex, j))
+		while (j < cub->texture[i].height && row_check(&cub->texture[i], j))
 			j++;
-		game->tex[i].start.y = j;
-		while (j < game->tex[i].width && !row_check(game->tex, j))
+		cub->texture[i].start.y = j;
+		while (j < cub->texture[i].height && !row_check(&cub->texture[i], j))
 			j++;
-		game->tex[i].end.y = j;
+		cub->texture[i].end.y = j;
 		i++;
 	}
-	return (0);
 }

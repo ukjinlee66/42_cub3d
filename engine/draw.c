@@ -5,29 +5,66 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/24 18:27:13 by youlee            #+#    #+#             */
-/*   Updated: 2020/06/28 18:29:38 by youlee           ###   ########.fr       */
+/*   Created: 2020/07/04 18:14:29 by youlee            #+#    #+#             */
+/*   Updated: 2020/07/07 20:23:46 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "engine.h"
+#include "cub3d.h"
 
-void				draw_pixel(t_window *w, t_pos *pos, int color)
+static void		init_draw(t_texture *tex, t_object *obj, t_pos *tex_pos)
 {
-	if (pos->x >= 0 && pos->x < w->size.x
-			&& pos->y >= 0 && pos->y < w->size.y)
-		*(int*)(w->screen.ptr
-				+ (4 * (int)w->size.x * (int)pos->y)
-				+ ((int)pos->x * 4)) = color;
+	if (obj->side_)
+		obj->wall_x = obj->pos.x + ((obj->map_pos.y - obj->pos.y +
+					(1. - obj->step.y) / 2.) / obj->dir.y) * obj->dir.x;
+	else
+		obj->wall_x = obj->pos.y + ((obj->map_pos.x - obj->pos.x +
+					(1. - obj->step.x) / 2.) / obj->dir.x) * obj->dir.y;
+	obj->wall_x -= floor(obj->wall_x);
+	tex_pos->x = (int)(obj->wall_x * tex->width);
+	if (obj->side_ == 0 && obj->dir.x > 0.)
+		tex_pos->x = tex->width - tex_pos->x - 1.;
+	else if (obj->side_ == 1 && obj->dir.y < 0.)
+		tex_pos->x = tex->width - tex_pos->x - 1.;
 }
 
-int					draw_vertical_line(t_window *window, t_pos *start,
+void			draw_wall(t_cub *cub, t_object *obj)
+{
+	t_texture	*tex;
+	t_pos		tex_pos;
+	t_pos		pixel;
+	int			start;
+	int			end;
+
+	tex = &cub->texture[obj->direction];
+	set_position(&pixel, obj->col, MAX(0, cub->window.half.y - (obj->height / 2.)));
+	if (!tex->tex)
+	{
+		draw_vertical(&cub->window, &pixel, obj->height,
+				cal_color(cub->c[obj->direction], obj->dist));
+		return ;
+	}
+	init_draw(tex, obj, &tex_pos);
+	end = MAX(0, (cub->window.half.y - (obj->height / 2.)));
+	start = 0;
+	while (start < obj->height && (pixel.y = end++) <
+			cub->window.size.y)
+	{
+		tex_pos.y = (int)((pixel.y * 2 - cub->window.size.y + obj->height)
+				* ((tex->height / 2.) / obj->height));
+		coord(&cub->window, &pixel, cal_color(cal_color2(tex, &tex_pos),
+				obj->dist));
+		start++;
+	}
+}
+
+int				draw_vertical(t_window *window, t_pos *start,
 		int len, int color)
 {
-	int				i;
-	int				j;
-	t_pos			pos;
-	int				end_y;
+	int			i;
+	int			j;
+	t_pos		pos;
+	int			end_y;
 
 	if (start->x < 0 || start->x > window->size.x)
 		return (1);
@@ -37,43 +74,7 @@ int					draw_vertical_line(t_window *window, t_pos *start,
 	while (i < len && (j = start->y + i) < end_y)
 	{
 		pos.y = j;
-		draw_pixel(window, &pos, color);
-		i++;
-	}
-	return (1);
-}
-
-static void			compare_pos(t_pos *pos, t_pos *size)
-{
-	if (pos->x < 0)
-		pos->x = 0;
-	if (pos->x < size->x)
-		pos->x = size->x - 1;
-	if (pos->y < 0)
-		pos->y = 0;
-	if (pos->y < size->y)
-		pos->y = size->y - 1;
-}
-
-int					draw_rectangle(t_window *window, t_pos *p1, t_pos *p2, \
-		int color)
-{
-	int				i;
-	int				j;
-	t_pos			pos;
-
-	compare_pos(p1, &window->size);
-	compare_pos(p2, &window->size);
-	i = p1->y;
-	while (i < p2->y)
-	{
-		pos.y = i;
-		j = p1->x;
-		while (j < p2->x)
-		{
-			pos.x = j++;
-			draw_pixel(window, &pos, color);
-		}
+		coord(window, &pos, color);
 		i++;
 	}
 	return (1);

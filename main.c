@@ -5,66 +5,90 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/21 15:04:32 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/02 05:05:58 by youlee           ###   ########.fr       */
+/*   Created: 2020/07/02 21:55:05 by youlee            #+#    #+#             */
+/*   Updated: 2020/07/08 21:19:55 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
 
-int			error_check(t_game *game, char const *str)
+void			copy_map(t_cub *cub, int x, int y, int map[10][10])
 {
-	if (str)
-		write(1, str, ft_strlen(str));
-	exit_game(game, EXIT_FAILURE);
-	return (EXIT_FAILURE);
+	int			i;
+	int			j;
+
+	i = 0;
+	while (i < x)
+	{
+		j = 0;
+		while (j < y)
+		{
+			cub->map[i][j] = map[i][j];
+			j++;
+		}
+		i++;
+	}
 }
 
-int			main(int argc, char **argv)
+static void		init_cub(t_cub *cub)
 {
-	t_game				game;
-	int					save;
+	int			i;
+	int			j;
+	
+	i = 0;
+	init_window(&cub->window);
+	init_camera(&cub->camera);
+	while (i < 10)
+		cub->texture[i++].tex = NULL;
+	cub->texture[0].path = "textures/wall1.xpm";
+	cub->texture[1].path = "textures/wall2.xpm";
+	cub->texture[2].path = "textures/wall3.xpm";
+	cub->texture[3].path = "textures/wall4.xpm";
+	cub->texture[4].path = "textures/floor1.xpm";
+	cub->texture[5].path = "textures/sky1.xpm";
+	i = 0;
+	int map2[10][10] = {
+	{ 1,1,1,1,1,1,1,1,1,1 },
+	{ 1,0,0,0,0,0,0,0,0,1 },
+	{ 1,0,0,0,0,0,0,0,0,1 },
+	{ 1,0,0,0,0,0,0,0,0,1 },
+	{ 1,0,0,0,0,0,0,0,0,1 },
+	{ 1,0,0,0,0,0,0,0,0,1 },
+	{ 1,0,0,0,0,0,1,1,1,1 },
+	{ 1,0,0,0,0,0,1,0,0,1 },
+	{ 1,0,0,0,0,0,0,0,0,1 },
+	{ 1,1,1,1,1,1,1,1,1,1 }
+	};
+	copy_map(cub, 10, 10, map2);
+	cub->c[TEX_NORTH] = 0xFFFFFF;
+	cub->c[TEX_SOUTH] = 0xCCCCCC;
+	cub->c[TEX_WEST] = 0xFF44FF;
+	cub->c[TEX_EAST] = 0x44FF44;
+	cub->c[TEX_SKY] = 0x33C6E3;
+	cub->c[TEX_FLOOR] = 0xA0764C;
+	cub->object.row = 10;
+	cub->object.col = 10;
+	set_position(&cub->move, 0., 0.);
+	set_position(&cub->x_move, 0., 0.);
+	set_position(&cub->rotate, 0., 0.);
+	cub->option = 0;
+	cub->cos[0] = cos(-rotate_speed);
+	cub->cos[1] = cos(rotate_speed);
+	cub->sin[0] = sin(-rotate_speed);
+	cub->sin[1] = sin(rotate_speed);
+}
 
-	//save = (argc >= 2 && !ft_strcmp(argv[1], "--save"));
-	//if (argc < (2 + save))
-	//	return (error_check(&game, "Error:\nno map.\n"));
-	init_game(&game, save);
-	game.config.map = (int*)malloc(sizeof(int) * 400);
-	game.config.row = 20;
-	game.config.col = 20;
-	for(int i=0;i<20;i++)
-	{	for(int j=0;j<20;j++)
-		{
-			if (i == 0 || j == 0 || i == 19 || j == 19)
-				game.config.map[(i*20)  + j] = '1';
-			else if (i == 1 && j == 1)
-				game.config.map[(i*20)+j] = 'S';
-			else
-				game.config.map[(i*20) + j] = '0';
-		}
-	}
-	//printf("game->pos %d %d\n game->cameradir %d %d\n",game.camera.pos.x,
-		//	game.camera.pos.y,game.camera.x_dir.x,game.camera.x_dir.y);
-	game.config.tex_path[0] = "./textures/wall1.xpm";
-	game.config.tex_path[1] = "./textures/wall2.xpm";
-	game.config.tex_path[2] = "./textures/wall3.xpm";
-	game.config.tex_path[3] = "./textures/wall4.xpm";
-	game.config.tex_path[4] = "./textures/sky1.xpm";
-	game.config.tex_path[5] = "./textures/floor1.xpm";
-	finish_init(&game);
-	//game.config.tex_path[0] = "textures/wall1.xpm";
-	//load_textures(&game);
-	//if (!parse_config(&game.config, argv[1 + save]))
-	//	return (error_check(&game, "Error:\ninvalid map.\n"));
-	//if (!finish_init(&game))
-	//	return (1);
-	mlx_hook(game.window.win, X_EVENT_KEY_PRESS, 0, &key_press, &game);
-	mlx_hook(game.window.win, X_EVENT_KEY_RELEASE, 0, &key_release, &game);
-	mlx_hook(game.window.win, X_EVENT_EXIT, 0, &exit_hook, &game);
-	mlx_loop_hook(game.window.ptr, &main_loop, &game);
-	mlx_loop(game.window.ptr);
+int				main(int argc, char **argv)
+{
+	t_cub			cub;
+
+	init_cub(&cub);
+	make_table(&cub);
+	load_texture(&cub);
+	mlx_hook(cub.window.win, X_EVENT_KEY_PRESS, 0, &key_press, &cub);
+	mlx_hook(cub.window.win, X_EVENT_KEY_RELEASE, 0, &key_release, &cub);
+	mlx_hook(cub.window.win, X_EVENT_KEY_EXIT, 0, &exit_game, &cub);
+	mlx_loop_hook(cub.window.ptr, &main_loop, &cub);
+	mlx_loop(cub.window.ptr);
 	return (0);
 }
