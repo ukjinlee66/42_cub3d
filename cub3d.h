@@ -13,7 +13,7 @@
 # ifndef CUB3D_H
 # define CUB3D_H
 
-#include "mlx.h"
+#include "minilibx_opengl/mlx.h"
 #include <stdlib.h>
 #include <math.h>
 #include <stdio.h>
@@ -65,6 +65,7 @@
 /*
  ** other options
 */
+
 # define FOV						.66
 # define MAX_HEIGHT					1080
 # define MAX_WIDTH					1920
@@ -73,6 +74,7 @@
 # define MIN_WIDTH					480
 # define rotate_speed				.07
 # define move_speed					.11
+# define number_sprite				5
 
 /*
  ** struct
@@ -144,10 +146,20 @@ typedef struct						s_texture
 	int				endian;	
 }									t_texture;
 
+typedef struct						s_sprite
+{
+	t_texture		*tex;
+	t_pos			spr_pos;
+	double			dist;
+	struct s_sprite	*next;
+	struct s_sprite	*sort;
+}									t_sprite;
+
 typedef struct						s_cub
 {
 	t_window		window;
 	t_camera		camera;
+	t_sprite		*sprite;
 	t_texture		texture[10];
 	t_object		object;
 	t_pos			move;
@@ -161,6 +173,8 @@ typedef struct						s_cub
 	double			cam_height[1080];
 	int				map[10][10];
 	int				option;
+	int				req_col;
+	int				req_row;
 }									t_cub;
 
 /*
@@ -193,5 +207,8 @@ int				cal_color2(t_texture *tex, t_pos *pos);
 int				MAX(int a, int b);
 void			draw_sky_floor(t_cub *cub, t_object *obj);
 void			load_texture(t_cub *cub);
-
+t_sprite		*add_front_spr(t_sprite **sprite, double dist,
+	t_pos *pos, t_texture *tex);
+int				check_sprite(t_cub *cub);
+int				handle_sprite(t_cub *cub);
 #endif

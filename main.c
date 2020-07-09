@@ -46,6 +46,8 @@ static void		init_cub(t_cub *cub)
 	cub->texture[3].path = "textures/wall4.xpm";
 	cub->texture[4].path = "textures/floor1.xpm";
 	cub->texture[5].path = "textures/sky1.xpm";
+	cub->texture[6].path = "textures/sprite1.xpm";
+	cub->texture[7].path = "textures/wood.xpm";
 	i = 0;
 	int map2[10][10] = {
 	{ 1,1,1,1,1,1,1,1,1,1 },
@@ -54,8 +56,8 @@ static void		init_cub(t_cub *cub)
 	{ 1,0,0,0,0,0,0,0,0,1 },
 	{ 1,0,0,0,0,0,0,0,0,1 },
 	{ 1,0,0,0,0,0,0,0,0,1 },
-	{ 1,0,0,0,0,0,1,1,1,1 },
-	{ 1,0,0,0,0,0,1,0,0,1 },
+	{ 1,0,0,0,0,0,0,2,0,1 },
+	{ 1,0,0,0,0,0,2,0,0,1 },
 	{ 1,0,0,0,0,0,0,0,0,1 },
 	{ 1,1,1,1,1,1,1,1,1,1 }
 	};

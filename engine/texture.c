@@ -52,8 +52,8 @@ void			load_texture(t_cub *cub)
 	int				j;
 	char			*path;
 
-	i = 0;
-	while (i < 6)
+	i = -1;
+	while (i++ < 8)
 	{
 		path = cub->texture[i].path;
 		cub->texture[i].tex = mlx_xpm_file_to_image(cub->window.ptr, path,
@@ -75,6 +75,5 @@ void			load_texture(t_cub *cub)
 		while (j < cub->texture[i].height && !row_check(&cub->texture[i], j))
 			j++;
 		cub->texture[i].end.y = j;
-		i++;
 	}
 }

@@ -79,7 +79,7 @@ int				ray_cast(t_cub *cub, t_object *obj, int col)
 			obj->map_pos.y += obj->step.y;
 			obj->side_ = 1;
 		}
-		if ((int)obj->map_pos.x >= 30 || (int)obj->map_pos.y >= 30)
+		if ((int)obj->map_pos.x >= 10 || (int)obj->map_pos.y >= 10)
 		{
 			obj->map_pos.x -= ((!obj->side_) ? obj->step.x : 0.);
 			obj->map_pos.y -= ((obj->side_) ? obj->step.y : 0.);
