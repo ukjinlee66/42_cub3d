@@ -146,6 +146,19 @@ typedef struct						s_texture
 	int				endian;	
 }									t_texture;
 
+typedef struct                      s_sprite2
+{
+    int             screen;
+    int             factor;
+    int             y_org;
+    t_pos           tex_pos;
+    t_pos           spr_s;
+    t_pos           pos;
+    t_pos           draw_s;
+    t_pos           draw_e;
+	t_pos			transform;
+}                                   t_sprite2;
+
 typedef struct						s_sprite
 {
 	t_texture		*tex;

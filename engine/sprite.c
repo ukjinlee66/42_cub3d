@@ -1,5 +1,7 @@
 #include "cub3d.h"
 
+
+
 t_sprite		*add_front_spr(t_sprite **sprite,
 		double dist, t_pos *pos, t_texture *tex)
 {
@@ -7,13 +9,17 @@ t_sprite		*add_front_spr(t_sprite **sprite,
 
 	if (!(new = (t_sprite*)malloc(sizeof(*new))))
 		return (NULL);
-	copy_position(&new->pos, pos);
+	copy_position(&new->spr_pos, pos);
 	new->dist = dist;
 	new->tex = tex;
 	new->next = *sprite;
 	*sprite = new;
 	return (new);
 }
+
+/*
+ * sprite number 2~6
+*/
 
 int				check_sprite(t_cub *cub)
 {
@@ -43,11 +49,29 @@ int				check_sprite(t_cub *cub)
 	return (1);
 }
 
-int				handle_sprite(t_cub *cub)
+static double	sprite_dist_cal(t_pos pos1, t_pos pos2)
+{
+	return ((pos1.x - pos2.x) * (pos1.x - pos2.x) +
+				(pos1.y - pos2.y) * (pos1.y - pos2.y));
+}
+
+void			handle_sprite(t_cub *cub)
 {
 	int				i;
+	t_sprite		*sort;
+	double			invdet;
+	t_camera		*c;
 
-	i = 0;
-	while (i < number_sprite && cub->sprite[i])
-		
+	c = &cub->camera;
+	invdet = 1. / vector_cross(c->plane, c->dir);
+	sort = sort_sprite(cub, cub->sprite);
+	while (sort)
+	{
+		if (sort->dist > .1)
+		{
+			init_sprite(cub, sort, invdet, &cub->sprite);
+			draw_sprite(cub, sort, &cub->sprite, sort->tex);
+		}
+		sort = sort->sort;
+	}
 }
