@@ -1,7 +1,5 @@
 #include "cub3d.h"
 
-
-
 t_sprite		*add_front_spr(t_sprite **sprite,
 		double dist, t_pos *pos, t_texture *tex)
 {
@@ -36,8 +34,8 @@ int				check_sprite(t_cub *cub)
 		while (j < cub->req_col)
 		{
 			set_position(&pos, i + .5, j + .5);
-			val = cub->map[pos.x][pos.y];
-			tex = &cub->texture[TEX_SPRITE - 4];
+			val = cub->map[(int)pos.x][(int)pos.y];
+			tex = &cub->texture[TEX_SPRITE];
 			if (val >= 2 && val <= 6 && tex->tex &&
 					!add_front_spr(&cub->sprite, 0.,
 						&pos, tex))
@@ -49,7 +47,7 @@ int				check_sprite(t_cub *cub)
 	return (1);
 }
 
-static double	sprite_dist_cal(t_pos pos1, t_pos pos2)
+double	sprite_dist_cal(t_pos pos1, t_pos pos2)
 {
 	return ((pos1.x - pos2.x) * (pos1.x - pos2.x) +
 				(pos1.y - pos2.y) * (pos1.y - pos2.y));
@@ -61,6 +59,7 @@ void			handle_sprite(t_cub *cub)
 	t_sprite		*sort;
 	double			invdet;
 	t_camera		*c;
+    t_sprite2       spr2;
 
 	c = &cub->camera;
 	invdet = 1. / vector_cross(c->plane, c->dir);
@@ -69,8 +68,8 @@ void			handle_sprite(t_cub *cub)
 	{
 		if (sort->dist > .1)
 		{
-			init_sprite(cub, sort, invdet, &cub->sprite);
-			draw_sprite(cub, sort, &cub->sprite, sort->tex);
+			init_sprite(cub, sort, invdet, &spr2);
+			draw_sprite(cub, sort, &spr2, sort->tex);
 		}
 		sort = sort->sort;
 	}

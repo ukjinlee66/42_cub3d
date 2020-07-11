@@ -61,7 +61,7 @@
 # define CEILLING					C
 # define TEX_SKY					5
 # define SPRITE						S
-
+# define TEX_SPRITE                 6
 /*
  ** other options
 */
@@ -217,23 +217,21 @@ void			init_window(t_window *window);
 void			put_img(t_cub *cub);
 int				cal_color(int color, int divide);
 int				cal_color2(t_texture *tex, t_pos *pos);
-int				MAX(int a, int b);
+int		        MAX(int a, int b);
 void			draw_sky_floor(t_cub *cub, t_object *obj);
 void			load_texture(t_cub *cub);
 t_sprite		*add_front_spr(t_sprite **sprite, double dist,
 	t_pos *pos, t_texture *tex);
 int				check_sprite(t_cub *cub);
-int				handle_sprite(t_cub *cub);
-t_sprite		*add_front_spr(t_sprite **sprite, double dist,
-t_pos *pos, t_texture *tex);
-int				check_sprite(t_cub *cub);
-void				handle_sprite(t_cub *cub);
-void				draw_sprite(t_cub *cub, t_sprite *sprite,
-t_sprite2 *spr2, t_texture *tex);
-void				draw_sprite(t_cub *cub, t_sprite *spr,
-t_sprite2 *spr2, t_texture *tex);
-void				init_sprite(t_cub *cub, t_sprite *spr, double invdet, t_sprite2 *spr2);
-t_sprite			*add_sroted(t_sprite **sort, t_sprite *spr);
-t_sprite			*sort_sprite(t_cub *cub, t_sprite *spr);
+void			handle_sprite(t_cub *cub);
+void			init_sprite(t_cub *cub, t_sprite *spr, double invdet, t_sprite2 *spr2);
+t_sprite		*add_sroted(t_sprite **sort, t_sprite *spr);
+t_sprite		*sort_sprite(t_cub *cub, t_sprite *spr);
+double          vector_cross(t_pos pos1, t_pos pos2);
+double	        sprite_dist_cal(t_pos pos1, t_pos pos2);
+void            draw_sprite2(t_cub *cub, t_sprite *sprite,
+        t_sprite2 *spr2, t_texture *tex);
+void            draw_sprite(t_cub *cub, t_sprite *spr,
+        t_sprite2 *spr2, t_texture *tex);
 
 #endif

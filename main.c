@@ -56,7 +56,7 @@ static void		init_cub(t_cub *cub)
 	{ 1,0,0,0,0,0,0,0,0,1 },
 	{ 1,0,0,0,0,0,0,0,0,1 },
 	{ 1,0,0,0,0,0,0,0,0,1 },
-	{ 1,0,0,0,0,0,0,2,0,1 },
+	{ 1,0,0,0,0,0,2,2,0,1 },
 	{ 1,0,0,0,0,0,2,0,0,1 },
 	{ 1,0,0,0,0,0,0,0,0,1 },
 	{ 1,1,1,1,1,1,1,1,1,1 }
@@ -68,8 +68,8 @@ static void		init_cub(t_cub *cub)
 	cub->c[TEX_EAST] = 0x44FF44;
 	cub->c[TEX_SKY] = 0x33C6E3;
 	cub->c[TEX_FLOOR] = 0xA0764C;
-	cub->object.row = 10;
-	cub->object.col = 10;
+	cub->object.row = cub->req_row = 10;
+	cub->object.col = cub->req_col = 10;
 	set_position(&cub->move, 0., 0.);
 	set_position(&cub->x_move, 0., 0.);
 	set_position(&cub->rotate, 0., 0.);
@@ -87,6 +87,8 @@ int				main(int argc, char **argv)
 	init_cub(&cub);
 	make_table(&cub);
 	load_texture(&cub);
+    if(!check_sprite(&cub))
+        printf("error\n");
 	mlx_hook(cub.window.win, X_EVENT_KEY_PRESS, 0, &key_press, &cub);
 	mlx_hook(cub.window.win, X_EVENT_KEY_RELEASE, 0, &key_release, &cub);
 	mlx_hook(cub.window.win, X_EVENT_KEY_EXIT, 0, &exit_game, &cub);

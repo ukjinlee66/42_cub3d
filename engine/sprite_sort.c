@@ -3,6 +3,12 @@
 void            draw_sprite(t_cub *cub, t_sprite *spr,
         t_sprite2 *spr2, t_texture *tex)
 {
+    printf("draw_sprite %d %d %d %d\n",
+            spr2->draw_x.x,
+            spr2->draw_x.y,
+            spr2->draw_y.x,
+            spr2->draw_y.y);
+    
     while (spr2->draw_x.x < cub->window.size.x &&
             spr2->draw_x.x < spr2->draw_x.y)
     {
@@ -13,7 +19,7 @@ void            draw_sprite(t_cub *cub, t_sprite *spr,
             while (spr2->draw_y.x < cub->window.size.y
                     && spr2->draw_y.x < spr2->draw_y.y)
             {
-                draw_sprite(cub, spr, spr2, tex);
+                draw_sprite2(cub, spr, spr2, tex);
                 spr2->draw_y.x++;
             }
         }
@@ -25,7 +31,6 @@ void            init_sprite(t_cub *cub, t_sprite *spr,
         double invdet, t_sprite2 *spr2)
 {
     t_camera    *c;
-    double      height_width;
 
     c = &cub->camera;
     set_position(&spr2->pos, (spr->spr_pos.x - c->pos.x),
@@ -36,14 +41,18 @@ void            init_sprite(t_cub *cub, t_sprite *spr,
                 c->plane.x * spr->spr_pos.y));
     spr2->screen = (int)((cub->window.size.x / 2.) *
         (1. + spr2->transform.x / spr2->transform.y));
-    height_width = fabs(cub->window.size.y / spr2->transform.y);
-    spr2->spr_s.x = height_width;
-    spr2->spr_s.y = height_width;
+    spr2->spr_s.x = fabs(cub->window.size.y / spr2->transform.y);
+    spr2->spr_s.y = fabs(cub->window.size.y / spr2->transform.y);
     set_position(&spr2->draw_x, 
-            (int)MAX(0,-spr2->spr_s.x / 2. + spr2->screen),
-            (int)MAX(0,spr2->spr_s.x / 2. + spr2->screen));
+        (int)MAX(0, (-1 * spr2->spr_s.x) / 2.
+            + spr2->screen),
+            (int)MAX(0, spr2->spr_s.x / 2.
+                + spr2->screen));
+    printf("spr2->dx : %d dy : %d\n",
+            spr2->draw_x.x,
+            spr2->draw_x.y);
     set_position(&spr2->draw_y,
-            (int)MAX(0,-spr2->spr_s.y / 2. + cub->window.size.y / 2.),
+            (int)MAX(0, -spr2->spr_s.y / 2. + cub->window.size.y / 2.),
             (int)MAX(0,spr2->spr_s.y / 2. + cub->window.size.y / 2.));
     spr2->y_org = spr2->draw_y.x;
 }
@@ -65,7 +74,7 @@ t_sprite		*add_sorted(t_sprite **sort, t_sprite *spr)
 	if (!prev)
 	{
 		spr->sort = *sort;
-		*sort = sprite;
+		*sort = spr;
 	}
 	else
 	{
@@ -85,7 +94,7 @@ t_sprite		*sort_sprite(t_cub *cub, t_sprite *spr)
 	sort = NULL;
 	while (spr)
 	{
-		spr->dist = sprite_dist_cal(c.pos, spr->spr_pos);
+		spr->dist = sprite_dist_cal(c, spr->spr_pos);
 		spr->sort = NULL;
 		add_sorted(&sort, spr);
 		spr = spr->next;

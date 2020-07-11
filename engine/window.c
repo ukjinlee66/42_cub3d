@@ -37,11 +37,10 @@ void			put_screen(t_cub *cub)
 		obj.height = fabs(win->size.y / obj.dist);
 		draw_wall(cub, &obj);
 		if (obj.height < cub->window.size.y)
-		{
 			draw_sky_floor(cub, &obj);
-		}
 		i++;
 	}
+    handle_sprite(cub);
 }
 
 void			init_window(t_window *window)

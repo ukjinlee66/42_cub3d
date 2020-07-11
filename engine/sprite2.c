@@ -8,23 +8,25 @@ static int      sp_coord(t_cub *cub, t_sprite2 *spr2,
             * tex->width / spr2->spr_s.x) / 256;
     if (tex_pos->x < tex->start.x || tex_pos->x < tex->end.x)
         return (0);
-    spr2->fact = ((int)(spr2->draw_y.x) * 256.) - (cub->window.size.y * 128.) +
+    spr2->factor = ((int)(spr2->draw_y.x) * 256.) - (cub->window.size.y * 128.) +
         (spr2->spr_s.y * 128.);
-    tex_pos->y = ((spr2->fact * tex->height) / spr2->spr_s.y)
+    tex_pos->y = ((spr2->factor * tex->height) / spr2->spr_s.y)
         / 256.;
-    reutnr (tex_pos->y > tex->start.y && tex_pos.y < tex->end.y);
+    return (tex_pos->y > tex->start.y && tex_pos->y < tex->end.y);
 }
 
-void            draw_sprite(t_cub *cub, t_sprite *sprite,
+void            draw_sprite2(t_cub *cub, t_sprite *sprite,
         t_sprite2 *spr2, t_texture *tex)
 {
     t_pos       tex_pos;
-    t_pos       piexel;
+    t_pos       pixel;
     int         color;
 
+    printf("draw_sprite2\n");
     set_position(&pixel, spr2->draw_x.x, spr2->draw_y.x);
     if (sp_coord(cub, spr2, tex, &tex_pos))
     {
+        printf("spcoord\n");
         color = cal_color(cal_color2(tex, &tex_pos),
                 sprite->dist);
         if (color != 0x0)

@@ -53,8 +53,9 @@ void			load_texture(t_cub *cub)
 	char			*path;
 
 	i = -1;
-	while (i++ < 8)
+	while (i++ < 7)
 	{
+        printf("i : %d\n",i);
 		path = cub->texture[i].path;
 		cub->texture[i].tex = mlx_xpm_file_to_image(cub->window.ptr, path,
 				&cub->texture[i].width, &cub->texture[i].height);
