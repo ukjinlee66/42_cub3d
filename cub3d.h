@@ -154,8 +154,8 @@ typedef struct                      s_sprite2
     t_pos           tex_pos;
     t_pos           spr_s;
     t_pos           pos;
-    t_pos           draw_s;
-    t_pos           draw_e;
+    t_pos           draw_x;
+    t_pos           draw_y;
 	t_pos			transform;
 }                                   t_sprite2;
 
@@ -224,4 +224,16 @@ t_sprite		*add_front_spr(t_sprite **sprite, double dist,
 	t_pos *pos, t_texture *tex);
 int				check_sprite(t_cub *cub);
 int				handle_sprite(t_cub *cub);
+t_sprite		*add_front_spr(t_sprite **sprite, double dist,
+t_pos *pos, t_texture *tex);
+int				check_sprite(t_cub *cub);
+void				handle_sprite(t_cub *cub);
+void				draw_sprite(t_cub *cub, t_sprite *sprite,
+t_sprite2 *spr2, t_texture *tex);
+void				draw_sprite(t_cub *cub, t_sprite *spr,
+t_sprite2 *spr2, t_texture *tex);
+void				init_sprite(t_cub *cub, t_sprite *spr, double invdet, t_sprite2 *spr2);
+t_sprite			*add_sroted(t_sprite **sort, t_sprite *spr);
+t_sprite			*sort_sprite(t_cub *cub, t_sprite *spr);
+
 #endif
