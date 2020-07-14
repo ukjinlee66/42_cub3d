@@ -22,14 +22,12 @@ void            draw_sprite2(t_cub *cub, t_sprite *sprite,
     t_pos       pixel;
     int         color;
 
-    printf("draw_sprite2\n");
     set_position(&pixel, spr2->draw_x.x, spr2->draw_y.x);
     if (sp_coord(cub, spr2, tex, &tex_pos))
     {
-        printf("spcoord\n");
         color = cal_color(cal_color2(tex, &tex_pos),
-                sprite->dist);
+                sprite->dist / 1.5);
         if (color != 0x0)
-            coord(&cub->window, &pixel, color);
+            coord(&cub->window, &pixel, color);        
     }
 }

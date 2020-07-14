@@ -87,8 +87,7 @@ int				main(int argc, char **argv)
 	init_cub(&cub);
 	make_table(&cub);
 	load_texture(&cub);
-    if(!check_sprite(&cub))
-        printf("error\n");
+    check_sprite(&cub);
 	mlx_hook(cub.window.win, X_EVENT_KEY_PRESS, 0, &key_press, &cub);
 	mlx_hook(cub.window.win, X_EVENT_KEY_RELEASE, 0, &key_release, &cub);
 	mlx_hook(cub.window.win, X_EVENT_KEY_EXIT, 0, &exit_game, &cub);

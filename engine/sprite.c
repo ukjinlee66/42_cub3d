@@ -9,8 +9,8 @@ t_sprite		*add_front_spr(t_sprite **sprite,
 		return (NULL);
 	copy_position(&new->spr_pos, pos);
 	new->dist = dist;
-	new->tex = tex;
 	new->next = *sprite;
+	new->tex = tex;
 	*sprite = new;
 	return (new);
 }
