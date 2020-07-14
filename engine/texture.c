@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 17:13:53 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/08 21:23:08 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/14 15:02:40 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,9 @@ void			load_texture(t_cub *cub)
 	int				j;
 	char			*path;
 
-	i = -1;
-	while (i++ < 7)
+	i = 0;
+	while (i < 8)
 	{
-        printf("i : %d\n",i);
 		path = cub->texture[i].path;
 		cub->texture[i].tex = mlx_xpm_file_to_image(cub->window.ptr, path,
 				&cub->texture[i].width, &cub->texture[i].height);
@@ -76,5 +75,6 @@ void			load_texture(t_cub *cub)
 		while (j < cub->texture[i].height && !row_check(&cub->texture[i], j))
 			j++;
 		cub->texture[i].end.y = j;
+		i++;
 	}
 }

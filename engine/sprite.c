@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sprite.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/14 14:29:30 by youlee            #+#    #+#             */
+/*   Updated: 2020/07/14 15:03:29 by youlee           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 t_sprite		*add_front_spr(t_sprite **sprite,
@@ -35,7 +47,8 @@ int				check_sprite(t_cub *cub)
 		{
 			set_position(&pos, i + .5, j + .5);
 			val = cub->map[(int)pos.x][(int)pos.y];
-			tex = &cub->texture[TEX_SPRITE];
+			if (val >= 2)
+				tex = &cub->texture[TEX_SPRITE];
 			if (val >= 2 && val <= 6 && tex->tex &&
 					!add_front_spr(&cub->sprite, 0.,
 						&pos, tex))
@@ -49,8 +62,8 @@ int				check_sprite(t_cub *cub)
 
 double	sprite_dist_cal(t_pos pos1, t_pos pos2)
 {
-	return ((pos1.x - pos2.x) * (pos1.x - pos2.x) +
-				(pos1.y - pos2.y) * (pos1.y - pos2.y));
+	return (fabs((pos1.x - pos2.x) * (pos1.x - pos2.x) +
+				(pos1.y - pos2.y) * (pos1.y - pos2.y)));
 }
 
 void			handle_sprite(t_cub *cub)

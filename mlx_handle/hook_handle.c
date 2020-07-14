@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 11:19:45 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/08 17:05:49 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/14 21:26:27 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,18 @@ int				exit_game(void)
 
 int				key_press(int key, t_cub *cub)
 {
-	if (key == KEY_W || key == KEY_UP)
+	if (key == KEY_W)
 		cub->move.x = 1;
-	else if (key == KEY_S || key == KEY_UNDER)
+	else if (key == KEY_S)
 		cub->move.y = 1;
 	if (key == KEY_A)
 		cub->x_move.x = 1;
 	else if (key == KEY_D)
 		cub->x_move.y = 1;
+	if (key == KEY_UP)
+		cub->window.half.y+=3;
+	else if (key == KEY_UNDER)
+		cub->window.half.y-=3;
 	if (key == KEY_Q || key == KEY_LEFT)
 		cub->rotate.x = 1;
 	else if (key == KEY_E || key == KEY_RIGHT)
@@ -68,6 +72,6 @@ int				main_loop(t_cub *cub)
 		put_screen(cub);
 		put_img(cub);
 	}
-	update = 0;
+	//update = 0;
 	return (0);
 }

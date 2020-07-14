@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 21:55:11 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/08 21:17:46 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/14 16:53:49 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@
 # define FOV						.66
 # define MAX_HEIGHT					1080
 # define MAX_WIDTH					1920
-# define MH							600
+# define MH							800
 # define MIN_HEIGHT					320
 # define MIN_WIDTH					480
 # define rotate_speed				.07
@@ -188,6 +188,7 @@ typedef struct						s_cub
 	int				option;
 	int				req_col;
 	int				req_row;
+	int				up;
 }									t_cub;
 
 /*

@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 18:14:29 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/07 20:23:46 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/14 21:12:21 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void			draw_wall(t_cub *cub, t_object *obj)
 	while (start < obj->height && (pixel.y = end++) <
 			cub->window.size.y)
 	{
-		tex_pos.y = (int)((pixel.y * 2 - cub->window.size.y + obj->height)
+		tex_pos.y = (int)((pixel.y * 2 - (cub->window.half.y * 2.) + obj->height)
 				* ((tex->height / 2.) / obj->height));
 		coord(&cub->window, &pixel, cal_color(cal_color2(tex, &tex_pos),
 				obj->dist));
@@ -69,7 +69,7 @@ int				draw_vertical(t_window *window, t_pos *start,
 	if (start->x < 0 || start->x > window->size.x)
 		return (1);
 	pos.x = start->x;
-	end_y = (int)window->size.y;
+	end_y = (int)(window->size.y);
 	i = 0;
 	while (i < len && (j = start->y + i) < end_y)
 	{

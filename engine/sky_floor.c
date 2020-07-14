@@ -6,7 +6,7 @@
 /*   By: youlee <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 20:51:58 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/08 15:27:16 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/14 21:27:04 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,7 @@ static void			draw_floor(t_cub *cub, t_object *obj, t_pos *pixel, t_pos *tex_pos
 
 	tex = &cub->texture[TEX_FLOOR];
 	if (!tex -> tex)
-	{
 		coord(&cub->window, pixel, cal_color(cub->c[TEX_FLOOR], cub->cam_height[obj->row]));
-	}
 	else
 	{
 		set_position(tex_pos, (int)(obj->c_floor.x * tex->width) % tex->width,
@@ -67,17 +65,34 @@ static void			draw_sky(t_cub *cub, t_object *obj, t_pos *pixel, t_pos *tex_pos)
 void				draw_sky_floor(t_cub *cub, t_object *obj)
 {
 	int			i;
+	int			j;
 	double		w;
 	t_pos		pixel;
 	t_pos		tex_pos;
 
 	init_sky_floor(obj);
 	pixel.x = obj->col;
+	i = 0;
+	while (i < (cub->window.half.y) - (obj->height / 2.) + 1)
+	{
+		obj->row = (int)i;
+		w = cub->window.size.y / ((2. * (double)i) - (cub->window.half.y * 2.)) / obj->dist;
+		//w = cub->cam_height[i] / obj->dist;
+		set_position(&obj->c_floor,
+				w * obj->floor_wall.x + (1. - w)
+				* cub->camera.pos.x,
+				w * obj->floor_wall.y + (1. - w)
+				* cub->camera.pos.y);
+		pixel.y = i;
+		draw_sky(cub, obj, &pixel, &tex_pos);
+		i++;
+	}
 	i = cub->window.half.y + (obj->height / 2.);
 	while (i < cub->window.size.y)
 	{
 		obj->row = (int)i;
-		w = cub->cam_height[i] / obj->dist;
+		w = cub->window.size.y / ((2. * (double)i) - (cub->window.half.y * 2.)) / obj->dist;
+		//w = cub->cam_height[i] / obj->dist;
 		set_position(&obj->c_floor,
 				w * obj->floor_wall.x + (1. - w)
 				* cub->camera.pos.x,
@@ -85,7 +100,8 @@ void				draw_sky_floor(t_cub *cub, t_object *obj)
 				* cub->camera.pos.y);
 		pixel.y = i;
 		draw_floor(cub, obj, &pixel, &tex_pos);
-		pixel.y = cub->window.size.y - i++;
-		draw_sky(cub, obj, &pixel, &tex_pos);
+		//pixel.y = (cub->window.half.y * 2) - i++;
+		//draw_sky(cub, obj, &pixel, &tex_pos);
+		i++;
 	}
 }

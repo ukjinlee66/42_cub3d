@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 14:25:30 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/08 17:08:42 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/14 19:12:09 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void			put_screen(t_cub *cub)
 			draw_sky_floor(cub, &obj);
 		i++;
 	}
-    handle_sprite(cub);
+	if (cub->sprite)
+    	handle_sprite(cub);
 }
 
 void			init_window(t_window *window)

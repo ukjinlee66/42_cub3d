@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sprite2.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/14 14:29:55 by youlee            #+#    #+#             */
+/*   Updated: 2020/07/14 15:59:49 by youlee           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static int      sp_coord(t_cub *cub, t_sprite2 *spr2,
@@ -6,12 +18,11 @@ static int      sp_coord(t_cub *cub, t_sprite2 *spr2,
     tex_pos->x = (int)(256 * (((int)(spr2->draw_x.x) -
                     (-spr2->spr_s.x / 2. + spr2->screen)))
             * tex->width / spr2->spr_s.x) / 256;
-    if (tex_pos->x < tex->start.x || tex_pos->x < tex->end.x)
+    if (tex_pos->x < tex->start.x || tex_pos->x > tex->end.x)
         return (0);
     spr2->factor = ((int)(spr2->draw_y.x) * 256.) - (cub->window.size.y * 128.) +
         (spr2->spr_s.y * 128.);
-    tex_pos->y = ((spr2->factor * tex->height) / spr2->spr_s.y)
-        / 256.;
+    tex_pos->y = ((spr2->factor * tex->height) / spr2->spr_s.y) / 256.;
     return (tex_pos->y > tex->start.y && tex_pos->y < tex->end.y);
 }
 
@@ -26,8 +37,8 @@ void            draw_sprite2(t_cub *cub, t_sprite *sprite,
     if (sp_coord(cub, spr2, tex, &tex_pos))
     {
         color = cal_color(cal_color2(tex, &tex_pos),
-                sprite->dist / 1.5);
+                sprite->dist);
         if (color != 0x0)
-            coord(&cub->window, &pixel, color);        
+        	coord(&cub->window, &pixel, color);        
     }
 }

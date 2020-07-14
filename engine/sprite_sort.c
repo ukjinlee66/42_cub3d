@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sprite_sort.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/14 14:30:04 by youlee            #+#    #+#             */
+/*   Updated: 2020/07/14 15:01:02 by youlee           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void            draw_sprite(t_cub *cub, t_sprite *spr,
@@ -45,7 +57,7 @@ void            init_sprite(t_cub *cub, t_sprite *spr,
                 + spr2->screen));
     set_position(&spr2->draw_y,
             (int)MAX(0, -spr2->spr_s.y / 2. + cub->window.size.y / 2.),
-            (int)MAX(0,spr2->spr_s.y / 2. + cub->window.size.y / 2.));
+            (int)MAX(0, spr2->spr_s.y / 2. + cub->window.size.y / 2.));
     spr2->y_org = spr2->draw_y.x;
 }
 
