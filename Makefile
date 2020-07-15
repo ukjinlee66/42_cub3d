@@ -11,5 +11,5 @@
 # **************************************************************************** #
 
 all:
-	gcc -I. *.c engine/*.c function/*.c mlx_handle/*.c -lmlx -framework OpenGL -framework Appkit
+	gcc -I. *.c engine/*.c function/*.c mlx_handle/*.c minilibx_opengl/libmlx.a -framework OpenGL -framework Appkit
 	./a.out

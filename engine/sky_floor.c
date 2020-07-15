@@ -72,12 +72,41 @@ void				draw_sky_floor(t_cub *cub, t_object *obj)
 
 	init_sky_floor(obj);
 	pixel.x = obj->col;
-	i = 0;
-	while (i < (cub->window.half.y) - (obj->height / 2.) + 1)
+	i = cub->window.half.y + (obj->height / 2.);
+    j = cub->window.half.y - (obj->height / 2.);
+    while (i < cub->window.size.y || j >= 0)
+    {
+        obj->row = (int)i;
+		w = cub->window.size.y / ((2. * (double)i) - (cub->window.half.y * 2.)) / obj->dist;
+        set_position(&obj->c_floor,
+				w * obj->floor_wall.x + (1. - w)
+				* cub->camera.pos.x,
+				w * obj->floor_wall.y + (1. - w)
+				* cub->camera.pos.y);
+        pixel.y = i++;
+        draw_floor(cub, obj, &pixel, &tex_pos);
+        pixel.y = j--;
+        draw_sky(cub, obj, &pixel, &tex_pos);  
+    }
+    /*i = cub->window.half.y - (obj->height / 2.);
+    j = cub->window.half.y + (obj->height / 2.);
+    while (i >= 0 && j < cub->window.size.y)
+    {
+		obj->row = (int)j;
+		w = cub->window.size.y / ((2. * (double)j) - (cub->window.half.y * 2.)) / obj->dist;
+        set_position(&obj->c_floor,
+				w * obj->floor_wall.x + (1. - w)
+				* cub->camera.pos.x,
+				w * obj->floor_wall.y + (1. - w)
+				* cub->camera.pos.y);
+		pixel.y = (cub->window.half.y * 2.) - j++;
+        draw_sky(cub, obj, &pixel, &tex_pos);
+        j++;
+    }
+    while (i < (cub->window.half.y) - (obj->height / 2.) + 1)
 	{
 		obj->row = (int)i;
 		w = cub->window.size.y / ((2. * (double)i) - (cub->window.half.y * 2.)) / obj->dist;
-		//w = cub->cam_height[i] / obj->dist;
 		set_position(&obj->c_floor,
 				w * obj->floor_wall.x + (1. - w)
 				* cub->camera.pos.x,
@@ -103,5 +132,5 @@ void				draw_sky_floor(t_cub *cub, t_object *obj)
 		//pixel.y = (cub->window.half.y * 2) - i++;
 		//draw_sky(cub, obj, &pixel, &tex_pos);
 		i++;
-	}
+	}*/
 }

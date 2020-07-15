@@ -28,9 +28,15 @@ int				key_press(int key, t_cub *cub)
 	else if (key == KEY_D)
 		cub->x_move.y = 1;
 	if (key == KEY_UP)
-		cub->window.half.y+=3;
+    {
+        if (cub->window.half.y < cub->window.size.y * 2. / 3.)
+		    cub->window.half.y+=3;
+    }
 	else if (key == KEY_UNDER)
-		cub->window.half.y-=3;
+    {
+        if (cub->window.half.y > cub->window.size.y / 3.)
+		    cub->window.half.y-=3;
+    }
 	if (key == KEY_Q || key == KEY_LEFT)
 		cub->rotate.x = 1;
 	else if (key == KEY_E || key == KEY_RIGHT)
@@ -67,11 +73,13 @@ int				main_loop(t_cub *cub)
 		update = side_camera(cub, (cub->x_move.x) ? 0 : 1);
 	if (cub->rotate.x || cub->rotate.y)
 		update = rotate_camera(cub, (cub->rotate.x) ? 0 : 1);
+    if (cub->window.size.y / 2. != cub->window.half.y)
+        update = 1;
 	if (update)
 	{
 		put_screen(cub);
 		put_img(cub);
 	}
-	//update = 0;
+	update = 0;
 	return (0);
 }
