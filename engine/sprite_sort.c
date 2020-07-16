@@ -22,7 +22,7 @@ void            draw_sprite(t_cub *cub, t_sprite *spr,
                 && spr2->transform.y < cub->depth[(int)spr2->draw_x.x])
         {
             spr2->draw_y.x = spr2->y_org;
-            while (spr2->draw_y.x < cub->window.size.y
+            while (spr2->draw_y.x < (cub->window.half.y * 2.)
                     && spr2->draw_y.x < spr2->draw_y.y)
             {
                 draw_sprite2(cub, spr, spr2, tex);
@@ -56,8 +56,8 @@ void            init_sprite(t_cub *cub, t_sprite *spr,
             (int)MAX(0, spr2->spr_s.x / 2.
                 + spr2->screen));
     set_position(&spr2->draw_y,
-            (int)MAX(0, -spr2->spr_s.y / 2. + cub->window.size.y / 2.),
-            (int)MAX(0, spr2->spr_s.y / 2. + cub->window.size.y / 2.));
+            (int)MAX(0, -spr2->spr_s.y / 2. + (cub->window.half.y * 2.) / 2.),
+            (int)MAX(0, spr2->spr_s.y / 2. + (cub->window.half.y * 2.) / 2.));
     spr2->y_org = spr2->draw_y.x;
 }
 

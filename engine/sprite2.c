@@ -20,7 +20,7 @@ static int      sp_coord(t_cub *cub, t_sprite2 *spr2,
             * tex->width / spr2->spr_s.x) / 256;
     if (tex_pos->x < tex->start.x || tex_pos->x > tex->end.x)
         return (0);
-    spr2->factor = ((int)(spr2->draw_y.x) * 256.) - (cub->window.size.y * 128.) +
+    spr2->factor = ((int)(spr2->draw_y.x) * 256.) - ((cub->window.half.y * 2.) * 128.) +
         (spr2->spr_s.y * 128.);
     tex_pos->y = ((spr2->factor * tex->height) / spr2->spr_s.y) / 256.;
     return (tex_pos->y > tex->start.y && tex_pos->y < tex->end.y);
