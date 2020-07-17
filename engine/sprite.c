@@ -47,8 +47,12 @@ int				check_sprite(t_cub *cub)
 		{
 			set_position(&pos, i + .5, j + .5);
 			val = cub->map[(int)pos.x][(int)pos.y];
-			if (val >= 2)
+			if (val == 2)
 				tex = &cub->texture[TEX_SPRITE];
+            else if (val == 3)
+                tex = &cub->texture[7];
+            else if (val == 4)
+                tex = &cub->texture[8];
 			if (val >= 2 && val <= 6 && tex->tex &&
 					!add_front_spr(&cub->sprite, 0.,
 						&pos, tex))

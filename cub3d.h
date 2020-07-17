@@ -188,7 +188,7 @@ typedef struct						s_cub
 	int				option;
 	int				req_col;
 	int				req_row;
-	int				up;
+	int				life;
 }									t_cub;
 
 /*
@@ -234,5 +234,6 @@ void            draw_sprite2(t_cub *cub, t_sprite *sprite,
         t_sprite2 *spr2, t_texture *tex);
 void            draw_sprite(t_cub *cub, t_sprite *spr,
         t_sprite2 *spr2, t_texture *tex);
+void            put_cross_hair(t_cub *cub);
 
 #endif

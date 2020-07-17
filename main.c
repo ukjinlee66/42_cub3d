@@ -47,21 +47,22 @@ static void		init_cub(t_cub *cub)
 	cub->texture[4].path = "textures/floor1.xpm";
 	cub->texture[5].path = "textures/sky1.xpm";
 	cub->texture[6].path = "textures/sprite1.xpm";
-	cub->texture[7].path = "textures/wood.xpm";
+	cub->texture[7].path = "textures/Coin.xpm";
+    cub->texture[8].path = "textures/Mushroom.xpm";
 	i = 0;
 	int map2[10][10] = {
 	{ 1,1,1,1,1,1,1,1,1,1 },
-	{ 1,0,0,1,0,0,0,0,0,1 },
-	{ 1,0,0,3,0,0,0,0,0,1 },
+	{ 1,3,0,1,0,0,0,0,0,1 },
+	{ 1,4,0,0,0,0,0,0,0,1 },
 	{ 1,1,1,1,0,0,0,0,0,1 },
 	{ 1,0,0,0,0,0,0,0,0,1 },
 	{ 1,0,0,0,0,0,0,0,0,1 },
-	{ 1,0,0,0,0,0,2,2,0,1 },
-	{ 1,0,0,0,0,0,2,0,0,1 },
+	{ 1,0,0,0,0,0,0,2,0,1 },
+	{ 1,0,3,4,0,0,2,0,0,1 },
 	{ 1,0,0,0,0,0,0,0,0,1 },
 	{ 1,1,1,1,1,1,1,1,1,1 }
 	};
-	cub->up = 0;
+	cub->life = 3;
 	copy_map(cub, 10, 10, map2);
 	cub->c[TEX_NORTH] = 0xFFFFFF;
 	cub->c[TEX_SOUTH] = 0xCCCCCC;
