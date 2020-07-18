@@ -43,6 +43,7 @@ void			put_screen(t_cub *cub)
 	if (cub->sprite)
     	handle_sprite(cub);
     put_cross_hair(cub);
+    draw_life_bar(cub);
 }
 
 void			init_window(t_window *window)

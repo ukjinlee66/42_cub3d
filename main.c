@@ -40,15 +40,16 @@ static void		init_cub(t_cub *cub)
 	init_camera(&cub->camera);
 	while (i < 10)
 		cub->texture[i++].tex = NULL;
-	cub->texture[0].path = "textures/wall1.xpm";
-	cub->texture[1].path = "textures/wall2.xpm";
-	cub->texture[2].path = "textures/wall3.xpm";
-	cub->texture[3].path = "textures/wall4.xpm";
+	cub->texture[0].path = "textures/bush.xpm";
+	cub->texture[1].path = "textures/bush.xpm";
+	cub->texture[2].path = "textures/bush.xpm";
+	cub->texture[3].path = "textures/bush.xpm";
 	cub->texture[4].path = "textures/floor1.xpm";
-	cub->texture[5].path = "textures/sky1.xpm";
+	cub->texture[5].path = "textures/clouds.xpm";
 	cub->texture[6].path = "textures/sprite1.xpm";
 	cub->texture[7].path = "textures/Coin.xpm";
     cub->texture[8].path = "textures/Mushroom.xpm";
+    cub->texture[9].path = "textures/life_bar.xpm";
 	i = 0;
 	int map2[10][10] = {
 	{ 1,1,1,1,1,1,1,1,1,1 },
@@ -75,7 +76,7 @@ static void		init_cub(t_cub *cub)
 	set_position(&cub->move, 0., 0.);
 	set_position(&cub->x_move, 0., 0.);
 	set_position(&cub->rotate, 0., 0.);
-	cub->option = 0;
+	cub->quest = 0;
 	cub->cos[0] = cos(-rotate_speed);
 	cub->cos[1] = cos(rotate_speed);
 	cub->sin[0] = sin(-rotate_speed);

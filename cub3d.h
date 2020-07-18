@@ -185,7 +185,7 @@ typedef struct						s_cub
 	double			cam_width[1920];
 	double			cam_height[1080];
 	int				map[10][10];
-	int				option;
+	int				quest;
 	int				req_col;
 	int				req_row;
 	int				life;
@@ -235,5 +235,6 @@ void            draw_sprite2(t_cub *cub, t_sprite *sprite,
 void            draw_sprite(t_cub *cub, t_sprite *spr,
         t_sprite2 *spr2, t_texture *tex);
 void            put_cross_hair(t_cub *cub);
+void            draw_life_bar(t_cub *cub);
 
 #endif
