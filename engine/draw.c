@@ -41,7 +41,7 @@ void			draw_wall(t_cub *cub, t_object *obj)
 	if (!tex->tex)
 	{
 		draw_vertical(&cub->window, &pixel, obj->height,
-				cal_color(cub->c[obj->direction], obj->dist));
+				cal_color(cub->c[obj->direction], obj->dist / 0.5));
 		return ;
 	}
 	init_draw(tex, obj, &tex_pos);
@@ -53,7 +53,7 @@ void			draw_wall(t_cub *cub, t_object *obj)
 		tex_pos.y = (int)((pixel.y * 2 - (cub->window.half.y * 2.) + obj->height)
 				* ((tex->height / 2.) / obj->height));
 		coord(&cub->window, &pixel, cal_color(cal_color2(tex, &tex_pos),
-				obj->dist));
+				obj->dist / 0.5));
 		start++;
 	}
 }

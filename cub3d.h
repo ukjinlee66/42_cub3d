@@ -137,6 +137,7 @@ typedef struct						s_texture
 	char			*path;
 	void			*ptr;
 	void			*tex;
+    int             *data;
 	t_pos			start;
 	t_pos			end;
 	int				width;
@@ -216,7 +217,7 @@ void			coord(t_window *win, t_pos *pos, int color);
 void			put_screen(t_cub *cub);
 void			init_window(t_window *window);
 void			put_img(t_cub *cub);
-int				cal_color(int color, int divide);
+int				cal_color(int color, double divide);
 int				cal_color2(t_texture *tex, t_pos *pos);
 int		        MAX(int a, int b);
 void			draw_sky_floor(t_cub *cub, t_object *obj);
@@ -235,6 +236,6 @@ void            draw_sprite2(t_cub *cub, t_sprite *sprite,
 void            draw_sprite(t_cub *cub, t_sprite *spr,
         t_sprite2 *spr2, t_texture *tex);
 void            put_cross_hair(t_cub *cub);
-void            draw_life_bar(t_cub *cub);
+void            draw_heart_icon(t_cub *cub, int dist);
 
 #endif

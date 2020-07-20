@@ -43,7 +43,13 @@ void			put_screen(t_cub *cub)
 	if (cub->sprite)
     	handle_sprite(cub);
     put_cross_hair(cub);
-    draw_life_bar(cub);
+    i = 1;
+    if (cub->life > 0)
+        while (i <= cub->life)
+        {
+            draw_heart_icon(cub, i * 40);
+            i++;    
+        }
 }
 
 void			init_window(t_window *window)

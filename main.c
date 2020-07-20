@@ -49,7 +49,7 @@ static void		init_cub(t_cub *cub)
 	cub->texture[6].path = "textures/sprite1.xpm";
 	cub->texture[7].path = "textures/Coin.xpm";
     cub->texture[8].path = "textures/Mushroom.xpm";
-    cub->texture[9].path = "textures/life_bar.xpm";
+    cub->texture[9].path = "textures/heart.xpm";
 	i = 0;
 	int map2[10][10] = {
 	{ 1,1,1,1,1,1,1,1,1,1 },

@@ -27,10 +27,6 @@ t_sprite		*add_front_spr(t_sprite **sprite,
 	return (new);
 }
 
-/*
- * sprite number 2~6
-*/
-
 int				check_sprite(t_cub *cub)
 {
 	int				i;

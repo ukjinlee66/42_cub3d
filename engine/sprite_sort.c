@@ -22,7 +22,7 @@ void            draw_sprite(t_cub *cub, t_sprite *spr,
                 && spr2->transform.y < cub->depth[(int)spr2->draw_x.x])
         {
             spr2->draw_y.x = spr2->y_org;
-            while (spr2->draw_y.x < (cub->window.half.y * 2.)
+            while (spr2->draw_y.x < (cub->window.size.y)
                     && spr2->draw_y.x < spr2->draw_y.y)
             {
                 draw_sprite2(cub, spr, spr2, tex);

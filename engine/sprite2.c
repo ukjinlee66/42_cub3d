@@ -37,7 +37,7 @@ void            draw_sprite2(t_cub *cub, t_sprite *sprite,
     if (sp_coord(cub, spr2, tex, &tex_pos))
     {
         color = cal_color(cal_color2(tex, &tex_pos),
-                sprite->dist);
+                sprite->dist / 1.5);
         if (color != 0x0)
         	coord(&cub->window, &pixel, color);        
     }
