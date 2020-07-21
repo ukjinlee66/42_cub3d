@@ -31,4 +31,4 @@ This project uses the __raycasting__ technique used in the Wolfenstein 3D fps ga
 - <https://m.blog.naver.com/cory_kim/221117101364> - How to use SDL, add Music<br><br>
 - <https://github.com/Glagan/42-cub3d> - other github projects<br>
 - <https://github.com/rchallie/cub3D><br>
-- <https://github.com/ilaystone/Cub3d>(SDL)<br><br>
+- <https://github.com/ilaystone/Cub3d>(include SDL)<br><br>
