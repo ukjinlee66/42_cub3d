@@ -28,7 +28,6 @@ This project uses the __raycasting__ technique used in the Wolfenstein 3D fps ga
 - <https://github.com/taelee42/mlx_example> - mlx concept learning<br><br>
 - <http://blog.naver.com/xxxstarxxx/221826768233> - rgb color decomposition process<br><br>
 - <https://lodev.org/cgtutor/index.html> - raycasting Code Learning<br><br>
-- <https://m.blog.naver.com/cory_kim/221117101364> - How to use SDL, add Music<br>
-- <http://blog.naver.com/cory_kim/221112925736><br><br>
+- <https://m.blog.naver.com/cory_kim/221117101364> - How to use SDL, add Music<br><br>
 - <https://github.com/Glagan/42-cub3d> - other github projects<br>
 - <https://github.com/rchallie/cub3D><br><br>
