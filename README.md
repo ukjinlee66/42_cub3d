@@ -9,7 +9,7 @@ This project uses the __raycasting__ technique used in the Wolfenstein 3D fps ga
 - [x] Wall collisions.<br>
 - [ ] A skybox.<br>
 - [x] Floor and/or ceiling texture.<br>
-- [ ] An HUD.<br>
+- [x] An HUD.<br>
 - [x] Ability to look up and down.<br>
 - [x] Jump or crouch.<br>
 - [x] A distance related shadow effect.<br>
@@ -20,7 +20,7 @@ This project uses the __raycasting__ technique used in the Wolfenstein 3D fps ga
 - [x] Doors which can open and close.<br>
 - [x] Secret doors.<br>
 - [ ] Animations of a gun shot or animated sprite.<br>
-- [x] Several levels.<br>
+- [ ] Several levels.<br>
 - [x] Sounds and music.<br>
 - [x] Rotate the point of view with the mouse.<br>
 - [ ] Weapons and bad guys to fight!<br>
@@ -30,4 +30,5 @@ This project uses the __raycasting__ technique used in the Wolfenstein 3D fps ga
 - <https://lodev.org/cgtutor/index.html> - raycasting Code Learning<br><br>
 - <https://m.blog.naver.com/cory_kim/221117101364> - How to use SDL, add Music<br><br>
 - <https://github.com/Glagan/42-cub3d> - other github projects<br>
-- <https://github.com/rchallie/cub3D><br><br>
+- <https://github.com/rchallie/cub3D><br>
+- <https://github.com/ilaystone/Cub3d>(include SDL)<br><br>
