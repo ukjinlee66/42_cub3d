@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 21:55:11 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/21 20:09:56 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/21 21:32:03 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 
 #include "minilibx_opengl/mlx.h"
 #include <stdlib.h>
+#include <unistd.h>
 #include <math.h>
 #include <stdio.h>
-#include "SDL/SDL2.framework/Headers/SDL.h"
-#include "SDL/SDL2_mixer.framework/Headers/SDL_mixer.h"
+#include "SDL.h"
+#include "SDL_mixer.h"
 
 /*
  ** x_event_key **
@@ -192,6 +193,8 @@ typedef struct						s_cub
 	int				req_col;
 	int				req_row;
 	int				life;
+	Mix_Chunk		*jump;
+	Mix_Music		*bgm;
 }									t_cub;
 
 /*
@@ -207,7 +210,7 @@ int				draw_vertical(t_window *window, t_pos *start,
 		int len, int color);
 void			*ft_memcpy(void *dest, const void *src, size_t n);
 void			init_img(t_window *window, t_image *img);
-int				exit_game(void);
+int				exit_game(t_cub *cub);
 int				key_press(int key, t_cub *cub);
 int				key_release(int key, t_cub *cub);
 int				main_loop(t_cub *cub);
@@ -241,5 +244,7 @@ void            put_cross_hair(t_cub *cub);
 void            draw_heart_icon(t_cub *cub, int dist);
 void			delete_spr(t_sprite **spr, t_pos *pos);
 int				check_coin_map(t_cub *cub);
+void			print_str(const char *str);
+void			startbgm(t_cub *cub);
 
 #endif

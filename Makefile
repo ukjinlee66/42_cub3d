@@ -6,13 +6,15 @@
 #    By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/27 22:30:38 by youlee            #+#    #+#              #
-#    Updated: 2020/07/21 20:24:27 by youlee           ###   ########.fr        #
+#    Updated: 2020/07/21 21:30:49 by youlee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 
 CC = gcc
+
+CFLAG = -Wall -Wextra -Werror
 
 SRC := 	main.c \
 		mlx_handle/hook_handle.c \
@@ -32,6 +34,8 @@ SRC := 	main.c \
 		engine/table.c \
 		engine/texture.c \
 		engine/window.c \
+		engine/music.c \
+		function/print_get.c \
 		function/MAX.c \
 		function/ft_memcpy.c \
 		function/vector_cross_product.c
@@ -48,7 +52,7 @@ LIBS = -lmlx -framework OpenGl -framework Appkit -rpath \
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(HEADERS) $(LIBS) $(OBJ) -o cub3D
+	@$(CC) $(CFLAG) $(HEADERS) $(LIBS) $(OBJ) -o cub3D
 	@echo "Done"
 
 %.o : %.c

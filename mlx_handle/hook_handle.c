@@ -6,14 +6,17 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 11:19:45 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/21 18:03:49 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/21 21:18:18 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int				exit_game(void)
+int				exit_game(t_cub *cub)
 {
+	Mix_FreeMusic(cub->bgm);
+	cub->bgm = NULL;
+	Mix_Quit();
 	exit(0);
 }
 
@@ -59,7 +62,7 @@ int				key_release(int key, t_cub *cub)
 	else if (key == KEY_E || key == KEY_RIGHT)
 		cub->rotate.y = 0;
 	if (key == KEY_ESC)
-		exit_game();
+		exit_game(cub);
 	return (0);
 }
 
@@ -94,7 +97,7 @@ int				main_loop(t_cub *cub)
 			cub->life--;
 			delete_spr(&cub->sprite, &c->pos);
 			if (cub->life == 0)
-				exit_game();
+				exit_game(cub);
 		}
 		put_screen(cub);
 		put_img(cub);

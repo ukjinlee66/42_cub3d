@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 21:55:05 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/21 17:55:49 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/21 21:29:51 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ static void		init_cub(t_cub *cub)
 	cub->cos[1] = cos(rotate_speed);
 	cub->sin[0] = sin(-rotate_speed);
 	cub->sin[1] = sin(rotate_speed);
+	cub->bgm = NULL;
 }
 
 int				main(int argc, char **argv)
@@ -91,6 +92,7 @@ int				main(int argc, char **argv)
 	make_table(&cub);
 	load_texture(&cub);
     check_sprite(&cub);
+	startbgm(&cub);
 	mlx_hook(cub.window.win, X_EVENT_KEY_PRESS, 0, &key_press, &cub);
 	mlx_hook(cub.window.win, X_EVENT_KEY_RELEASE, 0, &key_release, &cub);
 	mlx_hook(cub.window.win, X_EVENT_KEY_EXIT, 0, &exit_game, &cub);
