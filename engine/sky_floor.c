@@ -6,7 +6,7 @@
 /*   By: youlee <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 20:51:58 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/14 21:27:04 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/21 16:16:01 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ static void			draw_floor(t_cub *cub, t_object *obj, t_pos *pixel, t_pos *tex_pos
 	{
 		set_position(tex_pos, (int)(obj->c_floor.x * tex->width) % tex->width,
 				(int)(obj->c_floor.y * tex->height) % tex->height);
-		coord(&cub->window, pixel, cal_color(cal_color2(tex, tex_pos), cub->cam_height[obj->row] / 0.5));
+		coord(&cub->window, pixel, cal_color(cal_color2(tex, tex_pos),
+				(cub->window.half.y * 2.) / ((2. * (double)obj->row) - cub->window.half.y * 2.) / 0.5));
+				//cub->cam_height[obj->row] / 0.5));
 	}
 }
 
@@ -51,14 +53,18 @@ static void			draw_sky(t_cub *cub, t_object *obj, t_pos *pixel, t_pos *tex_pos)
 	if (!cub->texture[TEX_SKY].tex)
 	{
 		coord(&cub->window, pixel,
-				cal_color(cub->c[TEX_SKY], cub->cam_height[obj->row] / 0.5));
+				cal_color(cub->c[TEX_SKY], 
+					(cub->window.half.y * 2.) / ((2. * (double)obj->row) - cub->window.half.y * 2.) / 0.5));
+		//cub->cam_height[obj->row] / 0.5));
 	}
 	else
 	{
 		set_position(tex_pos, (int)(obj->c_floor.x * tex->width) % tex->width,
 				(int)(obj->c_floor.y * tex->height) % tex->height);
 		coord(&cub->window, pixel,
-				cal_color(cal_color2(tex, tex_pos), cub->cam_height[obj->row] / 0.5));
+				cal_color(cal_color2(tex, tex_pos),
+					(cub->window.half.y * 2.) / ((2. * (double)obj->row) - cub->window.half.y * 2.) / 0.5));
+					//cub->cam_height[obj->row] / 0.5));
 	}
 }
 

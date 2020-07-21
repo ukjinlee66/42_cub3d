@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 11:19:45 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/14 21:26:27 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/21 18:03:49 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,10 @@ int				key_release(int key, t_cub *cub)
 
 int				main_loop(t_cub *cub)
 {
-	static int update = 1;
+	static int		update = 1;
+	t_camera		*c;
 
+	c = &cub->camera;
 	if (cub->move.x || cub->move.y)
 		update = up_down_camera(cub, (cub->move.x) ? 0 : 1);
 	if (cub->x_move.x || cub->x_move.y)
@@ -77,9 +79,26 @@ int				main_loop(t_cub *cub)
         update = 1;
 	if (update)
 	{
+		if (check_coin_map(cub) > 0)
+		{
+			if (cub->map[(int)c->pos.x][(int)c->pos.y] == 3)
+			{
+				cub->map[(int)c->pos.x][(int)c->pos.y] = 0;
+				cub->coin++;
+				delete_spr(&cub->sprite, &c->pos);
+			}
+		}
+		else if (cub->map[(int)c->pos.x][(int)c->pos.y] == 4)
+		{
+			cub->map[(int)c->pos.x][(int)c->pos.y] = 0;
+			cub->life--;
+			delete_spr(&cub->sprite, &c->pos);
+			if (cub->life == 0)
+				exit_game();
+		}
 		put_screen(cub);
 		put_img(cub);
 	}
-	update = 0;
+	//update = 0;
 	return (0);
 }

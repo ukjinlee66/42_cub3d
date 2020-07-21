@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 14:29:30 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/14 15:03:29 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/21 15:40:55 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ int				check_sprite(t_cub *cub)
 			val = cub->map[(int)pos.x][(int)pos.y];
 			if (val == 2)
 				tex = &cub->texture[TEX_SPRITE];
-            else if (val == 3)
+            else if (val == 3) // coin
                 tex = &cub->texture[7];
-            else if (val == 4)
+            else if (val == 4) // mush
                 tex = &cub->texture[8];
 			if (val >= 2 && val <= 6 && tex->tex &&
 					!add_front_spr(&cub->sprite, 0.,

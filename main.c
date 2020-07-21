@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 21:55:05 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/14 16:54:00 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/21 17:55:49 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ static void		init_cub(t_cub *cub)
 	cub->texture[4].path = "textures/floor1.xpm";
 	cub->texture[5].path = "textures/clouds.xpm";
 	cub->texture[6].path = "textures/sprite1.xpm";
-	cub->texture[7].path = "textures/Coin.xpm";
-    cub->texture[8].path = "textures/Mushroom.xpm";
+	cub->texture[7].path = "textures/test2.xpm";
+    cub->texture[8].path = "textures/mush1.xpm";
     cub->texture[9].path = "textures/heart.xpm";
 	i = 0;
 	int map2[10][10] = {
@@ -58,7 +58,7 @@ static void		init_cub(t_cub *cub)
 	{ 1,1,1,1,0,0,0,0,0,1 },
 	{ 1,0,0,0,0,0,0,0,0,1 },
 	{ 1,0,0,0,0,0,0,0,0,1 },
-	{ 1,0,0,0,0,0,0,2,0,1 },
+	{ 1,0,0,4,0,0,0,2,0,1 },
 	{ 1,0,3,4,0,0,2,0,0,1 },
 	{ 1,0,0,0,0,0,0,0,0,1 },
 	{ 1,1,1,1,1,1,1,1,1,1 }
@@ -76,7 +76,7 @@ static void		init_cub(t_cub *cub)
 	set_position(&cub->move, 0., 0.);
 	set_position(&cub->x_move, 0., 0.);
 	set_position(&cub->rotate, 0., 0.);
-	cub->quest = 0;
+	cub->coin = 0;
 	cub->cos[0] = cos(-rotate_speed);
 	cub->cos[1] = cos(rotate_speed);
 	cub->sin[0] = sin(-rotate_speed);

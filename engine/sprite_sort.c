@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 14:30:04 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/14 15:01:02 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/21 18:01:21 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,36 @@ void            init_sprite(t_cub *cub, t_sprite *spr,
             (int)MAX(0, -spr2->spr_s.y / 2. + (cub->window.half.y * 2.) / 2.),
             (int)MAX(0, spr2->spr_s.y / 2. + (cub->window.half.y * 2.) / 2.));
     spr2->y_org = spr2->draw_y.x;
+}
+
+void			delete_spr(t_sprite **spr, t_pos *pos)
+{
+	t_sprite	*curr;
+	t_sprite	*prev;
+	t_sprite	*temp;
+
+	curr = *spr;
+	prev = NULL;
+	while (*spr)
+	{
+		if ((int)(*spr)->spr_pos.x == (int)pos->x && 
+				(int)(*spr)->spr_pos.y == (int)pos->y)
+		{
+			temp = *spr;
+			if (!prev)
+				*spr = temp->next;
+			else
+				prev->next = temp->next;
+			free(temp);
+			temp = NULL;
+			if (prev)
+				*spr = curr;
+			return ;
+		}
+		prev = *spr;
+		*spr = (*spr)->next;
+	}
+	*spr = curr;
 }
 
 t_sprite		*add_sorted(t_sprite **sort, t_sprite *spr)

@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 21:55:11 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/14 16:53:49 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/21 20:09:56 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdio.h>
+#include "SDL/SDL2.framework/Headers/SDL.h"
+#include "SDL/SDL2_mixer.framework/Headers/SDL_mixer.h"
 
 /*
  ** x_event_key **
@@ -186,7 +188,7 @@ typedef struct						s_cub
 	double			cam_width[1920];
 	double			cam_height[1080];
 	int				map[10][10];
-	int				quest;
+	int				coin;
 	int				req_col;
 	int				req_row;
 	int				life;
@@ -237,5 +239,7 @@ void            draw_sprite(t_cub *cub, t_sprite *spr,
         t_sprite2 *spr2, t_texture *tex);
 void            put_cross_hair(t_cub *cub);
 void            draw_heart_icon(t_cub *cub, int dist);
+void			delete_spr(t_sprite **spr, t_pos *pos);
+int				check_coin_map(t_cub *cub);
 
 #endif
