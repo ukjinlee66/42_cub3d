@@ -34,13 +34,13 @@ static void			draw_floor(t_cub *cub, t_object *obj, t_pos *pixel, t_pos *tex_pos
 
 	tex = &cub->texture[TEX_FLOOR];
 	if (!tex -> tex)
-		coord(&cub->window, pixel, cal_color(cub->c[TEX_FLOOR], cub->cam_height[obj->row] / 1.5));
+		coord(&cub->window, pixel, cal_color(cub->c[TEX_FLOOR], cub->cam_height[obj->row] / 3.5));
 	else
 	{
 		set_position(tex_pos, (int)(obj->c_floor.x * tex->width) % tex->width,
 				(int)(obj->c_floor.y * tex->height) % tex->height);
 		coord(&cub->window, pixel, cal_color(cal_color2(tex, tex_pos),
-				(cub->window.half.y * 2.) / ((2. * (double)obj->row) - cub->window.half.y * 2.) / 0.5));
+				(cub->window.half.y * 2.) / ((2. * (double)obj->row) - cub->window.half.y * 2.) / 3.5));
 				//cub->cam_height[obj->row] / 0.5));
 	}
 }
@@ -54,7 +54,7 @@ static void			draw_sky(t_cub *cub, t_object *obj, t_pos *pixel, t_pos *tex_pos)
 	{
 		coord(&cub->window, pixel,
 				cal_color(cub->c[TEX_SKY], 
-					(cub->window.half.y * 2.) / ((2. * (double)obj->row) - cub->window.half.y * 2.) / 0.5));
+					(cub->window.half.y * 2.) / ((2. * (double)obj->row) - cub->window.half.y * 2.) / 3.5));
 		//cub->cam_height[obj->row] / 0.5));
 	}
 	else
@@ -63,7 +63,7 @@ static void			draw_sky(t_cub *cub, t_object *obj, t_pos *pixel, t_pos *tex_pos)
 				(int)(obj->c_floor.y * tex->height) % tex->height);
 		coord(&cub->window, pixel,
 				cal_color(cal_color2(tex, tex_pos),
-					(cub->window.half.y * 2.) / ((2. * (double)obj->row) - cub->window.half.y * 2.) / 0.5));
+					(cub->window.half.y * 2.) / ((2. * (double)obj->row) - cub->window.half.y * 2.) / 3.5));
 					//cub->cam_height[obj->row] / 0.5));
 	}
 }

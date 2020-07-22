@@ -13,7 +13,7 @@
 # ifndef CUB3D_H
 # define CUB3D_H
 
-#include "minilibx_opengl/mlx.h"
+#include "mlx.h"
 #include <stdlib.h>
 #include <unistd.h>
 #include <math.h>

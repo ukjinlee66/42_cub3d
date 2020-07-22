@@ -14,7 +14,7 @@ NAME = cub3d
 
 CC = gcc
 
-CFLAG = -Wall -Wextra -Werror
+# CFLAG = -Wall -Wextra -Werror
 
 SRC := 	main.c \
 		mlx_handle/hook_handle.c \
@@ -43,22 +43,26 @@ SRC := 	main.c \
 OBJ := $(SRC:.c=.o)
 
 HEADERS = -I SDL/SDL2.framework/Headers/ -I SDL/SDL2_mixer.framework/Headers/ \
-		  -I.
+		  -I minilibx_opengl/ -I.
 
-LIBS = -lmlx -framework OpenGl -framework Appkit -rpath \
+LIBS = libmlx.a libmlx.dylib -framework OpenGL -framework Appkit -rpath \
 	   @loader_path/SDL -framework SDL2 -F SDL/ -framework SDL2_mixer\
 	   -F SDL/
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(CFLAG) $(HEADERS) $(LIBS) $(OBJ) -o cub3D
+	cd minilibx_mms; cp -r libmlx.dylib ../
+	cd minilibx_opengl; cp -r libmlx.a ../
+	@$(CC) $(HEADERS) $(LIBS) $(OBJ) -o cub3D
 	@echo "Done"
 
 %.o : %.c
 		$(CC) -c $(HEADERS) $< -o $@
 
 clean:
+	@rm -rf libmlx.dylib
+	@rm -rf libmlx.a
 	@rm -rf $(OBJ)
 
 fclean: clean
