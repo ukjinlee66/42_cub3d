@@ -78,8 +78,8 @@
 # define MH							800
 # define MIN_HEIGHT					320
 # define MIN_WIDTH					480
-# define rotate_speed				.07
-# define move_speed					.11
+# define rotate_speed				.03
+# define move_speed					.07
 # define number_sprite				5
 
 /*
@@ -185,6 +185,7 @@ typedef struct						s_cub
 	t_pos			move;
 	t_pos			x_move;
 	t_pos			rotate;
+    t_pos           mouse;
 	unsigned		c[9];
 	double			cos[2];
 	double			sin[2];
@@ -249,5 +250,6 @@ void			delete_spr(t_sprite **spr, t_pos *pos);
 int				check_coin_map(t_cub *cub);
 void			print_str(const char *str);
 void			startbgm(t_cub *cub);
+int             mouse_move(int x, int y, t_cub *cub);
 
 #endif

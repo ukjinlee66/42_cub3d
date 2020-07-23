@@ -594,7 +594,7 @@ int get_mouse_button(NSEventType eventtype)
   glUniform2f(glsl.loc_font_winhalfsize, size_x/2, size_y/2);
   glUniform2f(glsl.loc_font_posinwin, x, size_y - 1 - y);
   glUniform2f(glsl.loc_font_posinatlas, gx, gy);
-  glUniform2f(glsl.loc_font_atlassize, img->width, img->height);
+  glUniform2f(glsl.loc_font_atlassize, img->width , img->height);
 
   glBindBuffer(GL_ARRAY_BUFFER, imgctx->vbuffer);
   glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2*sizeof(GLfloat), (void*)0);

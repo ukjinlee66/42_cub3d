@@ -20,6 +20,25 @@ int				exit_game(t_cub *cub)
 	exit(0);
 }
 
+int             mouse_move(int x, int y, t_cub *cub)
+{
+    if (cub->mouse.x == 0 && cub->mouse.y == 0)
+        set_position(&cub->mouse, x, y);
+    else
+    {
+        if ((int)cub->mouse.x < x)
+		    rotate_camera(cub, 1);
+        else if ((int)cub->mouse.x > x)
+		    rotate_camera(cub, 0);
+        if ((int)cub->mouse.y < y)
+		    cub->window.half.y-=7;
+        else if ((int)cub->mouse.y > y)
+		    cub->window.half.y+=7;
+        set_position(&cub->mouse, x, y);
+    }
+    return (0);
+}
+
 int				key_press(int key, t_cub *cub)
 {
 	if (key == KEY_W)
@@ -43,8 +62,8 @@ int				key_press(int key, t_cub *cub)
 	if (key == KEY_Q || key == KEY_LEFT)
 		cub->rotate.x = 1;
 	else if (key == KEY_E || key == KEY_RIGHT)
-		cub->rotate.y = 1;
-	return (0);
+        cub->rotate.y = 1;
+    return (0);
 }
 
 int				key_release(int key, t_cub *cub)
@@ -80,14 +99,14 @@ int				main_loop(t_cub *cub)
 		update = rotate_camera(cub, (cub->rotate.x) ? 0 : 1);
     if (cub->window.size.y / 2. != cub->window.half.y)
         update = 1;
-	if (update)
-	{
+    if (cub->mouse.x || cub->mouse.y)
+        update = 1;
 		if (check_coin_map(cub) > 0)
 		{
 			if (cub->map[(int)c->pos.x][(int)c->pos.y] == 3)
 			{
 				cub->map[(int)c->pos.x][(int)c->pos.y] = 0;
-				cub->coin++;
+                cub->coin[1] = ((cub->coin[1] - 32) + 1 ) + 32;
 				delete_spr(&cub->sprite, &c->pos);
 			}
 		}
@@ -99,10 +118,12 @@ int				main_loop(t_cub *cub)
 			if (cub->life == 0)
 				exit_game(cub);
 		}
+	if (update)
+	{
 		put_screen(cub);
 		put_img(cub);
         mlx_string_put(cub->window.ptr, cub->window.win, 30, 30, 0xFF0000, cub->coin);
 	}
-	update = 0;
+	//update = 0;
 	return (0);
 }

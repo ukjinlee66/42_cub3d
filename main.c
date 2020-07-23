@@ -77,10 +77,11 @@ static void		init_cub(t_cub *cub)
 	set_position(&cub->x_move, 0., 0.);
 	set_position(&cub->rotate, 0., 0.);
 	cub->coin = (char*)malloc(sizeof(char) * 10);
-    cub->coin[0] = 'x';
-    cub->coin[1] = '3';
-    cub->coin[2] = '3';
-    cub->coin[3] = '\0';
+    cub->coin[0] = 'X';
+    cub->coin[1] = '0';
+    cub->coin[2] = '\0';
+    cub->mouse.x = 0;
+    cub->mouse.y = 0;
 	cub->cos[0] = cos(-rotate_speed);
 	cub->cos[1] = cos(rotate_speed);
 	cub->sin[0] = sin(-rotate_speed);
@@ -100,7 +101,8 @@ int				main(int argc, char **argv)
 	mlx_hook(cub.window.win, X_EVENT_KEY_PRESS, 0, &key_press, &cub);
 	mlx_hook(cub.window.win, X_EVENT_KEY_RELEASE, 0, &key_release, &cub);
 	mlx_hook(cub.window.win, X_EVENT_KEY_EXIT, 0, &exit_game, &cub);
-	mlx_loop_hook(cub.window.ptr, &main_loop, &cub);
+    mlx_loop_hook(cub.window.ptr, &main_loop, &cub);
+	mlx_hook(cub.window.win, X_EVENT_MOUSE_MOVE, 0, &mouse_move, &cub);
 	mlx_loop(cub.window.ptr);
 	return (0);
 }
