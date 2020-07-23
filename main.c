@@ -76,7 +76,11 @@ static void		init_cub(t_cub *cub)
 	set_position(&cub->move, 0., 0.);
 	set_position(&cub->x_move, 0., 0.);
 	set_position(&cub->rotate, 0., 0.);
-	cub->coin = 0;
+	cub->coin = (char*)malloc(sizeof(char) * 10);
+    cub->coin[0] = 'x';
+    cub->coin[1] = '3';
+    cub->coin[2] = '3';
+    cub->coin[3] = '\0';
 	cub->cos[0] = cos(-rotate_speed);
 	cub->cos[1] = cos(rotate_speed);
 	cub->sin[0] = sin(-rotate_speed);

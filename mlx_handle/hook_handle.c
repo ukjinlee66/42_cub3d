@@ -101,7 +101,8 @@ int				main_loop(t_cub *cub)
 		}
 		put_screen(cub);
 		put_img(cub);
+        mlx_string_put(cub->window.ptr, cub->window.win, 30, 30, 0xFF0000, cub->coin);
 	}
-	//update = 0;
+	update = 0;
 	return (0);
 }

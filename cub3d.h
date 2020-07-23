@@ -27,6 +27,9 @@
 
 # define X_EVENT_KEY_PRESS			2
 # define X_EVENT_KEY_RELEASE		3
+# define X_EVENT_MOUSE_PRESS        4
+# define X_EVENT_MOUSE_RELEASE      5
+# define X_EVENT_MOUSE_MOVE         6
 # define X_EVENT_KEY_EXIT			17
 
 /*
@@ -189,10 +192,10 @@ typedef struct						s_cub
 	double			cam_width[1920];
 	double			cam_height[1080];
 	int				map[10][10];
-	int				coin;
 	int				req_col;
 	int				req_row;
 	int				life;
+    char            *coin;
 	Mix_Chunk		*jump;
 	Mix_Music		*bgm;
 }									t_cub;
