@@ -25,7 +25,8 @@ This project uses the __raycasting__ technique used in the Wolfenstein 3D fps ga
 - [x] Rotate the point of view with the mouse.<br>
 - [ ] Weapons and bad guys to fight!<br>
 # Reference sites<br><br>
-- <https://github.com/taelee42/mlx_example> - mlx concept learning<br><br>
+- <https://github.com/taelee42/mlx_example> - mlx concept learning<br>
+- <https://github.com/VBrazhnik/FdF/wiki/How-to-handle-mouse-buttons-and-key-presses%3F> - mlx x_event number (mouse,key)<br><br>
 - <http://blog.naver.com/xxxstarxxx/221826768233> - rgb color decomposition process<br><br>
 - <https://lodev.org/cgtutor/index.html> - raycasting Code Learning<br><br>
 - <https://m.blog.naver.com/cory_kim/221117101364> - How to use SDL, add Music<br><br>
