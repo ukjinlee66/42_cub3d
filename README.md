@@ -12,6 +12,8 @@ This project uses the __raycasting__ technique used in the Wolfenstein 3D fps ga
 5. To end the game, press the ESC button!<br><br>
 W,A,S,D are moving buttons and direction keys and mouse move adjust the viewing angle.<br>
 Collect stars!<br><br>
+screenshot<br>
+<img src = "./screenshot.png" width="50%"><br><br>
 # Bonus list:<br><br>
 - [x] Wall collisions.<br>
 - [ ] A skybox.<br>
