@@ -36,6 +36,7 @@ static void		init_cub(t_cub *cub)
 	int			j;
 	
 	i = 0;
+    cub->mv_speed = move_speed;
 	init_window(&cub->window);
 	init_camera(&cub->camera);
 	while (i < 12)
@@ -89,7 +90,10 @@ static void		init_cub(t_cub *cub)
 	cub->cos[1] = cos(rotate_speed);
 	cub->sin[0] = sin(-rotate_speed);
 	cub->sin[1] = sin(rotate_speed);
+    i = 0;
 	cub->bgm = NULL;
+    while (i < 5)
+        cub->special[i++] = NULL;
 }
 
 int				main(int argc, char **argv)
@@ -106,6 +110,7 @@ int				main(int argc, char **argv)
 	mlx_hook(cub.window.win, X_EVENT_KEY_EXIT, 0, &exit_game, &cub);
     mlx_loop_hook(cub.window.ptr, &main_loop, &cub);
 	mlx_hook(cub.window.win, X_EVENT_MOUSE_MOVE, 0, &mouse_move, &cub);
+    mlx_mouse_hide();
 	mlx_loop(cub.window.ptr);
 	return (0);
 }

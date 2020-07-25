@@ -13,7 +13,7 @@
 #include "cub3d.h"
 
 /*
- ** start player position : (3,3)
+ ** start player position : (6,5)
 */
 
 void			init_camera(t_camera *camera)
@@ -32,13 +32,13 @@ int				up_down_camera(t_cub *cub, int direction)
 
 	camera = &cub->camera;
 	copy_position(&next, &camera->pos);
-	next.x += ((direction) ? -1 : 1) * (camera->dir.x * move_speed);
+	next.x += ((direction) ? -1 : 1) * (camera->dir.x * cub->mv_speed);
 	if ((next.x > cub->object.row || cub->map[(int)next.x][(int)camera->pos.y] == 1 ||
 				cub->map[(int)next.x][(int)camera->pos.y] == 2 || next.x < 0))
 		next.x = camera->pos.x;
 	copy_position(&camera->pos, &next);
 	copy_position(&next, &camera->pos);
-	next.y += ((direction) ? -1 : 1) * (camera->dir.y * move_speed);
+	next.y += ((direction) ? -1 : 1) * (camera->dir.y * cub->mv_speed);
 	if ((next.y > cub->object.col || cub->map[(int)camera->pos.x][(int)next.y] == 1)
 			|| cub->map[(int)camera->pos.x][(int)next.y] == 2|| next.y < 0)
 		next.y = camera->pos.y;
@@ -53,13 +53,13 @@ int				side_camera(t_cub *cub, int direction)
 
 	camera = &cub->camera;
 	copy_position(&next, &camera->pos);
-	next.x += ((direction) ? -1 : 1) * (camera->x_dir.x * move_speed) + 0.00001;
+	next.x += ((direction) ? -1 : 1) * (camera->x_dir.x * cub->mv_speed) + 0.00001;
 	if ((next.x > cub->object.row || cub->map[(int)next.x][(int)camera->pos.y] == 1)
 			|| cub->map[(int)next.x][(int)camera->pos.y] == 2|| (next.x < 0))
 		next.x = camera->pos.x;
 	copy_position(&camera->pos, &next);
 	copy_position(&next, &camera->pos);
-	next.y += ((direction) ? -1 : 1) * (camera->x_dir.y * move_speed) + 0.00001;
+	next.y += ((direction) ? -1 : 1) * (camera->x_dir.y * cub->mv_speed) + 0.00001;
 	if ((next.y > cub->object.col || cub->map[(int)camera->pos.x][(int)next.y] == 1)
 			|| cub->map[(int)camera->pos.x][(int)next.y] == 2|| (next.y < 0))
 		next.y = camera->pos.y;

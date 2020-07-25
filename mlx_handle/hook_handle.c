@@ -14,9 +14,18 @@
 
 int				exit_game(t_cub *cub)
 {
+    int         i;
+
+    i = 0;
 	Mix_FreeMusic(cub->bgm);
 	cub->bgm = NULL;
+    while (i < 5)
+    {
+        Mix_FreeChunk(cub->special[i]);
+        cub->special[i++] = NULL;
+    }
 	Mix_Quit();
+    SDL_Quit();
 	exit(0);
 }
 
@@ -41,6 +50,7 @@ int             mouse_move(int x, int y, t_cub *cub)
 
 int				key_press(int key, t_cub *cub)
 {
+    printf("keycode : %d\n",key);
 	if (key == KEY_W)
 		cub->move.x = 1;
 	else if (key == KEY_S)
@@ -54,15 +64,20 @@ int				key_press(int key, t_cub *cub)
         if (cub->window.half.y < cub->window.size.y * 2. / 3.)
 		    cub->window.half.y+=7;
     }
-	else if (key == KEY_UNDER)
+	if (key == KEY_UNDER)
     {
         if (cub->window.half.y > cub->window.size.y / 3.)
 		    cub->window.half.y-=7;
     }
 	if (key == KEY_Q || key == KEY_LEFT)
 		cub->rotate.x = 1;
-	else if (key == KEY_E || key == KEY_RIGHT)
+	if (key == KEY_E || key == KEY_RIGHT)
         cub->rotate.y = 1;
+    if (key == KEY_SPACE)
+    {
+        //cub->window.size.y +=32;
+        cub->window.half.y +=32;
+    }
     return (0);
 }
 
@@ -70,16 +85,21 @@ int				key_release(int key, t_cub *cub)
 {
 	if (key == KEY_W || key == KEY_UP)
 		cub->move.x = 0;
-	else if (key == KEY_S || key == KEY_UNDER)
+	if (key == KEY_S || key == KEY_UNDER)
 		cub->move.y = 0;
 	if (key == KEY_A)
 		cub->x_move.x = 0;
-	else if (key == KEY_D)
+	if (key == KEY_D)
 		cub->x_move.y = 0;
 	if (key == KEY_Q || key == KEY_LEFT)
 		cub->rotate.x = 0;
-	else if (key == KEY_E || key == KEY_RIGHT)
+	if (key == KEY_E || key == KEY_RIGHT)
 		cub->rotate.y = 0;
+    if (key == KEY_SPACE)
+    {
+        //cub->window.size.y -=32;
+        cub->window.half.y -=32;
+    }
 	if (key == KEY_ESC)
 		exit_game(cub);
 	return (0);
@@ -105,21 +125,36 @@ int				main_loop(t_cub *cub)
 		{
 			if (cub->map[(int)c->pos.x][(int)c->pos.y] == 3)
 			{
+                coin_music(cub);
 				cub->map[(int)c->pos.x][(int)c->pos.y] = 0;
                 cub->coin[1] = ((cub->coin[1] - 32) + 1 ) + 32;
 				delete_spr(&cub->sprite, &c->pos);
 			}
 		}
-		else if (cub->map[(int)c->pos.x][(int)c->pos.y] == 4 ||
-                cub->map[(int)c->pos.x][(int)c->pos.y] == 5)
+		if (cub->map[(int)c->pos.x][(int)c->pos.y] == 4 || cub->map[(int)c->pos.x][(int)c->pos.y] == 5)
 		{
+            if (cub->map[(int)c->pos.x][(int)c->pos.y] == 4)
+            {
+                gremush_music(cub);
+                cub->life--;
+            }
+            else
+            {
+                redmush_music(cub);
+                cub->life++;
+            }
 			cub->map[(int)c->pos.x][(int)c->pos.y] = 0;
-			cub->map[(int)c->pos.x][(int)c->pos.y] == 4 ? 
-                cub->life-- : cub->life++;
 			delete_spr(&cub->sprite, &c->pos);
 			if (cub->life == 0)
 				exit_game(cub);
 		}
+        if (cub->map[(int)c->pos.x][(int)c->pos.y] == 6)
+        {
+            star_music(cub);
+            cub->map[(int)c->pos.x][(int)c->pos.y] = 0;
+            delete_spr(&cub->sprite, &c->pos);
+            cub->mv_speed += .03;
+        }
 	if (update)
 	{
 		put_screen(cub);
@@ -127,6 +162,6 @@ int				main_loop(t_cub *cub)
         mlx_string_put(cub->window.ptr, cub->window.win, 30,
                 cub->window.size.y - 30, 0xFF0000, cub->coin);
 	}
-	update = 0;
+	//update = 0;
 	return (0);
 }

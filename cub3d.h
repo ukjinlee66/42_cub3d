@@ -48,7 +48,7 @@
 # define KEY_RIGHT					124
 # define KEY_UNDER					125
 # define KEY_UP						126
-
+# define KEY_SPACE                  49
 /*
  ** direction and parse
 */
@@ -197,8 +197,9 @@ typedef struct						s_cub
 	int				req_row;
 	int				life;
     char            *coin;
-	Mix_Chunk		*jump;
+	Mix_Chunk		*special[5];
 	Mix_Music		*bgm;
+    double          mv_speed;
 }									t_cub;
 
 /*
@@ -251,5 +252,9 @@ int				check_coin_map(t_cub *cub);
 void			print_str(const char *str);
 void			startbgm(t_cub *cub);
 int             mouse_move(int x, int y, t_cub *cub);
+void            redmush_music(t_cub *cub);
+void            gremush_music(t_cub *cub);
+void            star_music(t_cub *cub);
+void            coin_music(t_cub *cub);
 
 #endif
