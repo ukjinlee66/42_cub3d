@@ -47,9 +47,13 @@ int				check_sprite(t_cub *cub)
 				tex = &cub->texture[TEX_SPRITE];
             else if (val == 3) // coin
                 tex = &cub->texture[7];
-            else if (val == 4) // mush
+            else if (val == 4) // green mush
                 tex = &cub->texture[8];
-			if (val >= 2 && val <= 6 && tex->tex &&
+            else if (val == 5) // red mush
+                tex = &cub->texture[9];
+            else if (val == 6) // star
+                tex = &cub->texture[10];
+			if (val >= 2 && val <= 19 && tex->tex &&
 					!add_front_spr(&cub->sprite, 0.,
 						&pos, tex))
 				return (0);

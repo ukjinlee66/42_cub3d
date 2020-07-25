@@ -31,9 +31,9 @@ int             mouse_move(int x, int y, t_cub *cub)
         else if ((int)cub->mouse.x > x)
 		    rotate_camera(cub, 0);
         if ((int)cub->mouse.y < y)
-		    cub->window.half.y-=7;
+		    cub->window.half.y -= 4;
         else if ((int)cub->mouse.y > y)
-		    cub->window.half.y+=7;
+		    cub->window.half.y += 4;
         set_position(&cub->mouse, x, y);
     }
     return (0);
@@ -110,10 +110,12 @@ int				main_loop(t_cub *cub)
 				delete_spr(&cub->sprite, &c->pos);
 			}
 		}
-		else if (cub->map[(int)c->pos.x][(int)c->pos.y] == 4)
+		else if (cub->map[(int)c->pos.x][(int)c->pos.y] == 4 ||
+                cub->map[(int)c->pos.x][(int)c->pos.y] == 5)
 		{
 			cub->map[(int)c->pos.x][(int)c->pos.y] = 0;
-			cub->life--;
+			cub->map[(int)c->pos.x][(int)c->pos.y] == 4 ? 
+                cub->life-- : cub->life++;
 			delete_spr(&cub->sprite, &c->pos);
 			if (cub->life == 0)
 				exit_game(cub);
@@ -122,8 +124,9 @@ int				main_loop(t_cub *cub)
 	{
 		put_screen(cub);
 		put_img(cub);
-        mlx_string_put(cub->window.ptr, cub->window.win, 30, 30, 0xFF0000, cub->coin);
+        mlx_string_put(cub->window.ptr, cub->window.win, 30,
+                cub->window.size.y - 30, 0xFF0000, cub->coin);
 	}
-	//update = 0;
+	update = 0;
 	return (0);
 }

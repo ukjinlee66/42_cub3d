@@ -180,7 +180,7 @@ typedef struct						s_cub
 	t_window		window;
 	t_camera		camera;
 	t_sprite		*sprite;
-	t_texture		texture[10];
+	t_texture		texture[12];
 	t_object		object;
 	t_pos			move;
 	t_pos			x_move;

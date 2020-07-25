@@ -52,8 +52,8 @@ LIBS = libmlx.a libmlx.dylib -framework OpenGL -framework Appkit -rpath \
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	cd minilibx_mms; cp -r libmlx.dylib ../
-	cd minilibx_opengl; cp -r libmlx.a ../
+	@cd minilibx_mms; cp -r libmlx.dylib ../
+	@cd minilibx_opengl; cp -r libmlx.a ../
 	@$(CC) $(HEADERS) $(LIBS) $(OBJ) -o cub3D
 	@echo "Done"
 

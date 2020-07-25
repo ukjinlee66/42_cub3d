@@ -38,7 +38,7 @@ static void		init_cub(t_cub *cub)
 	i = 0;
 	init_window(&cub->window);
 	init_camera(&cub->camera);
-	while (i < 10)
+	while (i < 12)
 		cub->texture[i++].tex = NULL;
 	cub->texture[0].path = "textures/bush.xpm";
 	cub->texture[1].path = "textures/bush.xpm";
@@ -47,19 +47,22 @@ static void		init_cub(t_cub *cub)
 	cub->texture[4].path = "textures/floor1.xpm";
 	cub->texture[5].path = "textures/clouds.xpm";
 	cub->texture[6].path = "textures/sprite1.xpm";
-	cub->texture[7].path = "textures/test2.xpm";
+	cub->texture[7].path = "textures/Coin.xpm";
     cub->texture[8].path = "textures/mush1.xpm";
-    cub->texture[9].path = "textures/heart.xpm";
-	i = 0;
+    cub->texture[9].path = "textures/mush2.xpm";
+	cub->texture[10].path = "textures/star.xpm";
+    //cub->texture[19].path = "textures/wood.xpm";
+    i = 0;
+    //3 coin 4 green mushroom 5 red mushroom 6 star
 	int map2[10][10] = {
 	{ 1,1,1,1,1,1,1,1,1,1 },
-	{ 1,3,0,1,0,0,0,0,0,1 },
+	{ 1,3,5,1,0,0,0,0,0,1 },
 	{ 1,4,0,0,0,0,0,0,0,1 },
-	{ 1,1,1,1,0,0,0,0,0,1 },
+	{ 1,1,1,0,0,0,0,0,0,1 },
 	{ 1,0,0,0,0,0,0,0,0,1 },
 	{ 1,0,0,0,0,0,0,0,0,1 },
-	{ 1,0,0,4,0,0,0,2,0,1 },
-	{ 1,0,3,4,0,0,2,0,0,1 },
+	{ 1,0,0,0,0,0,0,2,0,1 },
+	{ 1,6,3,4,5,0,2,0,0,1 },
 	{ 1,0,0,0,0,0,0,0,0,1 },
 	{ 1,1,1,1,1,1,1,1,1,1 }
 	};
