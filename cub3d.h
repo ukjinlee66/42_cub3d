@@ -200,6 +200,7 @@ typedef struct						s_cub
 	Mix_Chunk		*special[5];
 	Mix_Music		*bgm;
     double          mv_speed;
+    int             jump_val;
 }									t_cub;
 
 /*

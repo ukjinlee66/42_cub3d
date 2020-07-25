@@ -75,8 +75,7 @@ int				key_press(int key, t_cub *cub)
         cub->rotate.y = 1;
     if (key == KEY_SPACE)
     {
-        //cub->window.size.y +=32;
-        cub->window.half.y +=32;
+        cub->jump_val = 1;
     }
     return (0);
 }
@@ -97,8 +96,7 @@ int				key_release(int key, t_cub *cub)
 		cub->rotate.y = 0;
     if (key == KEY_SPACE)
     {
-        //cub->window.size.y -=32;
-        cub->window.half.y -=32;
+        cub->jump_val = 0;
     }
 	if (key == KEY_ESC)
 		exit_game(cub);
