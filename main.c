@@ -47,7 +47,7 @@ static void		init_cub(t_cub *cub)
 	cub->texture[3].path = "textures/bush.xpm";
 	cub->texture[4].path = "textures/floor1.xpm";
 	cub->texture[5].path = "textures/clouds.xpm";
-	cub->texture[6].path = "textures/sprite1.xpm";
+	cub->texture[6].path = "textures/pipe.xpm";
 	cub->texture[7].path = "textures/Coin.xpm";
     cub->texture[8].path = "textures/mush1.xpm";
     cub->texture[9].path = "textures/mush2.xpm";
