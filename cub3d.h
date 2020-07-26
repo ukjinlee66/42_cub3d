@@ -78,7 +78,7 @@
 # define MH							800
 # define MIN_HEIGHT					320
 # define MIN_WIDTH					480
-# define rotate_speed				.03
+# define rotate_speed				.07
 # define move_speed					.07
 # define number_sprite				5
 
@@ -197,7 +197,7 @@ typedef struct						s_cub
 	int				req_row;
 	int				life;
     char            *coin;
-	Mix_Chunk		*special[5];
+	Mix_Chunk		*special[7];
 	Mix_Music		*bgm;
     double          mv_speed;
     int             jump_val;
@@ -257,5 +257,8 @@ void            redmush_music(t_cub *cub);
 void            gremush_music(t_cub *cub);
 void            star_music(t_cub *cub);
 void            coin_music(t_cub *cub);
-
+void            jump_music(t_cub *cub);
+void            wall_music(t_cub *cub);
+int             jumpup(t_cub *cub);
+int             jumpdown(t_cub *cub);
 #endif

@@ -92,8 +92,9 @@ static void		init_cub(t_cub *cub)
 	cub->sin[1] = sin(rotate_speed);
     i = 0;
 	cub->bgm = NULL;
-    while (i < 5)
+    while (i < 7)
         cub->special[i++] = NULL;
+    cub->jump_val = 0;
 }
 
 int				main(int argc, char **argv)

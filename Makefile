@@ -35,10 +35,12 @@ SRC := 	main.c \
 		engine/texture.c \
 		engine/window.c \
 		engine/music.c \
+		engine/music2.c \
 		function/print_get.c \
 		function/MAX.c \
 		function/ft_memcpy.c \
-		function/vector_cross_product.c
+		function/vector_cross_product.c \
+		engine/jump_func.c
 
 OBJ := $(SRC:.c=.o)
 

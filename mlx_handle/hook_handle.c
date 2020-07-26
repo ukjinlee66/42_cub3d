@@ -74,9 +74,7 @@ int				key_press(int key, t_cub *cub)
 	if (key == KEY_E || key == KEY_RIGHT)
         cub->rotate.y = 1;
     if (key == KEY_SPACE)
-    {
-        cub->jump_val = 1;
-    }
+        cub->jump_val = 30;
     return (0);
 }
 
@@ -94,10 +92,6 @@ int				key_release(int key, t_cub *cub)
 		cub->rotate.x = 0;
 	if (key == KEY_E || key == KEY_RIGHT)
 		cub->rotate.y = 0;
-    if (key == KEY_SPACE)
-    {
-        cub->jump_val = 0;
-    }
 	if (key == KEY_ESC)
 		exit_game(cub);
 	return (0);
@@ -107,14 +101,22 @@ int				main_loop(t_cub *cub)
 {
 	static int		update = 1;
 	t_camera		*c;
-
-	c = &cub->camera;
+	
+    c = &cub->camera;
 	if (cub->move.x || cub->move.y)
 		update = up_down_camera(cub, (cub->move.x) ? 0 : 1);
 	if (cub->x_move.x || cub->x_move.y)
 		update = side_camera(cub, (cub->x_move.x) ? 0 : 1);
 	if (cub->rotate.x || cub->rotate.y)
 		update = rotate_camera(cub, (cub->rotate.x) ? 0 : 1);
+    if (cub->jump_val > 0)
+    {
+        if (cub->jump_val == 30)
+            jump_music(cub);
+        update = jumpup(cub);
+    }
+    if (cub->jump_val < 0)
+        update = jumpdown(cub);
     if (cub->window.size.y / 2. != cub->window.half.y)
         update = 1;
     if (cub->mouse.x || cub->mouse.y)
@@ -160,6 +162,6 @@ int				main_loop(t_cub *cub)
         mlx_string_put(cub->window.ptr, cub->window.win, 30,
                 cub->window.size.y - 30, 0xFF0000, cub->coin);
 	}
-	//update = 0;
+	update = 0;
 	return (0);
 }
