@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 14:25:30 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/14 19:12:09 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/27 18:26:06 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ void			put_screen(t_cub *cub)
 	}
 	if (cub->sprite)
     	handle_sprite(cub);
+	if (cub->secret == true)
+		draw_key_icon(cub);
     put_cross_hair(cub);
+	draw_coin_icon(cub);
     i = 1;
     if (cub->life > 0)
         while (i <= cub->life)

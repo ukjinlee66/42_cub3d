@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 11:15:26 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/21 15:35:18 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/27 16:18:00 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,17 @@ int				up_down_camera(t_cub *cub, int direction)
 	camera = &cub->camera;
 	copy_position(&next, &camera->pos);
 	next.x += ((direction) ? -1 : 1) * (camera->dir.x * cub->mv_speed);
-	if ((next.x > cub->object.row || cub->map[(int)next.x][(int)camera->pos.y] == 1 ||
+	if ((next.x > cub->object.row ||
+				cub->map[(int)next.x][(int)camera->pos.y] == 1 ||
 				cub->map[(int)next.x][(int)camera->pos.y] == 2 || next.x < 0))
 		next.x = camera->pos.x;
 	copy_position(&camera->pos, &next);
 	copy_position(&next, &camera->pos);
-	next.y += ((direction) ? -1 : 1) * (camera->dir.y * cub->mv_speed);
-	if ((next.y > cub->object.col || cub->map[(int)camera->pos.x][(int)next.y] == 1)
-			|| cub->map[(int)camera->pos.x][(int)next.y] == 2|| next.y < 0)
+	next.y += ((direction) ? -1 : 1) * (camera->dir.y *
+			cub->mv_speed);
+	if ((next.y > cub->object.col ||
+				cub->map[(int)camera->pos.x][(int)next.y] == 1)
+			|| cub->map[(int)camera->pos.x][(int)next.y] == 2 || next.y < 0)
 		next.y = camera->pos.y;
 	copy_position(&camera->pos, &next);
 	return (1);
@@ -53,15 +56,19 @@ int				side_camera(t_cub *cub, int direction)
 
 	camera = &cub->camera;
 	copy_position(&next, &camera->pos);
-	next.x += ((direction) ? -1 : 1) * (camera->x_dir.x * cub->mv_speed) + 0.00001;
-	if ((next.x > cub->object.row || cub->map[(int)next.x][(int)camera->pos.y] == 1)
-			|| cub->map[(int)next.x][(int)camera->pos.y] == 2|| (next.x < 0))
+	next.x += ((direction) ? -1 : 1) * (camera->x_dir.x *
+			cub->mv_speed) + 0.00001;
+	if ((next.x > cub->object.row ||
+				cub->map[(int)next.x][(int)camera->pos.y] == 1)
+			|| cub->map[(int)next.x][(int)camera->pos.y] == 2 || (next.x < 0))
 		next.x = camera->pos.x;
 	copy_position(&camera->pos, &next);
 	copy_position(&next, &camera->pos);
-	next.y += ((direction) ? -1 : 1) * (camera->x_dir.y * cub->mv_speed) + 0.00001;
-	if ((next.y > cub->object.col || cub->map[(int)camera->pos.x][(int)next.y] == 1)
-			|| cub->map[(int)camera->pos.x][(int)next.y] == 2|| (next.y < 0))
+	next.y += ((direction) ? -1 : 1) *
+		(camera->x_dir.y * cub->mv_speed) + 0.00001;
+	if ((next.y > cub->object.col ||
+				cub->map[(int)camera->pos.x][(int)next.y] == 1)
+			|| cub->map[(int)camera->pos.x][(int)next.y] == 2 || (next.y < 0))
 		next.y = camera->pos.y;
 	copy_position(&camera->pos, &next);
 	return (1);

@@ -1,11 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   jump_func.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/27 15:57:48 by youlee            #+#    #+#             */
+/*   Updated: 2020/07/27 15:57:52 by youlee           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int            jumpup(t_cub *cub)
 {
     if (cub->jump_val - 3 < 30)
     {
-        printf("cub->jump_valup : %d\n",
-                cub->jump_val);
         cub->jump_val-=3;
         cub->window.half.y += cub->jump_val;
         if (cub->jump_val == 0)
@@ -16,8 +26,6 @@ int            jumpup(t_cub *cub)
 
 int             jumpdown(t_cub *cub)
 {
-    printf("cub->jump_down: %d\n",
-            cub->jump_val);
     if (cub->jump_val + 3 > -30)
     {
         cub->jump_val+=3;

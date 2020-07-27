@@ -118,7 +118,7 @@ int mlx_string_put(mlx_ptr_t *mlx_ptr, mlx_win_list_t *win_ptr, int x, int y, in
     return(0);
 
 #ifdef STRINGPUTX11
-  y -= (FONT_HEIGHT * 2)/2;
+  y -= (FONT_HEIGHT * 2) / 3;
 #endif
 
   [(id)(win_ptr->winid) selectGLContext];

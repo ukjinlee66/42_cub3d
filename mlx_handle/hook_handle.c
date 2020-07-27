@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 11:19:45 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/21 21:18:18 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/27 17:19:48 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int             mouse_move(int x, int y, t_cub *cub)
 
 int				key_press(int key, t_cub *cub)
 {
-    printf("keycode : %d\n",key);
 	if (key == KEY_W)
 		cub->move.x = 1;
 	else if (key == KEY_S)
@@ -73,7 +72,7 @@ int				key_press(int key, t_cub *cub)
 		cub->rotate.x = 1;
 	if (key == KEY_E || key == KEY_RIGHT)
         cub->rotate.y = 1;
-    if (key == KEY_SPACE)
+    if (key == KEY_SPACE && !cub->jump_val)
         cub->jump_val = 30;
     return (0);
 }
@@ -155,12 +154,19 @@ int				main_loop(t_cub *cub)
             delete_spr(&cub->sprite, &c->pos);
             cub->mv_speed += .03;
         }
+		if (cub->map[(int)c->pos.x][(int)c->pos.y] == 7)
+		{
+			cub->secret = true;
+			cub->map[(int)c->pos.x][(int)c->pos.y] = 0;
+			delete_spr(&cub->sprite, &c->pos);
+		}
 	if (update)
 	{
 		put_screen(cub);
 		put_img(cub);
-        mlx_string_put(cub->window.ptr, cub->window.win, 30,
-                cub->window.size.y - 30, 0xFF0000, cub->coin);
+        mlx_string_put(cub->window.ptr, cub->window.win,
+				cub->window.half.x - 50,
+				cub->window.size.y - 50, 0xFF0000, cub->coin);
 	}
 	update = 0;
 	return (0);

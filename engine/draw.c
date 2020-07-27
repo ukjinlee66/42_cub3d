@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 18:14:29 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/14 21:12:21 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/27 18:53:58 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,16 @@ void			draw_wall(t_cub *cub, t_object *obj)
 	int			start;
 	int			end;
 
+	/*if (obj->direction == 12)
+		printf("wall\n");*/
 	tex = &cub->texture[obj->direction];
-	set_position(&pixel, obj->col, MAX(0, cub->window.half.y - (obj->height / 2.)));
+	set_position(&pixel, obj->col, MAX(0,
+				cub->window.half.y - (obj->height / 2.)));
 	if (!tex->tex)
 	{
 		draw_vertical(&cub->window, &pixel, obj->height,
-				cal_color(cub->c[obj->direction], obj->dist /3.5));
+			cal_color(cub->c[obj->direction],
+					obj->dist / 3.5));
 		return ;
 	}
 	init_draw(tex, obj, &tex_pos);
@@ -50,7 +54,8 @@ void			draw_wall(t_cub *cub, t_object *obj)
 	while (start < obj->height && (pixel.y = end++) <
 			cub->window.size.y)
 	{
-		tex_pos.y = (int)((pixel.y * 2 - (cub->window.half.y * 2.) + obj->height)
+		tex_pos.y = (int)((pixel.y * 2 -
+					(cub->window.half.y * 2.) + obj->height)
 				* ((tex->height / 2.) / obj->height));
 		coord(&cub->window, &pixel, cal_color(cal_color2(tex, &tex_pos),
 				obj->dist / 3.5));

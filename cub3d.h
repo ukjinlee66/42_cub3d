@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 21:55:11 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/21 21:32:03 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/27 17:44:52 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "mlx.h"
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdbool.h>
 #include <math.h>
 #include <stdio.h>
 #include "SDL.h"
@@ -180,7 +181,7 @@ typedef struct						s_cub
 	t_window		window;
 	t_camera		camera;
 	t_sprite		*sprite;
-	t_texture		texture[12];
+	t_texture		texture[15];
 	t_object		object;
 	t_pos			move;
 	t_pos			x_move;
@@ -201,6 +202,7 @@ typedef struct						s_cub
 	Mix_Music		*bgm;
     double          mv_speed;
     int             jump_val;
+	bool			secret;
 }									t_cub;
 
 /*
@@ -261,4 +263,7 @@ void            jump_music(t_cub *cub);
 void            wall_music(t_cub *cub);
 int             jumpup(t_cub *cub);
 int             jumpdown(t_cub *cub);
+void			draw_coin_icon(t_cub *cub);
+void			draw_key_icon(t_cub *cub);
+
 #endif

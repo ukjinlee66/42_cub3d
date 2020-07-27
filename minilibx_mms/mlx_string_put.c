@@ -30,7 +30,7 @@ void mlx_int_fill(unsigned char *data, int sl)
     
 }
 
-int mlx_string_put(void *mlx_ptr, void *win_ptr, int x, int y, int color, char *string)
+int mlx_string_put2(void *mlx_ptr, void *win_ptr, int x, int y, int color, char *string)
 {
   static void *font = (void *)0;
   static unsigned char *data = (void *)0;
@@ -53,8 +53,8 @@ int mlx_string_put(void *mlx_ptr, void *win_ptr, int x, int y, int color, char *
 
   //  dest_w = (FONT_WIDTH*5)/7;   /// ratio with X11 standard mlx_string_put
   //  dest_h = (font_atlas.height*5)/7;
-  dest_w = FONT_WIDTH * 2;
-  dest_h = font_atlas.height * 2;
+  dest_w = FONT_WIDTH * 10;
+  dest_h = font_atlas.height * 10;
   y = y - (dest_h*3)/4;
 
   pos = 0;

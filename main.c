@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 21:55:05 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/21 21:29:51 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/27 20:20:21 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void		init_cub(t_cub *cub)
     cub->mv_speed = move_speed;
 	init_window(&cub->window);
 	init_camera(&cub->camera);
-	while (i < 12)
+	while (i < 15)
 		cub->texture[i++].tex = NULL;
 	cub->texture[0].path = "textures/bush.xpm";
 	cub->texture[1].path = "textures/bush.xpm";
@@ -52,12 +52,13 @@ static void		init_cub(t_cub *cub)
     cub->texture[8].path = "textures/mush1.xpm";
     cub->texture[9].path = "textures/mush2.xpm";
 	cub->texture[10].path = "textures/star.xpm";
-    //cub->texture[19].path = "textures/wood.xpm";
+    cub->texture[11].path = "textures/key.xpm";
+	cub->texture[12].path = "textures/wood.xpm";
     i = 0;
-    //3 coin 4 green mushroom 5 red mushroom 6 star
+    //3 coin 4 green mushroom 5 red mushroom 6 star 7 key 8 wall
 	int map2[10][10] = {
 	{ 1,1,1,1,1,1,1,1,1,1 },
-	{ 1,3,5,1,0,0,0,0,0,1 },
+	{ 1,3,5,1,0,0,7,0,0,1 },
 	{ 1,4,0,0,0,0,0,0,0,1 },
 	{ 1,1,1,0,0,0,0,0,0,1 },
 	{ 1,0,0,0,0,0,0,0,0,1 },
@@ -95,6 +96,7 @@ static void		init_cub(t_cub *cub)
     while (i < 7)
         cub->special[i++] = NULL;
     cub->jump_val = 0;
+	cub->secret = false;
 }
 
 int				main(int argc, char **argv)

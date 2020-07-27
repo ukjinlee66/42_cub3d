@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 14:29:30 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/21 15:40:55 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/27 18:55:18 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int				check_sprite(t_cub *cub)
                 tex = &cub->texture[9];
             else if (val == 6) // star
                 tex = &cub->texture[10];
+			else if (val == 7) // key
+				tex = &cub->texture[11];
 			if (val >= 2 && val <= 19 && tex->tex &&
 					!add_front_spr(&cub->sprite, 0.,
 						&pos, tex))

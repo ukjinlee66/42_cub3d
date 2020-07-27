@@ -6,7 +6,7 @@
 #    By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/27 22:30:38 by youlee            #+#    #+#              #
-#    Updated: 2020/07/21 21:30:49 by youlee           ###   ########.fr        #
+#    Updated: 2020/07/27 20:05:56 by youlee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC := 	main.c \
 		engine/cross_hair.c \
 		engine/draw.c \
 		engine/image.c \
-		engine/life_bar.c \
+		engine/icon.c \
 		engine/position.c \
 		engine/raycast.c \
 		engine/sky_floor.c \
@@ -45,9 +45,9 @@ SRC := 	main.c \
 OBJ := $(SRC:.c=.o)
 
 HEADERS = -I SDL/SDL2.framework/Headers/ -I SDL/SDL2_mixer.framework/Headers/ \
-		  -I minilibx_opengl/ -I.
+		  -I minilibx_mms/ -I.
 
-LIBS = libmlx.a libmlx.dylib -framework OpenGL -framework Appkit -rpath \
+LIBS = -lmlx libmlx.dylib -framework OpenGL -framework Appkit -rpath \
 	   @loader_path/SDL -framework SDL2 -F SDL/ -framework SDL2_mixer\
 	   -F SDL/
 
