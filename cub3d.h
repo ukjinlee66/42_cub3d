@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 21:55:11 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/27 17:44:52 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/27 20:32:19 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,7 @@ typedef struct						s_cub
 	t_window		window;
 	t_camera		camera;
 	t_sprite		*sprite;
-	t_texture		texture[15];
+	t_texture		texture[13];
 	t_object		object;
 	t_pos			move;
 	t_pos			x_move;

@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 18:14:29 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/27 18:53:58 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/27 20:33:57 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void			draw_wall(t_cub *cub, t_object *obj)
 	int			start;
 	int			end;
 
-	/*if (obj->direction == 12)
-		printf("wall\n");*/
+	if (obj->direction == 12)
+		printf("wall\n");
 	tex = &cub->texture[obj->direction];
 	set_position(&pixel, obj->col, MAX(0,
 				cub->window.half.y - (obj->height / 2.)));

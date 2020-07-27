@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 21:55:05 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/27 20:20:21 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/27 21:03:47 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void		init_cub(t_cub *cub)
 	cub->texture[3].path = "textures/bush.xpm";
 	cub->texture[4].path = "textures/floor1.xpm";
 	cub->texture[5].path = "textures/clouds.xpm";
-	cub->texture[6].path = "textures/pipe.xpm";
+	cub->texture[6].path = "textures/flag.xpm";
 	cub->texture[7].path = "textures/Coin.xpm";
     cub->texture[8].path = "textures/mush1.xpm";
     cub->texture[9].path = "textures/mush2.xpm";
@@ -59,7 +59,7 @@ static void		init_cub(t_cub *cub)
 	int map2[10][10] = {
 	{ 1,1,1,1,1,1,1,1,1,1 },
 	{ 1,3,5,1,0,0,7,0,0,1 },
-	{ 1,4,0,0,0,0,0,0,0,1 },
+	{ 1,4,8,0,0,0,0,0,0,1 },
 	{ 1,1,1,0,0,0,0,0,0,1 },
 	{ 1,0,0,0,0,0,0,0,0,1 },
 	{ 1,0,0,0,0,0,0,0,0,1 },

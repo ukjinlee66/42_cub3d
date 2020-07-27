@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 15:02:33 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/27 20:12:01 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/27 20:33:45 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,16 +86,16 @@ int				ray_cast(t_cub *cub, t_object *obj, int col)
 			hit = 1;
 		}
 		else if (cub->map[(int)obj->map_pos.x][(int)obj->map_pos.y] == 1
-				/*|| cub->map[(int)obj->map_pos.x][(int)obj->map_pos.y] == 8*/)
+				|| cub->map[(int)obj->map_pos.x][(int)obj->map_pos.y] == 8)
 			hit = 1;
 	}
 	obj->dist = cal_perp(cub, obj);
-	/*if (cub->map[(int)obj->map_pos.x][(int)obj->map_pos.y] == 8)
+	if (cub->map[(int)obj->map_pos.x][(int)obj->map_pos.y] == 8)
 	{
 		printf("dd\n");
 		obj->direction = 12;
 	}
-	else*/
-	obj->direction = cal_dir(obj);
+	else
+		obj->direction = cal_dir(obj);
 	return (0);
 }
