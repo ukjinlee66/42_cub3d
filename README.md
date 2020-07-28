@@ -12,7 +12,7 @@ This project uses the __raycasting__ technique used in the Wolfenstein 3D fps ga
 5. To end the game, press the ESC button!<br><br>
 KEY W,A,S,D are moving buttons and direction keys and mouse move adjust the viewing angle.<br>
 Space key is jump and F key can open the door.<br>
-Collect Coins and open secret Door!<br><br>
+Find Key and open secret Door!<br><br>
 screenshot<br>
 <img src = "./screenshot.png" width="50%"><br><br>
 # Bonus list:<br><br>
