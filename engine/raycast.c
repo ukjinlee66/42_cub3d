@@ -6,13 +6,13 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 15:02:33 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/27 20:33:45 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/28 17:10:44 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int		cal_dir(t_object *obj)
+static int			cal_dir(t_object *obj)
 {
 	if (obj->side_)
 		return ((obj->dir.y < 0) ? TEX_NORTH : TEX_SOUTH);
@@ -34,7 +34,7 @@ static double		cal_perp(t_cub *cub, t_object *obj)
 	return (fabs(perp_dist / obj->dir.x));
 }
 
-static void		cal_xaxis(t_object *obj, t_camera *camera, int col, \
+static void			cal_xaxis(t_object *obj, t_camera *camera, int col, \
 		double camera_x)
 {
 	obj->col = col;
@@ -58,7 +58,21 @@ static void		cal_xaxis(t_object *obj, t_camera *camera, int col, \
 		obj->side.y = (obj->map_pos.y + 1. - obj->pos.y) * obj->delta.y;
 }
 
-int				ray_cast(t_cub *cub, t_object *obj, int col)
+static void			set_dir(t_cub *cub, t_object *obj)
+{
+	if (cub->map[(int)obj->map_pos.x][(int)obj->map_pos.y] == 8)
+		obj->direction = 12;
+	else if (cub->map[(int)obj->map_pos.x][(int)obj->map_pos.y] == 9)
+		obj->direction = 14;
+	else if (cub->map[(int)obj->map_pos.x][(int)obj->map_pos.y] == 10)
+		obj->direction = 13;
+	else if (cub->map[(int)obj->map_pos.x][(int)obj->map_pos.y] == 11)
+		obj->direction = 15;
+	else
+		obj->direction = cal_dir(obj);
+}
+
+int					ray_cast(t_cub *cub, t_object *obj, int col)
 {
 	int			hit;
 
@@ -86,16 +100,12 @@ int				ray_cast(t_cub *cub, t_object *obj, int col)
 			hit = 1;
 		}
 		else if (cub->map[(int)obj->map_pos.x][(int)obj->map_pos.y] == 1
-				|| cub->map[(int)obj->map_pos.x][(int)obj->map_pos.y] == 8)
+				|| cub->map[(int)obj->map_pos.x][(int)obj->map_pos.y] == 8
+				|| cub->map[(int)obj->map_pos.x][(int)obj->map_pos.y] == 10
+				|| cub->map[(int)obj->map_pos.x][(int)obj->map_pos.y] == 11)
 			hit = 1;
 	}
 	obj->dist = cal_perp(cub, obj);
-	if (cub->map[(int)obj->map_pos.x][(int)obj->map_pos.y] == 8)
-	{
-		printf("dd\n");
-		obj->direction = 12;
-	}
-	else
-		obj->direction = cal_dir(obj);
+	set_dir(cub, obj);
 	return (0);
 }

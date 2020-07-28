@@ -6,7 +6,7 @@
 #    By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/27 22:30:38 by youlee            #+#    #+#              #
-#    Updated: 2020/07/27 20:29:53 by youlee           ###   ########.fr        #
+#    Updated: 2020/07/28 17:24:02 by youlee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,10 +37,11 @@ SRC := 	main.c \
 		engine/music.c \
 		engine/music2.c \
 		function/print_get.c \
-		function/MAX.c \
+		function/max.c \
 		function/ft_memcpy.c \
 		function/vector_cross_product.c \
-		engine/jump_func.c
+		engine/jump_func.c \
+		engine/door.c
 
 OBJ := $(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 21:55:11 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/27 20:32:19 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/28 17:24:29 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 # define KEY_A						0
 # define KEY_S						1
 # define KEY_D						2
+# define KEY_F						3
 # define KEY_LEFT					123
 # define KEY_RIGHT					124
 # define KEY_UNDER					125
@@ -181,7 +182,7 @@ typedef struct						s_cub
 	t_window		window;
 	t_camera		camera;
 	t_sprite		*sprite;
-	t_texture		texture[13];
+	t_texture		texture[20];
 	t_object		object;
 	t_pos			move;
 	t_pos			x_move;
@@ -203,6 +204,7 @@ typedef struct						s_cub
     double          mv_speed;
     int             jump_val;
 	bool			secret;
+	bool			open;
 }									t_cub;
 
 /*
@@ -260,10 +262,13 @@ void            gremush_music(t_cub *cub);
 void            star_music(t_cub *cub);
 void            coin_music(t_cub *cub);
 void            jump_music(t_cub *cub);
-void            wall_music(t_cub *cub);
+void            door_music(t_cub *cub);
 int             jumpup(t_cub *cub);
 int             jumpdown(t_cub *cub);
 void			draw_coin_icon(t_cub *cub);
 void			draw_key_icon(t_cub *cub);
-
+void			draw_mario_icon(t_cub *cub);
+int				open_door(t_cub *cub);
+void			secret_open(t_cub *cub);
+int				maxn(int a, int b);
 #endif

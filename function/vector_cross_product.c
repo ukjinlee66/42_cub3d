@@ -6,13 +6,13 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 14:29:14 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/14 15:54:50 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/28 17:22:40 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-double          vector_cross(t_pos pos1, t_pos pos2)
+double			vector_cross(t_pos pos1, t_pos pos2)
 {
-    return((pos1.x * pos2.y) - (pos1.y * pos2.x));
+	return ((pos1.x * pos2.y) - (pos1.y * pos2.x));
 }

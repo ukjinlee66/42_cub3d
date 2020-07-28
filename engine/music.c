@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/21 20:50:30 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/21 21:36:23 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/28 15:49:32 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,26 @@ void		startbgm(t_cub *cub)
 	Mix_PlayMusic(cub->bgm, -1);
 }
 
-void        redmush_music(t_cub *cub)
+void		redmush_music(t_cub *cub)
 {
-    cub->special[0] = Mix_LoadWAV("Music/redmush.wav");
-    Mix_PlayChannel(-1, cub->special[0], 0);
+	cub->special[0] = Mix_LoadWAV("Music/redmush.wav");
+	Mix_PlayChannel(-1, cub->special[0], 0);
 }
 
-void        gremush_music(t_cub *cub)
+void		gremush_music(t_cub *cub)
 {
-    cub->special[1] = Mix_LoadWAV("Music/greenmush.wav");
-    Mix_PlayChannel(-1, cub->special[1], 0);
+	cub->special[1] = Mix_LoadWAV("Music/greenmush.wav");
+	Mix_PlayChannel(-1, cub->special[1], 0);
 }
 
-void        star_music(t_cub *cub)
+void		star_music(t_cub *cub)
 {
-    cub->special[2] = Mix_LoadWAV("Music/Star.wav");
-    Mix_PlayChannel(-1, cub->special[2], 0); 
+	cub->special[2] = Mix_LoadWAV("Music/Star.wav");
+	Mix_PlayChannel(-1, cub->special[2], 0);
 }
 
-void        coin_music(t_cub *cub)
+void		coin_music(t_cub *cub)
 {
-    cub->special[3] = Mix_LoadWAV("Music/Coin.wav");
-    Mix_PlayChannel(-1, cub->special[3], 0);
+	cub->special[3] = Mix_LoadWAV("Music/Coin.wav");
+	Mix_PlayChannel(-1, cub->special[3], 0);
 }

@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 17:13:53 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/27 20:33:16 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/28 16:58:38 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ static int		col_check(t_texture *tex, int col)
 
 void			load_texture(t_cub *cub)
 {
-	int				i;
+	static int		i = 0;
 	int				j;
 	char			*path;
 
 	i = 0;
-	while (i < 13)
+	while (i < 16)
 	{
 		path = cub->texture[i].path;
 		cub->texture[i].tex = mlx_xpm_file_to_image(cub->window.ptr, path,

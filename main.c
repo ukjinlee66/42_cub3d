@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 21:55:05 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/27 21:03:47 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/28 16:33:04 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,23 @@ static void		init_cub(t_cub *cub)
 	cub->texture[3].path = "textures/bush.xpm";
 	cub->texture[4].path = "textures/floor1.xpm";
 	cub->texture[5].path = "textures/clouds.xpm";
-	cub->texture[6].path = "textures/flag.xpm";
+	cub->texture[6].path = "textures/pipe.xpm";
 	cub->texture[7].path = "textures/Coin.xpm";
     cub->texture[8].path = "textures/mush1.xpm";
     cub->texture[9].path = "textures/mush2.xpm";
 	cub->texture[10].path = "textures/star.xpm";
     cub->texture[11].path = "textures/key.xpm";
-	cub->texture[12].path = "textures/wood.xpm";
+	cub->texture[12].path = "textures/question.xpm";
+	cub->texture[13].path = "textures/exclamation_block.xpm";
+	cub->texture[14].path = "textures/sprite1.xpm";
+	cub->texture[15].path = "textures/flag.xpm";
     i = 0;
-    //3 coin 4 green mushroom 5 red mushroom 6 star 7 key 8 wall
+    //1 wall 2 pipe 3 coin 4 green mushroom 5 red mushroom 6 star 7 key 8 door
 	int map2[10][10] = {
 	{ 1,1,1,1,1,1,1,1,1,1 },
-	{ 1,3,5,1,0,0,7,0,0,1 },
-	{ 1,4,8,0,0,0,0,0,0,1 },
-	{ 1,1,1,0,0,0,0,0,0,1 },
+	{ 1,3,5,1,0,0,7,1,0,1 },
+	{ 1,4,0,8,0,0,0,1,10,1 },
+	{ 1,1,1,1,0,0,0,0,0,1 },
 	{ 1,0,0,0,0,0,0,0,0,1 },
 	{ 1,0,0,0,0,0,0,0,0,1 },
 	{ 1,0,0,0,0,0,0,2,0,1 },
@@ -97,6 +100,7 @@ static void		init_cub(t_cub *cub)
         cub->special[i++] = NULL;
     cub->jump_val = 0;
 	cub->secret = false;
+	cub->open = false;
 }
 
 int				main(int argc, char **argv)
