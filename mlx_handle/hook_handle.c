@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 11:19:45 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/28 17:21:49 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/28 21:03:04 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int				mouse_move(int x, int y, t_cub *cub)
 		else if ((int)cub->mouse.x > x)
 			rotate_camera(cub, 0);
 		if ((int)cub->mouse.y < y)
-			cub->window.half.y -= 4;
+			cub->window.half.y -= 10;
 		else if ((int)cub->mouse.y > y)
-			cub->window.half.y += 4;
+			cub->window.half.y += 10;
 		set_position(&cub->mouse, x, y);
 	}
 	return (0);

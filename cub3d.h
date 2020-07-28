@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 21:55:11 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/28 17:24:29 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/28 20:24:11 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,21 @@ typedef struct						s_cub
 	bool			secret;
 	bool			open;
 }									t_cub;
+
+typedef struct						s_bmpinfoh
+{
+	unsigned int	biSize;
+	int				biWidth;
+	int				biHeight;
+	unsigned short	biPlanes;
+	unsigned short	biBitCount;
+	unsigned int	biCompression;
+	unsigned int	biSizeImage;
+	int				biXPelsPerMeter;
+	int				biYPelsPerMeter;
+	unsigned int	biClrUsed;
+	unsigned int	biClrImportant;
+}									t_bmpinfoh;
 
 /*
  ** function

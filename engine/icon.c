@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 20:19:10 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/28 15:46:36 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/28 20:53:43 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void			draw_mario_icon(t_cub *cub)
 	pos[1].x = 0;
 	while (pos[1].x < tex.height)
 	{
-		pos[0].x = cub->window.half.x - 80;
+		pos[0].x = cub->window.half.x - 20;
 		pos[1].y = 0;
 		while (pos[1].y < tex.width)
 		{
