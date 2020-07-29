@@ -6,7 +6,7 @@
 #    By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/27 22:30:38 by youlee            #+#    #+#              #
-#    Updated: 2020/07/28 17:24:02 by youlee           ###   ########.fr        #
+#    Updated: 2020/07/29 21:52:34 by youlee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,15 +40,17 @@ SRC := 	main.c \
 		function/max.c \
 		function/ft_memcpy.c \
 		function/vector_cross_product.c \
+		function/ft_strcmp.c \
 		engine/jump_func.c \
-		engine/door.c
+		engine/door.c \
+		bitmap.c
 
 OBJ := $(SRC:.c=.o)
 
 HEADERS = -I SDL/SDL2.framework/Headers/ -I SDL/SDL2_mixer.framework/Headers/ \
-		  -I minilibx_mms/ -I.
+		  -I minilibx_opengl/ -I minilibx_mms/ -I.
 
-LIBS = -lmlx libmlx.dylib -framework OpenGL -framework Appkit -rpath \
+LIBS = libmlx.a libmlx.dylib -framework OpenGL -framework Appkit -rpath \
 	   @loader_path/SDL -framework SDL2 -F SDL/ -framework SDL2_mixer\
 	   -F SDL/
 
@@ -66,6 +68,7 @@ $(NAME): $(OBJ)
 clean:
 	@rm -rf libmlx.dylib
 	@rm -rf libmlx.a
+	@rm -rf cub3D.bmp
 	@rm -rf $(OBJ)
 
 fclean: clean

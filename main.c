@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 21:55:05 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/28 21:01:47 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/29 22:58:52 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,14 @@ int				main(int argc, char **argv)
 	make_table(&cub);
 	load_texture(&cub);
     check_sprite(&cub);
+	printf("argc : %d argv[1] : %s",
+			argc,argv[1]);
+	if (argc == 2 && !ft_strcmp("--save", argv[1]))
+	{
+		printf("\nBMP create\n");
+		screenshot(&cub);
+		return (1);
+	}
 	startbgm(&cub);
 	mlx_hook(cub.window.win, X_EVENT_KEY_PRESS, 0, &key_press, &cub);
 	mlx_hook(cub.window.win, X_EVENT_KEY_RELEASE, 0, &key_release, &cub);

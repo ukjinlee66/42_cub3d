@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 21:55:11 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/28 20:24:11 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/29 23:06:08 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 #include "mlx.h"
+#include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdbool.h>
@@ -182,7 +183,7 @@ typedef struct						s_cub
 	t_window		window;
 	t_camera		camera;
 	t_sprite		*sprite;
-	t_texture		texture[20];
+	t_texture		texture[16];
 	t_object		object;
 	t_pos			move;
 	t_pos			x_move;
@@ -205,22 +206,8 @@ typedef struct						s_cub
     int             jump_val;
 	bool			secret;
 	bool			open;
+	char			*data;
 }									t_cub;
-
-typedef struct						s_bmpinfoh
-{
-	unsigned int	biSize;
-	int				biWidth;
-	int				biHeight;
-	unsigned short	biPlanes;
-	unsigned short	biBitCount;
-	unsigned int	biCompression;
-	unsigned int	biSizeImage;
-	int				biXPelsPerMeter;
-	int				biYPelsPerMeter;
-	unsigned int	biClrUsed;
-	unsigned int	biClrImportant;
-}									t_bmpinfoh;
 
 /*
  ** function
@@ -249,7 +236,6 @@ void			init_window(t_window *window);
 void			put_img(t_cub *cub);
 int				cal_color(int color, double divide);
 int				cal_color2(t_texture *tex, t_pos *pos);
-int		        MAX(int a, int b);
 void			draw_sky_floor(t_cub *cub, t_object *obj);
 void			load_texture(t_cub *cub);
 t_sprite		*add_front_spr(t_sprite **sprite, double dist,
@@ -286,4 +272,6 @@ void			draw_mario_icon(t_cub *cub);
 int				open_door(t_cub *cub);
 void			secret_open(t_cub *cub);
 int				maxn(int a, int b);
+int				ft_strcmp(const char *s1, const char *s2);
+int				screenshot(t_cub *cub);
 #endif
