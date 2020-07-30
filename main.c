@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 21:55:05 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/29 22:58:52 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/30 17:07:37 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,9 @@ void			copy_map(t_cub *cub, int x, int y, int map[10][10])
 
 static void		init_cub(t_cub *cub)
 {
-	int			i;
-	int			j;
-	
-	i = 0;
-    cub->mv_speed = move_speed;
 	init_window(&cub->window);
 	init_camera(&cub->camera);
-	while (i < 15)
-		cub->texture[i++].tex = NULL;
+	init_cub3(cub, 0);
 	cub->texture[0].path = "textures/bush.xpm";
 	cub->texture[1].path = "textures/bush.xpm";
 	cub->texture[2].path = "textures/bush.xpm";
@@ -57,7 +51,6 @@ static void		init_cub(t_cub *cub)
 	cub->texture[13].path = "textures/exclamation_block.xpm";
 	cub->texture[14].path = "textures/sprite1.xpm";
 	cub->texture[15].path = "textures/castle.xpm";
-    i = 0;
     //1 wall 2 pipe 3 coin 4 green mushroom 5 red mushroom 6 star 7 key 8 door
 	int map2[10][10] = {
 	{ 1,1,1,1,1,1,1,1,1,1 },
@@ -71,36 +64,10 @@ static void		init_cub(t_cub *cub)
 	{ 1,0,0,0,0,0,0,0,0,1 },
 	{ 1,1,1,1,1,1,1,1,1,1 }
 	};
-	cub->life = 3;
 	copy_map(cub, 10, 10, map2);
-	cub->c[TEX_NORTH] = 0xFFFFFF;
-	cub->c[TEX_SOUTH] = 0xCCCCCC;
-	cub->c[TEX_WEST] = 0xFF44FF;
-	cub->c[TEX_EAST] = 0x44FF44;
-	cub->c[TEX_SKY] = 0x33C6E3;
-	cub->c[TEX_FLOOR] = 0xA0764C;
+	init_cub2(cub, 0);
 	cub->object.row = cub->req_row = 10;
 	cub->object.col = cub->req_col = 10;
-	set_position(&cub->move, 0., 0.);
-	set_position(&cub->x_move, 0., 0.);
-	set_position(&cub->rotate, 0., 0.);
-	cub->coin = (char*)malloc(sizeof(char) * 10);
-    cub->coin[0] = 'X';
-    cub->coin[1] = '0';
-    cub->coin[2] = '\0';
-    cub->mouse.x = 0;
-    cub->mouse.y = 0;
-	cub->cos[0] = cos(-rotate_speed);
-	cub->cos[1] = cos(rotate_speed);
-	cub->sin[0] = sin(-rotate_speed);
-	cub->sin[1] = sin(rotate_speed);
-    i = 0;
-	cub->bgm = NULL;
-    while (i < 7)
-        cub->special[i++] = NULL;
-    cub->jump_val = 0;
-	cub->secret = false;
-	cub->open = false;
 }
 
 int				main(int argc, char **argv)
@@ -111,13 +78,20 @@ int				main(int argc, char **argv)
 	make_table(&cub);
 	load_texture(&cub);
     check_sprite(&cub);
-	printf("argc : %d argv[1] : %s",
-			argc,argv[1]);
-	if (argc == 2 && !ft_strcmp("--save", argv[1]))
+	if (argc == 3 && !ft_strcmp("--save", argv[2]))
 	{
 		printf("\nBMP create\n");
 		screenshot(&cub);
 		return (1);
+	}
+	else if (argc == 2 && check_cub(argv[1]))
+	{
+
+	}
+	else
+	{
+		printf("Error\n wrong input file\n");
+		return (0);
 	}
 	startbgm(&cub);
 	mlx_hook(cub.window.win, X_EVENT_KEY_PRESS, 0, &key_press, &cub);

@@ -6,7 +6,7 @@
 #    By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/27 22:30:38 by youlee            #+#    #+#              #
-#    Updated: 2020/07/29 21:52:34 by youlee           ###   ########.fr        #
+#    Updated: 2020/07/30 17:35:41 by youlee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = cub3d
 
 CC = gcc
 
-# CFLAG = -Wall -Wextra -Werror
+CFLAG = -Wall -Wextra -Werror
 
 SRC := 	main.c \
 		mlx_handle/hook_handle.c \
@@ -41,9 +41,15 @@ SRC := 	main.c \
 		function/ft_memcpy.c \
 		function/vector_cross_product.c \
 		function/ft_strcmp.c \
+		function/ft_strdup.c \
+		function/ft_strjoin.c \
+		function/ft_strlen.c \
+		function/ft_strncpy.c \
+		function/ft_strchr.c \
 		engine/jump_func.c \
 		engine/door.c \
-		bitmap.c
+		bitmap.c \
+		reset.c
 
 OBJ := $(SRC:.c=.o)
 
@@ -59,7 +65,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@cd minilibx_mms; cp -r libmlx.dylib ../
 	@cd minilibx_opengl; cp -r libmlx.a ../
-	@$(CC) $(HEADERS) $(LIBS) $(OBJ) -o cub3D
+	@$(CC) $(CFLAG) $(HEADERS) $(LIBS) $(OBJ) -o cub3D
 	@echo "Done"
 
 %.o : %.c

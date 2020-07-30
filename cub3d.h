@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 21:55:11 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/29 23:06:08 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/30 17:37:59 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,4 +274,12 @@ void			secret_open(t_cub *cub);
 int				maxn(int a, int b);
 int				ft_strcmp(const char *s1, const char *s2);
 int				screenshot(t_cub *cub);
+void			init_cub2(t_cub *cub, int i);
+void			init_cub3(t_cub *cub, int i);
+char			*ft_strdup(const char *str);
+int				ft_strchr(char *src, char c);
+char			*ft_strjoin(const char *s1, const char *s2);
+int				ft_strlen(const char *str);
+char			*ft_strncpy(char *dest, char *src, int num);
+
 #endif
