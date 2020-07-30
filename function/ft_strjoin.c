@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 17:21:37 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/30 17:28:09 by youlee           ###   ########.fr       */
+/*   Updated: 2020/07/31 00:13:21 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char			*ft_strjoin(const char *s1, const char *s2)
 	len = ft_strlen(s1) + ft_strlen(s2) + 1;
 	idx = 0;
 	idx2 = 0;
-	if (!res = malloc(sizeof(char) + len))
+	if (!(res = malloc(sizeof(char) + len)))
 		return (NULL);
 	while (s1[idx])
 	{
