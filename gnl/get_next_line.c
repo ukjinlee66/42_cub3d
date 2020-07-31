@@ -6,11 +6,12 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 17:13:14 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/31 01:32:06 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/01 03:33:01 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "cub3d.h"
 
 static void		put_line(char **line, char ***buf2, int idx)
 {
@@ -19,7 +20,7 @@ static void		put_line(char **line, char ***buf2, int idx)
 
 	temp = malloc(sizeof(char) * (idx + 1));
 	ft_strncpy(temp, (**buf2), idx);
-	if ((*buf2)[idx] != '\0')
+	if ((**buf2)[idx] != '\0')
 	{
 		temp2 = ft_strdup((**buf2) + (idx + 1));
 		free(**buf2);
@@ -28,14 +29,14 @@ static void		put_line(char **line, char ***buf2, int idx)
 	else if ((**buf2)[idx] == '\0')
 	{
 		free(**buf2);
-		**buf2 = "\0";
+		**buf2 = ft_strdup("\0");
 	}
 	*line = temp;
 }
 
 static int		val_ret(char **buf2, int fdnum, char **line)
 {
-	if ((*buf2)[0] == 0 && fdnum < 100 && fdnum >= 0)
+	if ((*buf2)[0] == 0 && fdnum < BUFFER_SIZE && fdnum >= 0)
 	{
 		*line = ft_strdup("\0");
 		free(*buf2);
@@ -95,7 +96,7 @@ int				get_next_line(int fd, char **line)
 		return (-1);
 	buf = (char*)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (buf2 == NULL)
-		buf2 = (char*)malloc(sizeof(char) * 10000);
+		buf2 = (char*)malloc(sizeof(char) * 1000000);
 	while ((fdnum = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[fdnum] = '\0';
