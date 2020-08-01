@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 21:55:11 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/30 17:37:59 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/01 19:38:38 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include <stdio.h>
 #include "SDL.h"
 #include "SDL_mixer.h"
+#include "gnl/get_next_line.h"
 
 /*
  ** x_event_key **
@@ -69,8 +70,44 @@
 # define TEX_FLOOR					4
 # define CEILLING					C
 # define TEX_SKY					5
-# define SPRITE						S
-# define TEX_SPRITE                 6
+# define SPRITE_PIPE				SP
+# define TEX_SPRITE_PIPE			6
+# define SPRITE_COIN				SC
+# define TEX_SPRITE_COIN			7
+# define SPRITE_MUSH1				Sm
+# define TEX_SPRITE_MUSH1			8
+# define SPRITE_MUSH2				SM
+# define TEX_SPRITE_MUSH2			9
+# define SPRITE_STAR				SS
+# define TEX_SPRITE_STAR			10
+# define SPRITE_KEY					SK
+# define TEX_SPRITE_KEY				11
+# define SPRITE_QUESTION			SQ
+# define TEX_SPRITE_QUESTION		12
+# define SPRITE_EXCLAMATION			SE
+# define TEX_SPRITE_EXCLAMATION		13
+# define TEX_SPRITE_OPEN_QUESTION	14
+# define TEX_SPRITE_CASTLE			15
+/*
+ ** content number
+*/
+# define CONTENT_R					0
+# define CONTENT_NO					1
+# define CONTENT_SO					2
+# define CONTENT_WE					3
+# define CONTENT_EA					4
+# define CONTENT_SP					5
+# define CONTENT_SC					6
+# define CONTENT_Sm					7
+# define CONTENT_SM					8
+# define CONTENT_SS					9
+# define CONTENT_SK					10
+# define CONTENT_SQ					11
+# define CONTENT_SE					12
+# define CONTENT_F					13
+# define CONTENT_C					14
+
+
 /*
  ** other options
 */
@@ -255,7 +292,7 @@ void            put_cross_hair(t_cub *cub);
 void            draw_heart_icon(t_cub *cub, int dist);
 void			delete_spr(t_sprite **spr, t_pos *pos);
 int				check_coin_map(t_cub *cub);
-void			print_str(const char *str);
+int				print_str(const char *str);
 void			startbgm(t_cub *cub);
 int             mouse_move(int x, int y, t_cub *cub);
 void            redmush_music(t_cub *cub);

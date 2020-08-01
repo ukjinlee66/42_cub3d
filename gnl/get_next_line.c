@@ -6,12 +6,11 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 17:13:14 by youlee            #+#    #+#             */
-/*   Updated: 2020/08/01 03:33:01 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/01 18:19:38 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "cub3d.h"
 
 static void		put_line(char **line, char ***buf2, int idx)
 {
@@ -36,7 +35,7 @@ static void		put_line(char **line, char ***buf2, int idx)
 
 static int		val_ret(char **buf2, int fdnum, char **line)
 {
-	if ((*buf2)[0] == 0 && fdnum < BUFFER_SIZE && fdnum >= 0)
+	if ((*buf2)[0] == 0 && fdnum < 100 && fdnum >= 0)
 	{
 		*line = ft_strdup("\0");
 		free(*buf2);
@@ -92,17 +91,17 @@ int				get_next_line(int fd, char **line)
 	char			*buf;
 	int				fdnum;
 
-	if (fd < 0 || line == NULL || BUFFER_SIZE <= 0)
+	if (fd < 0 || line == NULL)
 		return (-1);
-	buf = (char*)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	buf = (char*)malloc(sizeof(char) * 101);
 	if (buf2 == NULL)
 		buf2 = (char*)malloc(sizeof(char) * 1000000);
-	while ((fdnum = read(fd, buf, BUFFER_SIZE)) > 0)
+	while ((fdnum = read(fd, buf, 100)) > 0)
 	{
 		buf[fdnum] = '\0';
 		if (buf2_manage(&buf2, line, buf) == 1)
 			return (1);
-		buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+		buf = malloc(sizeof(char) * 101;
 	}
 	if (buf)
 		free(buf);

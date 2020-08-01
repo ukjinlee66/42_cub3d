@@ -6,13 +6,13 @@
 /*   By: youlee <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/21 21:06:33 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/21 21:31:20 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/01 18:12:43 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void			print_str(const char *str)
+int			print_str(const char *str)
 {
 	size_t			i;
 
@@ -21,4 +21,5 @@ void			print_str(const char *str)
 	i = 0;
 	while (str[i])
 		write(1, &str[i++], 1);
+	return (1);
 }

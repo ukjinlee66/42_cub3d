@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 21:55:05 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/30 17:07:37 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/01 18:21:45 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,19 +80,14 @@ int				main(int argc, char **argv)
     check_sprite(&cub);
 	if (argc == 3 && !ft_strcmp("--save", argv[2]))
 	{
-		printf("\nBMP create\n");
 		screenshot(&cub);
 		return (1);
 	}
 	else if (argc == 2 && check_cub(argv[1]))
-	{
-
-	}
+		if (!parse_map(cub, argv[1]));
+			return(print_str("Error\n wrong .cub file!\n"));
 	else
-	{
-		printf("Error\n wrong input file\n");
-		return (0);
-	}
+		return (print_str("Error\n wrong input file!\n"));
 	startbgm(&cub);
 	mlx_hook(cub.window.win, X_EVENT_KEY_PRESS, 0, &key_press, &cub);
 	mlx_hook(cub.window.win, X_EVENT_KEY_RELEASE, 0, &key_release, &cub);
