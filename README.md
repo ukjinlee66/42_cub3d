@@ -38,6 +38,7 @@ screenshot<br>
 - <https://github.com/taelee42/mlx_example> - mlx concept learning<br>
 - <https://github.com/VBrazhnik/FdF/wiki/How-to-handle-mouse-buttons-and-key-presses%3F> - mlx x_event number (mouse,key)<br><br>
 - <http://blog.naver.com/xxxstarxxx/221826768233> - rgb color decomposition process<br><br>
+- <https://dojang.io/mod/page/view.php?id=702> - Bitmap file concept learned<br><br>
 - <https://lodev.org/cgtutor/index.html> - raycasting Code Learning<br><br>
 - <https://m.blog.naver.com/cory_kim/221117101364> - How to use SDL, add Music<br><br>
 - <https://github.com/Glagan/42-cub3d> - other github projects<br>
