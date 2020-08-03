@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 14:29:30 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/28 16:49:20 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/03 16:39:05 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 static void		comp_tex(t_cub *cub, t_texture **tex, int val)
 {
 	if (val == 2)
-		*tex = &cub->texture[TEX_SPRITE];
+		*tex = &cub->texture[TEX_SPRITE_PIPE];
 	else if (val == 3)
-		*tex = &cub->texture[7];
+		*tex = &cub->texture[TEX_SPRITE_COIN];
 	else if (val == 4)
-		*tex = &cub->texture[8];
+		*tex = &cub->texture[TEX_SPRITE_MUSH1];
 	else if (val == 5)
-		*tex = &cub->texture[9];
+		*tex = &cub->texture[TEX_SPRITE_MUSH2];
 	else if (val == 6)
-		*tex = &cub->texture[10];
+		*tex = &cub->texture[TEX_SPRITE_STAR];
 	else if (val == 7)
-		*tex = &cub->texture[11];
+		*tex = &cub->texture[TEX_SPRITE_KEY];
 }
 
 t_sprite		*add_front_spr(t_sprite **sprite,

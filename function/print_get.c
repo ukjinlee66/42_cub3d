@@ -6,7 +6,7 @@
 /*   By: youlee <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/21 21:06:33 by youlee            #+#    #+#             */
-/*   Updated: 2020/08/01 18:12:43 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/03 16:41:31 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int			print_str(const char *str)
 	size_t			i;
 
 	if (!str)
-		return ;
+		return (0);
 	i = 0;
 	while (str[i])
 		write(1, &str[i++], 1);

@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 21:55:05 by youlee            #+#    #+#             */
-/*   Updated: 2020/08/01 18:21:45 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/03 16:41:50 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,11 @@ int				main(int argc, char **argv)
 		screenshot(&cub);
 		return (1);
 	}
-	else if (argc == 2 && check_cub(argv[1]))
-		if (!parse_map(cub, argv[1]));
+	else if (argc == 2 /*&& check_cub(argv[1])*/)
+	{
+		if (!parse_map(&cub, argv[1]))
 			return(print_str("Error\n wrong .cub file!\n"));
+	}
 	else
 		return (print_str("Error\n wrong input file!\n"));
 	startbgm(&cub);

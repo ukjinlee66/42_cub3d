@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 17:13:14 by youlee            #+#    #+#             */
-/*   Updated: 2020/08/01 18:19:38 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/03 17:00:42 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int				get_next_line(int fd, char **line)
 		buf[fdnum] = '\0';
 		if (buf2_manage(&buf2, line, buf) == 1)
 			return (1);
-		buf = malloc(sizeof(char) * 101;
+		buf = malloc(sizeof(char) * 101);
 	}
 	if (buf)
 		free(buf);

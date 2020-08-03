@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 21:55:11 by youlee            #+#    #+#             */
-/*   Updated: 2020/08/01 19:38:38 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/03 17:50:36 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include "SDL.h"
 #include "SDL_mixer.h"
 #include "gnl/get_next_line.h"
+#include <limits.h>
 
 /*
  ** x_event_key **
@@ -57,6 +58,7 @@
  ** direction and parse
 */
 
+    //1 wall 2 pipe 3 coin 4 green mushroom 5 red mushroom 6 star 7 key 8 door
 # define RESOLUTION					R
 # define NORTH						NO
 # define TEX_NORTH					0
@@ -70,6 +72,7 @@
 # define TEX_FLOOR					4
 # define CEILLING					C
 # define TEX_SKY					5
+# define DEFAULT_SPRITE				S
 # define SPRITE_PIPE				SP
 # define TEX_SPRITE_PIPE			6
 # define SPRITE_COIN				SC
@@ -104,8 +107,9 @@
 # define CONTENT_SK					10
 # define CONTENT_SQ					11
 # define CONTENT_SE					12
-# define CONTENT_F					13
-# define CONTENT_C					14
+# define CONTENT_S					16
+# define CONTENT_F					14
+# define CONTENT_C					15
 
 
 /*
@@ -313,10 +317,14 @@ int				ft_strcmp(const char *s1, const char *s2);
 int				screenshot(t_cub *cub);
 void			init_cub2(t_cub *cub, int i);
 void			init_cub3(t_cub *cub, int i);
-char			*ft_strdup(const char *str);
+char			*ft_strdup(char *str);
 int				ft_strchr(char *src, char c);
 char			*ft_strjoin(const char *s1, const char *s2);
 int				ft_strlen(const char *str);
 char			*ft_strncpy(char *dest, char *src, int num);
+char			**ft_split(char const *s, char c);
+int				ft_atoi(const char *str);
+void			set_resolution(t_cub *cub, char *line);
+int				parse_map(t_cub *cub, char *input);
 
 #endif

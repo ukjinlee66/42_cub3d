@@ -6,7 +6,7 @@
 #    By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/27 22:30:38 by youlee            #+#    #+#              #
-#    Updated: 2020/07/30 17:35:41 by youlee           ###   ########.fr        #
+#    Updated: 2020/08/03 16:59:58 by youlee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,15 +46,20 @@ SRC := 	main.c \
 		function/ft_strlen.c \
 		function/ft_strncpy.c \
 		function/ft_strchr.c \
+		function/ft_split.c \
+		function/ft_atoi.c \
 		engine/jump_func.c \
 		engine/door.c \
+		engine/parse.c \
+		engine/parse2.c \
 		bitmap.c \
+		gnl/get_next_line.c \
 		reset.c
 
 OBJ := $(SRC:.c=.o)
 
 HEADERS = -I SDL/SDL2.framework/Headers/ -I SDL/SDL2_mixer.framework/Headers/ \
-		  -I minilibx_opengl/ -I minilibx_mms/ -I.
+		  -I minilibx_opengl/ -I minilibx_mms/ -I gnl/ -I.
 
 LIBS = libmlx.a libmlx.dylib -framework OpenGL -framework Appkit -rpath \
 	   @loader_path/SDL -framework SDL2 -F SDL/ -framework SDL2_mixer\
