@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 17:13:53 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/28 16:58:38 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/03 19:27:02 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void			load_texture(t_cub *cub)
 	char			*path;
 
 	i = 0;
-	while (i < 16)
+	while (i < 17)
 	{
 		path = cub->texture[i].path;
 		cub->texture[i].tex = mlx_xpm_file_to_image(cub->window.ptr, path,

@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 21:55:11 by youlee            #+#    #+#             */
-/*   Updated: 2020/08/03 17:50:36 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/03 22:03:10 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,7 +224,7 @@ typedef struct						s_cub
 	t_window		window;
 	t_camera		camera;
 	t_sprite		*sprite;
-	t_texture		texture[16];
+	t_texture		texture[17];
 	t_object		object;
 	t_pos			move;
 	t_pos			x_move;
@@ -324,7 +324,15 @@ int				ft_strlen(const char *str);
 char			*ft_strncpy(char *dest, char *src, int num);
 char			**ft_split(char const *s, char c);
 int				ft_atoi(const char *str);
-void			set_resolution(t_cub *cub, char *line);
+int				set_resolution(t_cub *cub, char *line);
 int				parse_map(t_cub *cub, char *input);
+int				set_dsprite(t_cub *cub, char *line, int content);
+int				set_content(t_cub *cub, char *line, int content);
+int				set_ce_fl(t_cub *cub, char *line, int content);
+void			free_point(char **str);
+char			*ft_substr(char *s, int start, int len);
+bool			check_ce_fl(char *line);
+void			rgb_control(t_cub *cub, char *line, int content);
+void			ce_fl_tex(t_cub *cub, char *line, int content);
 
 #endif

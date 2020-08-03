@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 21:55:05 by youlee            #+#    #+#             */
-/*   Updated: 2020/08/03 16:41:50 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/03 19:48:09 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ static void		init_cub(t_cub *cub)
 	cub->texture[13].path = "textures/exclamation_block.xpm";
 	cub->texture[14].path = "textures/sprite1.xpm";
 	cub->texture[15].path = "textures/castle.xpm";
-    //1 wall 2 pipe 3 coin 4 green mushroom 5 red mushroom 6 star 7 key 8 door
+    cub->texture[16].path = "textures/barrel.xpm";
+	//1 wall 2 pipe 3 coin 4 green mushroom 5 red mushroom 6 star 7 key 8 door
 	int map2[10][10] = {
 	{ 1,1,1,1,1,1,1,1,1,1 },
 	{ 1,3,5,1,0,0,7,1,0,1 },
@@ -83,7 +84,7 @@ int				main(int argc, char **argv)
 		screenshot(&cub);
 		return (1);
 	}
-	else if (argc == 2 /*&& check_cub(argv[1])*/)
+	else if (argc == 2 && argv[1])
 	{
 		if (!parse_map(&cub, argv[1]))
 			return(print_str("Error\n wrong .cub file!\n"));

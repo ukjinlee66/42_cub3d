@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 18:20:37 by youlee            #+#    #+#             */
-/*   Updated: 2020/08/03 17:52:45 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/03 21:39:35 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int parse_content2(char *line)
 		return (-1);
 }
 
-static void	line_parse(t_cub *cub, int ret,
+static int	line_parse(t_cub *cub, int ret,
 		char *line, char **buf)
 {
 	int		size;
@@ -64,22 +64,30 @@ static void	line_parse(t_cub *cub, int ret,
 
 	size = ft_strlen(line);
 	if (size == 0 && (ret == 1 || ret == 0))
-		return ;
+		return (1);
 	content	= parse_content(line) == -1 ?
 		parse_content2(line) : parse_content(line);
 	printf("content : %d\n",content);
 	if (content == 0)
-		set_resolution(cub, line);
-	else if (content >= 1 && content <= 4) // bearing
-		set_bearing(cub, line);
-	else if (content >= 5 && content <= 12) // sprite
-		set_content(cub, line);
+	{
+		if (!(set_resolution(cub, line)))
+			return (0);
+	}
+	else if (content >= 1 && content <= 12) // bearing,sprite
+	{
+		if (!(set_content(cub, line, content)))
+			return (0);
+	}
 	else if (content == 16) //default sprite
-		set_dsprite(cub, line);
+	{
+		if (!(set_dsprite(cub, line, content)))
+			return (0);
+	}
 	else if (content == 14 || content == 15) //floor ceiling
-		set_ce_fl(cub, line);
-	else
-		set_map(cub, line);
+		set_ce_fl(cub, line, content);
+	//else
+	//	set_map(cub, line);
+	return (1);
 }
 
 int			parse_map(t_cub *cub, char *input)
@@ -99,11 +107,13 @@ int			parse_map(t_cub *cub, char *input)
 	while ((ret = get_next_line(fd, &line)))
 	{
 		printf("ret : %d line : %s\n",ret,line);
-		line_parse(cub, ret, line, &buf);
+		if (!line_parse(cub, ret, line, &buf))
+			return (0);
 		free(line);
 	}
 	printf("ret : %d line : %s\n",ret,line);
-	line_parse(cub, ret, line, &buf);
+	if (!line_parse(cub, ret, line, &buf))
+		return (0);
 	free(line);
-	return (0);
+	return (1);
 }

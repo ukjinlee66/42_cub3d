@@ -6,7 +6,7 @@
 #    By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/27 22:30:38 by youlee            #+#    #+#              #
-#    Updated: 2020/08/03 16:59:58 by youlee           ###   ########.fr        #
+#    Updated: 2020/08/03 21:33:53 by youlee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,10 +48,13 @@ SRC := 	main.c \
 		function/ft_strchr.c \
 		function/ft_split.c \
 		function/ft_atoi.c \
+		function/free_pt.c \
+		function/ft_substr.c \
 		engine/jump_func.c \
 		engine/door.c \
 		engine/parse.c \
 		engine/parse2.c \
+		engine/parse3.c \
 		bitmap.c \
 		gnl/get_next_line.c \
 		reset.c
