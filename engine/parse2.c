@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 19:37:33 by youlee            #+#    #+#             */
-/*   Updated: 2020/08/03 22:03:56 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/04 17:00:53 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ int				set_ce_fl(t_cub *cub, char *line, int content)
 		rgb_control(cub, line, content);
 	else
 		ce_fl_tex(cub, line, content);
-	if (content == 15)
-		exit_game(cub);
 	return (0);
 }
 
@@ -42,6 +40,7 @@ int				set_content(t_cub *cub, char *line, int content)
 	int			i;
 	int			handle;
 
+	//1 ~ 12
 	handle = (content < 5) ? -1 : 1;
 	i = 0;
 	str = ft_split(line, ' ');
@@ -72,8 +71,8 @@ int				set_resolution(t_cub *cub, char *line)
 		i++;
 	if (i != 3)
 		return (0);
-	cub->req_col = ft_atoi(str[1]);
-	cub->req_row = ft_atoi(str[2]);
+	cub->window.size.y = (double)ft_atoi(str[1]);
+	cub->window.size.x = (double)ft_atoi(str[2]);
 	free_point(str);
 	return (1);
 }

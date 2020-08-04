@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 14:25:30 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/28 17:06:34 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/04 17:12:39 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ void			put_screen(t_cub *cub)
 
 void			init_window(t_window *window)
 {
-	window->size.x = MH;
-	window->size.y = MH;
 	set_position(&window->half, window->size.x / 2., window->size.y / 2.);
 	window->ptr = mlx_init();
 	window->win = mlx_new_window(window->ptr, window->size.x,

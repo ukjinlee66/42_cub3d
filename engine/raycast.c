@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 15:02:33 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/28 17:10:44 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/04 17:08:21 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int					ray_cast(t_cub *cub, t_object *obj, int col)
 			obj->map_pos.y += obj->step.y;
 			obj->side_ = 1;
 		}
-		if ((int)obj->map_pos.x >= 10 || (int)obj->map_pos.y >= 10)
+		if ((int)obj->map_pos.x >= cub->req_row || (int)obj->map_pos.y >= cub->req_col)
 		{
 			obj->map_pos.x -= ((!obj->side_) ? obj->step.x : 0.);
 			obj->map_pos.y -= ((obj->side_) ? obj->step.y : 0.);

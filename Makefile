@@ -6,7 +6,7 @@
 #    By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/27 22:30:38 by youlee            #+#    #+#              #
-#    Updated: 2020/08/03 21:33:53 by youlee           ###   ########.fr        #
+#    Updated: 2020/08/04 13:27:46 by youlee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ SRC := 	main.c \
 		function/free_pt.c \
 		function/ft_substr.c \
 		engine/jump_func.c \
+		engine/map_parse.c \
 		engine/door.c \
 		engine/parse.c \
 		engine/parse2.c \

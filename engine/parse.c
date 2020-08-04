@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 18:20:37 by youlee            #+#    #+#             */
-/*   Updated: 2020/08/03 21:39:35 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/04 17:14:19 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,44 +59,47 @@ static int parse_content2(char *line)
 static int	line_parse(t_cub *cub, int ret,
 		char *line, char **buf)
 {
-	int		size;
-	int		content;
+	static bool map_parse = false;
+	int			size;
+	int			content;
 
 	size = ft_strlen(line);
 	if (size == 0 && (ret == 1 || ret == 0))
 		return (1);
 	content	= parse_content(line) == -1 ?
 		parse_content2(line) : parse_content(line);
-	printf("content : %d\n",content);
-	if (content == 0)
+	if (content == 0 && !(set_resolution(cub, line)))
+		return (0);
+	if (content >= 1 && content <= 12 && !(set_content(cub, line ,content)))
+		return (0);
+	if (content == 16 && !(set_dsprite(cub, line, content)))
+		return (0);
+	if (content == 14 || content == 15) //floor ceiling
 	{
-		if (!(set_resolution(cub, line)))
-			return (0);
-	}
-	else if (content >= 1 && content <= 12) // bearing,sprite
-	{
-		if (!(set_content(cub, line, content)))
-			return (0);
-	}
-	else if (content == 16) //default sprite
-	{
-		if (!(set_dsprite(cub, line, content)))
-			return (0);
-	}
-	else if (content == 14 || content == 15) //floor ceiling
+		map_parse = content == 15 ? true : false;
 		set_ce_fl(cub, line, content);
-	//else
-	//	set_map(cub, line);
+	}
+	if (map_parse && content == -1 )
+		(set_map(cub, line));
 	return (1);
 }
 
-int			parse_map(t_cub *cub, char *input)
+static void	set_row_col(t_cub *cub)
 {
-	char	*line;
-	int		fd;
-	int		ret;
-	int		idx;
-	char	*buf;
+	cub->max_map_row++;
+	cub->req_row = cub->max_map_row;
+	cub->req_col = cub->max_map_col;
+	cub->object.row = cub->req_row;
+	cub->object.col = cub->req_col;
+}
+
+int			parse_param(t_cub *cub, char *input)
+{
+	char		*line;
+	int			fd;
+	int			ret;
+	int			idx;
+	char		*buf;
 
 	idx = ft_strchr(input, '.');
 	if (input[idx + 1] != 'c' || input[idx + 2] != 'u' ||
@@ -106,14 +109,13 @@ int			parse_map(t_cub *cub, char *input)
 		return (0);
 	while ((ret = get_next_line(fd, &line)))
 	{
-		printf("ret : %d line : %s\n",ret,line);
 		if (!line_parse(cub, ret, line, &buf))
 			return (0);
 		free(line);
 	}
-	printf("ret : %d line : %s\n",ret,line);
 	if (!line_parse(cub, ret, line, &buf))
 		return (0);
 	free(line);
+	set_row_col(cub);
 	return (1);
 }

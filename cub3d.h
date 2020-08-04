@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 21:55:11 by youlee            #+#    #+#             */
-/*   Updated: 2020/08/03 22:03:10 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/04 17:11:54 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,6 @@
 # define FOV						.66
 # define MAX_HEIGHT					1080
 # define MAX_WIDTH					1920
-# define MH							800
 # define MIN_HEIGHT					320
 # define MIN_WIDTH					480
 # define rotate_speed				.07
@@ -236,7 +235,9 @@ typedef struct						s_cub
 	double			depth[1080];
 	double			cam_width[1920];
 	double			cam_height[1080];
-	int				map[10][10];
+	int				map[1000][1000];
+	int				max_map_row;
+	int				max_map_col;
 	int				req_col;
 	int				req_row;
 	int				life;
@@ -325,7 +326,7 @@ char			*ft_strncpy(char *dest, char *src, int num);
 char			**ft_split(char const *s, char c);
 int				ft_atoi(const char *str);
 int				set_resolution(t_cub *cub, char *line);
-int				parse_map(t_cub *cub, char *input);
+int				parse_param(t_cub *cub, char *input);
 int				set_dsprite(t_cub *cub, char *line, int content);
 int				set_content(t_cub *cub, char *line, int content);
 int				set_ce_fl(t_cub *cub, char *line, int content);
@@ -334,5 +335,5 @@ char			*ft_substr(char *s, int start, int len);
 bool			check_ce_fl(char *line);
 void			rgb_control(t_cub *cub, char *line, int content);
 void			ce_fl_tex(t_cub *cub, char *line, int content);
-
+int				set_map(t_cub *cub, char *line);
 #endif
