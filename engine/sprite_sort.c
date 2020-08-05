@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 14:30:04 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/28 17:26:05 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/05 18:26:52 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void			delete_spr(t_sprite **spr, t_pos *pos)
 			else
 				prev->next = temp->next;
 			free(temp);
-			temp = NULL;
 			if (prev)
 				*spr = curr;
 			return ;

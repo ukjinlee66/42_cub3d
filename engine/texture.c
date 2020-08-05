@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 17:13:53 by youlee            #+#    #+#             */
-/*   Updated: 2020/08/04 17:12:30 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/05 18:47:30 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,28 @@ static int		col_check(t_texture *tex, int col)
 	return (1);
 }
 
+static int		loading(t_cub *cub, char *path, int i)
+{
+	if (!path)
+		return (1);
+	cub->texture[i].tex = mlx_xpm_file_to_image(cub->window.ptr, path,
+			&cub->texture[i].width, &cub->texture[i].height);
+	cub->texture[i].ptr = (int*)mlx_get_data_addr(cub->texture[i].tex,
+			&cub->texture[i].bpp, &cub->texture[i].size_l,
+			&cub->texture[i].endian);
+	return (0);
+}
+
 void			load_texture(t_cub *cub)
 {
-	static int		i = 0;
+	int				i;
 	int				j;
-	char			*path;
 
 	i = 0;
 	while (i < 17)
 	{
-		path = cub->texture[i].path;
-		cub->texture[i].tex = mlx_xpm_file_to_image(cub->window.ptr, path,
-				&cub->texture[i].width, &cub->texture[i].height);
-		cub->texture[i].ptr = (int*)mlx_get_data_addr(cub->texture[i].tex,
-				&cub->texture[i].bpp, &cub->texture[i].size_l,
-				&cub->texture[i].endian);
+		if (loading(cub, cub->texture[i].path, i))
+			return ;
 		j = 0;
 		while (j < cub->texture[i].height && col_check(&cub->texture[i], j))
 			j++;

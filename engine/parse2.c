@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 19:37:33 by youlee            #+#    #+#             */
-/*   Updated: 2020/08/04 17:00:53 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/05 16:50:06 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int				set_content(t_cub *cub, char *line, int content)
 	int			i;
 	int			handle;
 
-	//1 ~ 12
 	handle = (content < 5) ? -1 : 1;
 	i = 0;
 	str = ft_split(line, ' ');

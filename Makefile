@@ -6,7 +6,7 @@
 #    By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/27 22:30:38 by youlee            #+#    #+#              #
-#    Updated: 2020/08/04 13:27:46 by youlee           ###   ########.fr        #
+#    Updated: 2020/08/05 18:36:54 by youlee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ CFLAG = -Wall -Wextra -Werror
 
 SRC := 	main.c \
 		mlx_handle/hook_handle.c \
+		mlx_handle/hook_assistant.c \
 		engine/camera.c \
 		engine/check_coin_in_map.c \
 		engine/color.c \
@@ -27,6 +28,7 @@ SRC := 	main.c \
 		engine/icon.c \
 		engine/position.c \
 		engine/raycast.c \
+		engine/assist_ray.c \
 		engine/sky_floor.c \
 		engine/sprite.c \
 		engine/sprite2.c \

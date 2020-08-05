@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/30 15:33:52 by youlee            #+#    #+#             */
-/*   Updated: 2020/08/04 16:09:30 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/05 17:20:46 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void			init_cub2(t_cub *cub, int i)
 	cub->coin[2] = '\0';
 	cub->mouse.x = 0.;
 	cub->mouse.y = 0.;
-	cub->cos[0] = cos(-rotate_speed);
-	cub->cos[1] = cos(rotate_speed);
-	cub->sin[0] = sin(-rotate_speed);
-	cub->sin[1] = sin(rotate_speed);
+	cub->cos[0] = cos(-ROTATE_SPEED);
+	cub->cos[1] = cos(ROTATE_SPEED);
+	cub->sin[0] = sin(-ROTATE_SPEED);
+	cub->sin[1] = sin(ROTATE_SPEED);
 	while (i < 7)
 		cub->special[i++] = NULL;
 	cub->jump_val = 0;
@@ -43,7 +43,7 @@ void			init_cub2(t_cub *cub, int i)
 
 void			init_cub3(t_cub *cub, int i)
 {
-	cub->mv_speed = move_speed;
+	cub->mv_speed = MOVE_SPEED;
 	while (i < 17)
 		cub->texture[i++].tex = NULL;
 	cub->life = 3;
@@ -53,6 +53,6 @@ void			init_cub3(t_cub *cub, int i)
 	cub->texture[13].path = "textures/exclamation_block.xpm";
 	cub->texture[14].path = "textures/sprite1.xpm";
 	cub->texture[15].path = "textures/castle.xpm";
-    cub->texture[16].path = "textures/barrel.xpm";
+	cub->texture[16].path = "textures/barrel.xpm";
 	return ;
 }

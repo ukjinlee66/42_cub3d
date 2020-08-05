@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 13:03:49 by youlee            #+#    #+#             */
-/*   Updated: 2020/08/04 16:14:35 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/05 18:02:28 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,28 +24,26 @@ static void	set_player_position(t_cub *cub, char *line, int row, int col)
 	else if (line[col] == 'E')
 	{
 		set_position(&cub->camera.dir, 1., 0.);
-		set_position(&cub->camera.plane, 0., FOV);	
+		set_position(&cub->camera.plane, 0., FOV);
 	}
 	else if (line[col] == 'S')
 	{
 		set_position(&cub->camera.dir, 0., 1.);
-		set_position(&cub->camera.plane, -FOV, 0.);	
-	}	
+		set_position(&cub->camera.plane, -FOV, 0.);
+	}
 	else if (line[col] == 'W')
 	{
 		set_position(&cub->camera.dir, -1., 0.);
-		set_position(&cub->camera.plane, 0., -FOV);	
+		set_position(&cub->camera.plane, 0., -FOV);
 	}
 	set_position(&cub->camera.x_dir,
 			cub->camera.dir.y, -cub->camera.dir.x);
 }
 
-int			set_map(t_cub *cub, char *line)
+int			set_map(t_cub *cub, char *line, int i)
 {
 	static int	row = 0;
-	int			i;
 
-	i = 0;
 	while (line[i] || (row != 0 && i < cub->max_map_col))
 	{
 		if (line[i] == ' ' || (line[i] >= '0' && line[i] <= '9') ||

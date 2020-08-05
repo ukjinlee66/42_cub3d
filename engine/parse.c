@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 18:20:37 by youlee            #+#    #+#             */
-/*   Updated: 2020/08/04 17:14:19 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/05 18:04:49 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,19 @@ static int	parse_content(char *line)
 		return (CONTENT_SP);
 	else if (line[0] == 'S' && line[1] == 'C')
 		return (CONTENT_SC);
-	else if (line[0] == 'S' && line[1] == 'm')
-		return (CONTENT_Sm);
-	else if (line[0] == 'S' && line[1] == 'M')
-		return (CONTENT_SM);
+	else if (line[0] == 'S' && line[1] == 'G' &&
+			line[2] == 'M')
+		return (CONTENT_SGM);
+	else if (line[0] == 'S' && line[1] == 'R' &&
+			line[2] == 'M')
+		return (CONTENT_SRM);
 	else if (line[0] == 'S' && line[1] == 'S')
 		return (CONTENT_SS);
 	else
 		return (-1);
 }
 
-static int parse_content2(char *line)
+static int	parse_content2(char *line)
 {
 	if (line[0] == 'S' && line[1] == 'K')
 		return (CONTENT_SK);
@@ -66,21 +68,22 @@ static int	line_parse(t_cub *cub, int ret,
 	size = ft_strlen(line);
 	if (size == 0 && (ret == 1 || ret == 0))
 		return (1);
-	content	= parse_content(line) == -1 ?
+	content = (parse_content(line) == -1) ?
 		parse_content2(line) : parse_content(line);
 	if (content == 0 && !(set_resolution(cub, line)))
 		return (0);
-	if (content >= 1 && content <= 12 && !(set_content(cub, line ,content)))
+	if (content >= 1 && content <= 12 &&
+			!(set_content(cub, line, content)))
 		return (0);
 	if (content == 16 && !(set_dsprite(cub, line, content)))
 		return (0);
-	if (content == 14 || content == 15) //floor ceiling
+	if (content == 14 || content == 15)
 	{
 		map_parse = content == 15 ? true : false;
 		set_ce_fl(cub, line, content);
 	}
-	if (map_parse && content == -1 )
-		(set_map(cub, line));
+	if (map_parse && content == -1)
+		(set_map(cub, line, 0));
 	return (1);
 }
 

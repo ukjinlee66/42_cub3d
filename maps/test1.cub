@@ -6,8 +6,8 @@ EA textures/bush.xpm
 
 SP textures/pipe.xpm
 SC textures/Coin.xpm
-Sm textures/mush1.xpm
-SM textures/mush2.xpm
+SGM textures/mush1.xpm
+SRM textures/mush2.xpm
 SS textures/star2.xpm
 SK textures/key.xpm
 SQ textures/question.xpm

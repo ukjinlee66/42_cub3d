@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 18:14:29 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/28 17:25:35 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/05 18:57:24 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,17 @@ static void		init_draw(t_texture *tex, t_object *obj, t_pos *tex_pos)
 		tex_pos->x = tex->width - tex_pos->x - 1.;
 }
 
+static void		assist_draw(t_cub *cub, t_object *obj,
+		t_texture *tex, t_pos *pixel)
+{
+	set_position(pixel, obj->col, maxn(0,
+				cub->window.half.y - (obj->height / 2.)));
+	if (!tex->tex)
+		draw_vertical(&cub->window, pixel, obj->height,
+			cal_color(cub->c[obj->direction],
+					obj->dist / 3.5));
+}
+
 void			draw_wall(t_cub *cub, t_object *obj)
 {
 	t_texture	*tex;
@@ -37,15 +48,9 @@ void			draw_wall(t_cub *cub, t_object *obj)
 	int			end;
 
 	tex = &cub->texture[obj->direction];
-	set_position(&pixel, obj->col, maxn(0,
-				cub->window.half.y - (obj->height / 2.)));
+	assist_draw(cub, obj, tex, &pixel);
 	if (!tex->tex)
-	{
-		draw_vertical(&cub->window, &pixel, obj->height,
-			cal_color(cub->c[obj->direction],
-					obj->dist / 3.5));
 		return ;
-	}
 	init_draw(tex, obj, &tex_pos);
 	end = maxn(0, (cub->window.half.y - (obj->height / 2.)));
 	start = 0;
