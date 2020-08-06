@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 18:20:37 by youlee            #+#    #+#             */
-/*   Updated: 2020/08/05 18:04:49 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/06 19:46:46 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,16 @@ static int	line_parse(t_cub *cub, int ret,
 	return (1);
 }
 
-static void	set_row_col(t_cub *cub)
+static int	set_row_col(t_cub *cub)
 {
 	cub->max_map_row++;
+	if (cub->max_map_row < 3 || cub->max_map_col < 3)
+		return(0);
 	cub->req_row = cub->max_map_row;
 	cub->req_col = cub->max_map_col;
 	cub->object.row = cub->req_row;
 	cub->object.col = cub->req_col;
+	return (1);
 }
 
 int			parse_param(t_cub *cub, char *input)
@@ -119,6 +122,7 @@ int			parse_param(t_cub *cub, char *input)
 	if (!line_parse(cub, ret, line, &buf))
 		return (0);
 	free(line);
-	set_row_col(cub);
+	if (!set_row_col(cub) || !cub->user)
+		return (0);
 	return (1);
 }

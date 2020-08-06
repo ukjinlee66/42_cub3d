@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 21:55:05 by youlee            #+#    #+#             */
-/*   Updated: 2020/08/06 19:19:13 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/06 19:32:00 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int				main(int argc, char **argv)
 {
 	t_cub			cub;
 
-	if (argc > 2 && argv[1] != NULL)
+	if (argc >= 2 && argv[1])
 	{
 		if (!parse_param(&cub, argv[1]))
 			return (print_str("Error\n wrong .cub file!\n"));
