@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 18:39:23 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/29 23:30:32 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/06 19:16:53 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,10 @@ int				screenshot(t_cub *cub)
 	int			pad;
 
 	put_screen(cub);
+	put_img(cub);
 	mlx_string_put(cub->window.ptr, cub->window.win,
 			cub->window.half.x - 50,
 			cub->window.size.y - 50, 0xFF0000, cub->coin);
-	put_img(cub);
 	pad = (4 - ((int)cub->window.size.x * 3) % 4) % 4;
 	filesize = 54 + (3 * (cub->window.size.x + pad) * cub->window.size.y);
 	if ((fd = open("cub3D.bmp", O_WRONLY | O_CREAT |

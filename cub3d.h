@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 21:55:11 by youlee            #+#    #+#             */
-/*   Updated: 2020/08/05 19:10:38 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/06 19:09:12 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,10 +118,10 @@
 */
 
 # define FOV						.66
-# define MAX_HEIGHT					1080
-# define MAX_WIDTH					1920
-# define MIN_HEIGHT					320
-# define MIN_WIDTH					480
+# define MAX_HEIGHT					1000
+# define MAX_WIDTH					1000
+# define MIN_HEIGHT					400
+# define MIN_WIDTH					400
 # define ROTATE_SPEED				.07
 # define MOVE_SPEED					.07
 # define NUMBER_SPRITE				5
@@ -233,7 +233,7 @@ typedef struct		s_cub
 	unsigned		c[9];
 	double			cos[2];
 	double			sin[2];
-	double			depth[1080];
+	double			depth[1920];
 	double			cam_width[1920];
 	double			cam_height[1080];
 	int				map[1000][1000];
@@ -250,7 +250,7 @@ typedef struct		s_cub
 	int				jump_val;
 	bool			secret;
 	bool			open;
-	char			*data;
+	bool			user;
 }					t_cub;
 
 /*
@@ -347,4 +347,6 @@ void				assist_loop3(t_cub *cub, t_camera *c,
 		int *update);
 void				assist_raycast(t_cub *cub, t_object *obj,
 		int *hit);
+int					map_check(t_cub *cub);
+void				clear_sprite(t_sprite **spr);
 #endif

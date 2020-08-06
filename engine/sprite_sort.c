@@ -6,11 +6,24 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 14:30:04 by youlee            #+#    #+#             */
-/*   Updated: 2020/08/05 18:26:52 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/06 18:35:44 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void			clear_sprite(t_sprite **spr)
+{
+	t_sprite *temp;
+
+	while (*spr)
+	{
+		temp = (*spr)->next;
+		free(*spr);
+		*spr = temp;
+	}
+	*spr = NULL;
+}
 
 void			draw_sprite(t_cub *cub, t_sprite *spr,
 		t_sprite2 *spr2, t_texture *tex)

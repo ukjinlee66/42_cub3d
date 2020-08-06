@@ -1,0 +1,20 @@
+R 800 800
+NO textures/bush.xpm
+SO textures/bush.xpm
+WE textures/bush.xpm
+EA textures/bush.xpm
+
+SP textures/pipe.xpm
+SC textures/Coin.xpm
+SGM textures/mush1.xpm
+SRM textures/mush2.xpm
+SS textures/star2.xpm
+SK textures/key.xpm
+SQ textures/question.xpm
+SE textures/exclamation_bock.xpm
+F textures/floor1.xpm
+C textures/clouds.xpm
+
+11111
+10001
+11111

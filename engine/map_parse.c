@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 13:03:49 by youlee            #+#    #+#             */
-/*   Updated: 2020/08/05 18:02:28 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/06 19:09:53 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void	set_player_position(t_cub *cub, char *line, int row, int col)
 	}
 	set_position(&cub->camera.x_dir,
 			cub->camera.dir.y, -cub->camera.dir.x);
+	cub->user = true;
 }
 
 int			set_map(t_cub *cub, char *line, int i)
@@ -52,7 +53,7 @@ int			set_map(t_cub *cub, char *line, int i)
 		{
 			if (line[i] == 'a')
 				cub->map[row][i] = 10;
-			else if (line[i] >= 'E' && line[i] <= 'W')
+			else if (line[i] >= 'E' && line[i] <= 'W' && !cub->user)
 				set_player_position(cub, line, row, i);
 			else
 				cub->map[row][i] = (line[i] == ' ') ? -1 : line[i] - '0';

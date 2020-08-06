@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 11:19:45 by youlee            #+#    #+#             */
-/*   Updated: 2020/08/05 17:52:16 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/06 18:33:28 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int				exit_game(t_cub *cub)
 	i = 0;
 	Mix_FreeMusic(cub->bgm);
 	cub->bgm = NULL;
+	clear_sprite(&cub->sprite);
 	while (i < 5)
 	{
 		Mix_FreeChunk(cub->special[i]);
@@ -59,11 +60,15 @@ int				key_press(int key, t_cub *cub)
 	else if (key == KEY_D)
 		cub->x_move.y = 1;
 	if (key == KEY_UP)
+	{
 		if (cub->window.half.y < cub->window.size.y * 2. / 3.)
 			cub->window.half.y += 7;
+	}
 	if (key == KEY_UNDER)
+	{
 		if (cub->window.half.y > cub->window.size.y / 3.)
 			cub->window.half.y -= 7;
+	}
 	if (key == KEY_Q || key == KEY_LEFT)
 		cub->rotate.x = 1;
 	if (key == KEY_E || key == KEY_RIGHT)
@@ -106,9 +111,64 @@ int				main_loop(t_cub *cub)
 		update = side_camera(cub, (cub->x_move.x) ? 0 : 1);
 	if (cub->rotate.x || cub->rotate.y)
 		update = rotate_camera(cub, (cub->rotate.x) ? 0 : 1);
-	assist_loop3(cub, c, &update);
-	assist_loop(cub, c);
-	assist_loop2(cub, c);
+	if (cub->open)
+		update = open_door(cub);
+	if (cub->jump_val > 0)
+	{
+		if (cub->jump_val == 30)
+			jump_music(cub);
+		update = jumpup(cub);
+	}
+	if (cub->jump_val < 0)
+		update = jumpdown(cub);
+	if (cub->window.size.y / 2. != cub->window.half.y)
+		update = 1;
+	if (cub->mouse.x || cub->mouse.y)
+		update = 1;
+	if (check_coin_map(cub) > 0)
+	{
+		if (cub->map[(int)c->pos.x][(int)c->pos.y] == 3)
+		{
+			coin_music(cub);
+			cub->map[(int)c->pos.x][(int)c->pos.y] = 0;
+			cub->coin[1] = ((cub->coin[1] - 32) + 1) + 32;
+			delete_spr(&cub->sprite, &c->pos);
+		}
+	}
+	if (cub->map[(int)c->pos.x][(int)c->pos.y] == 4 ||
+			cub->map[(int)c->pos.x][(int)c->pos.y] == 5)
+	{
+		if (cub->map[(int)c->pos.x][(int)c->pos.y] == 4)
+		{
+			gremush_music(cub);
+			cub->life--;
+		}
+		else
+		{
+			redmush_music(cub);
+			cub->life++;
+		}
+		cub->map[(int)c->pos.x][(int)c->pos.y] = 0;
+		delete_spr(&cub->sprite, &c->pos);
+		if (cub->life == 0)
+			exit_game(cub);
+	}
+	if (cub->map[(int)c->pos.x][(int)c->pos.y] == 6)
+	{
+		star_music(cub);
+		cub->map[(int)c->pos.x][(int)c->pos.y] = 0;
+		delete_spr(&cub->sprite, &c->pos);
+		cub->mv_speed += .03;
+	}
+	if (cub->map[(int)c->pos.x][(int)c->pos.y] == 7)
+	{
+		star_music(cub);
+		cub->secret = true;
+		cub->map[(int)c->pos.x][(int)c->pos.y] = 0;
+		delete_spr(&cub->sprite, &c->pos);
+	}
+	if (cub->secret)
+		secret_open(cub);
 	if (update)
 	{
 		put_screen(cub);

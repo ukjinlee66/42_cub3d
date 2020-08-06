@@ -6,7 +6,7 @@
 #    By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/27 22:30:38 by youlee            #+#    #+#              #
-#    Updated: 2020/08/05 18:36:54 by youlee           ###   ########.fr        #
+#    Updated: 2020/08/06 13:25:18 by youlee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRC := 	main.c \
 		engine/parse.c \
 		engine/parse2.c \
 		engine/parse3.c \
+		engine/check_map.c \
 		bitmap.c \
 		gnl/get_next_line.c \
 		reset.c
@@ -65,9 +66,9 @@ SRC := 	main.c \
 OBJ := $(SRC:.c=.o)
 
 HEADERS = -I SDL/SDL2.framework/Headers/ -I SDL/SDL2_mixer.framework/Headers/ \
-		  -I minilibx_opengl/ -I minilibx_mms/ -I gnl/ -I.
+		  -I minilibx_mms/ -I gnl/ -I.
 
-LIBS = libmlx.a libmlx.dylib -framework OpenGL -framework Appkit -rpath \
+LIBS = -lmlx libmlx.dylib -framework OpenGL -framework Appkit -rpath \
 	   @loader_path/SDL -framework SDL2 -F SDL/ -framework SDL2_mixer\
 	   -F SDL/
 
