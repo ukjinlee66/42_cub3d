@@ -6,7 +6,7 @@
 #    By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/27 22:30:38 by youlee            #+#    #+#              #
-#    Updated: 2020/08/06 13:25:18 by youlee           ###   ########.fr        #
+#    Updated: 2020/08/06 22:30:16 by youlee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ SRC := 	main.c \
 		engine/music.c \
 		engine/music2.c \
 		function/print_get.c \
-		function/max.c \
+		function/maxn.c \
 		function/ft_memcpy.c \
 		function/vector_cross_product.c \
 		function/ft_strcmp.c \
@@ -66,9 +66,9 @@ SRC := 	main.c \
 OBJ := $(SRC:.c=.o)
 
 HEADERS = -I SDL/SDL2.framework/Headers/ -I SDL/SDL2_mixer.framework/Headers/ \
-		  -I minilibx_mms/ -I gnl/ -I.
+		  -I minilibx_opengl/ -I minilibx_mms/ -I gnl/ -I.
 
-LIBS = -lmlx libmlx.dylib -framework OpenGL -framework Appkit -rpath \
+LIBS = libmlx.a libmlx.dylib -framework OpenGL -framework Appkit -rpath \
 	   @loader_path/SDL -framework SDL2 -F SDL/ -framework SDL2_mixer\
 	   -F SDL/
 

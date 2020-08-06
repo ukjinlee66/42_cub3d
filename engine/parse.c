@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 18:20:37 by youlee            #+#    #+#             */
-/*   Updated: 2020/08/06 19:46:46 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/06 22:39:40 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static int	set_row_col(t_cub *cub)
 {
 	cub->max_map_row++;
 	if (cub->max_map_row < 3 || cub->max_map_col < 3)
-		return(0);
+		return (0);
 	cub->req_row = cub->max_map_row;
 	cub->req_col = cub->max_map_col;
 	cub->object.row = cub->req_row;

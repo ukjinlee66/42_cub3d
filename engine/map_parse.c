@@ -6,11 +6,22 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 13:03:49 by youlee            #+#    #+#             */
-/*   Updated: 2020/08/06 19:09:53 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/06 22:39:29 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void	check_user(t_cub *cub)
+{
+	if (cub->user)
+	{
+		print_str("Error\n wrong map file!");
+		exit(0);
+	}
+	else
+		cub->user = true;
+}
 
 static void	set_player_position(t_cub *cub, char *line, int row, int col)
 {
@@ -38,7 +49,7 @@ static void	set_player_position(t_cub *cub, char *line, int row, int col)
 	}
 	set_position(&cub->camera.x_dir,
 			cub->camera.dir.y, -cub->camera.dir.x);
-	cub->user = true;
+	check_user(cub);
 }
 
 int			set_map(t_cub *cub, char *line, int i)
@@ -53,7 +64,7 @@ int			set_map(t_cub *cub, char *line, int i)
 		{
 			if (line[i] == 'a')
 				cub->map[row][i] = 10;
-			else if (line[i] >= 'E' && line[i] <= 'W' && !cub->user)
+			else if (line[i] >= 'E' && line[i] <= 'W')
 				set_player_position(cub, line, row, i);
 			else
 				cub->map[row][i] = (line[i] == ' ') ? -1 : line[i] - '0';

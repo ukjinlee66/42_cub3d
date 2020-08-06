@@ -6,11 +6,24 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 14:29:55 by youlee            #+#    #+#             */
-/*   Updated: 2020/07/28 17:09:51 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/06 22:40:20 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void			clear_sprite(t_sprite **spr)
+{
+	t_sprite *temp;
+
+	while (*spr)
+	{
+		temp = (*spr)->next;
+		free(*spr);
+		*spr = temp;
+	}
+	*spr = NULL;
+}
 
 static int		sp_coord(t_cub *cub, t_sprite2 *spr2,
 		t_texture *tex, t_pos *tex_pos)
