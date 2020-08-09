@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 11:19:45 by youlee            #+#    #+#             */
-/*   Updated: 2020/08/06 22:47:13 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/09 18:50:35 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ int				exit_game(t_cub *cub)
 		Mix_FreeChunk(cub->special[i]);
 		cub->special[i++] = NULL;
 	}
+	i = 0;
+	while (i < 17)
+		if (cub->texture[i].path != NULL)
+			free(cub->texture[i++].path);
 	Mix_Quit();
 	SDL_Quit();
 	exit(0);

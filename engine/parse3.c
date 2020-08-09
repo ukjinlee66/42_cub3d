@@ -6,11 +6,21 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 20:26:56 by youlee            #+#    #+#             */
-/*   Updated: 2020/08/03 22:02:35 by youlee           ###   ########.fr       */
+/*   Updated: 2020/08/09 18:45:15 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int		check_number(char *str, int divide)
+{
+	int			ret;
+
+	ret = (ft_atoi(ft_substr(&str[1], 0, 3)));
+	ret = ret < 0 ? 0 : ret;
+	ret = ret > 255 ? 255 : ret;
+	return (ret << divide);
+}
 
 bool			check_ce_fl(char *line)
 {
@@ -36,10 +46,13 @@ void			rgb_control(t_cub *cub, char *line, int content)
 		i++;
 	if (i != 2)
 		return ;
-	num = (ft_atoi(ft_substr(str[1], 0, 3))) << 16;
+	num = check_number(*str, 16);
+	num += check_number(*str, 8);
+	num += check_number(*str, 0);
+	/*num = (ft_atoi(ft_substr(str[1], 0, 3))) << 16;
 	num += (ft_atoi(ft_substr(str[1], 4, 7))) << 8;
 	num += ft_atoi(ft_substr(str[1], 8, 11));
-	free_point(str);
+	*/free_point(str);
 	if (content == 14)
 		cub->c[TEX_FLOOR] = num;
 	else
