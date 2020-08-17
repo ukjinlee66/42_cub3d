@@ -7,7 +7,7 @@ This project uses the __raycasting__ technique used in the Wolfenstein 3D fps ga
 # How to play?<br>
 1. ```git clone https://github.com/ukjinlee66/42_cub3d.git```<br>
 2. ```make```<br>
-3. ```./cub3D```<br>
+3. ```./cub3D maps/test1.cub```<br>
 4. Enjoy the Game!<br>
 5. To end the game, press the ESC button!<br><br>
 KEY W,A,S,D are moving buttons and direction keys and mouse move adjust the viewing angle.<br>
