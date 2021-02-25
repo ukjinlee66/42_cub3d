@@ -1,3 +1,4 @@
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fukjinlee66%2F42_cub3d&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 # 42Project cub3d<br>
 
 이 프로젝트는 90년대 fps게임 울펜슈타인3D 에서 사용하는 __레이케스팅__ 기법을 이용합니다.<br>
